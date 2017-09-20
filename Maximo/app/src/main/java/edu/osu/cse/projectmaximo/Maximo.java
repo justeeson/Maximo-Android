@@ -73,8 +73,10 @@ public class Maximo extends AppCompatActivity {
 
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
-        values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_ITEM, "Item1");
-        values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_PRICE, "$500");
+        values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_USERID, "1");
+        values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_USERNAME, "seb97");
+        values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_FIRSTNAME, "Sebastin");
+        values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_LASTNAME, "Justeeson");
 
         // Insert the new row, returning the primary key value of the new row
         long newRowId = dbWriteable.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, values);
@@ -85,17 +87,19 @@ public class Maximo extends AppCompatActivity {
     // you will actually use after this query.
         String[] projection = {
                 FeedReaderContract.FeedEntry._ID,
-                FeedReaderContract.FeedEntry.COLUMN_NAME_ITEM,
-                FeedReaderContract.FeedEntry.COLUMN_NAME_PRICE
+                FeedReaderContract.FeedEntry.COLUMN_NAME_USERID,
+                FeedReaderContract.FeedEntry.COLUMN_NAME_USERNAME,
+                FeedReaderContract.FeedEntry.COLUMN_NAME_FIRSTNAME,
+                FeedReaderContract.FeedEntry.COLUMN_NAME_LASTNAME
         };
 
     // Filter results WHERE "title" = 'My Title'
-        String selection = FeedReaderContract.FeedEntry.COLUMN_NAME_ITEM + " = ?";
-        String[] selectionArgs = { "Item1" };
+        String selection = FeedReaderContract.FeedEntry.COLUMN_NAME_FIRSTNAME + " = ?";
+        String[] selectionArgs = { "Sebastin" };
 
     // How you want the results sorted in the resulting Cursor
         String sortOrder =
-                FeedReaderContract.FeedEntry.COLUMN_NAME_PRICE + " DESC";
+                FeedReaderContract.FeedEntry.COLUMN_NAME_USERID + " ASC";
 
         Cursor cursor = dbReadable.query(
                 FeedReaderContract.FeedEntry.TABLE_NAME,                     // The table to query
@@ -111,7 +115,7 @@ public class Maximo extends AppCompatActivity {
         List<String> itemIds = new ArrayList<String>();
         while(cursor.moveToNext()) {
             String itemId = cursor.getString(
-                    cursor.getColumnIndexOrThrow(FeedReaderContract.FeedEntry.COLUMN_NAME_ITEM));
+                    cursor.getColumnIndexOrThrow(FeedReaderContract.FeedEntry.COLUMN_NAME_FIRSTNAME));
             itemIds.add(itemId);
         }
         cursor.close();

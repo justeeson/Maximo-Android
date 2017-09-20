@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class FeedReaderDbHelper extends SQLiteOpenHelper {
     // If you change the database schema, you must increment the database version.
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
     public static final String DATABASE_NAME = "FeedReader.db";
 
     public FeedReaderDbHelper(Context context) {
@@ -29,9 +29,10 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
     public static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + FeedReaderContract.FeedEntry.TABLE_NAME + " (" +
                     FeedReaderContract.FeedEntry._ID + " INTEGER PRIMARY KEY," +
-                    FeedReaderContract.FeedEntry.COLUMN_NAME_ITEM + " TEXT," +
-                    FeedReaderContract.FeedEntry.COLUMN_NAME_PRICE + " TEXT)";
-
+                    FeedReaderContract.FeedEntry.COLUMN_NAME_USERID + " INTEGER UNIQUE," +
+                    FeedReaderContract.FeedEntry.COLUMN_NAME_USERNAME + " TEXT UNIQUE," +
+                    FeedReaderContract.FeedEntry.COLUMN_NAME_FIRSTNAME + " TEXT," +
+                    FeedReaderContract.FeedEntry.COLUMN_NAME_LASTNAME + " TEXT)";
     public static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + FeedReaderContract.FeedEntry.TABLE_NAME;
 }
