@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Maximo extends AppCompatActivity {
+    public static String userIdentity = "";
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -35,8 +36,6 @@ public class Maximo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_maximo);
-
         FeedReaderDbHelper mDbHelper = new FeedReaderDbHelper(getApplicationContext());
         // Gets the data repository in write mode
         SQLiteDatabase dbWriteable = mDbHelper.getWritableDatabase();
@@ -44,17 +43,17 @@ public class Maximo extends AppCompatActivity {
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
         values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_USERID, "1");
-        values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_USERNAME, "seb97");
-        values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_FIRSTNAME, "Sebastin");
-        values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_LASTNAME, "Justeeson");
+        values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_USERNAME, "userone");
+        values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_FIRSTNAME, "User");
+        values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_LASTNAME, "One");
 
         // Insert the new row, returning the primary key value of the new row
         long newRowId = dbWriteable.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, values);
 
         SQLiteDatabase dbReadable = mDbHelper.getReadableDatabase();
 
-    // Define a projection that specifies which columns from the database
-    // you will actually use after this query.
+        // Define a projection that specifies which columns from the database
+        // you will actually use after this query.
         String[] projection = {
                 FeedReaderContract.FeedEntry._ID,
                 FeedReaderContract.FeedEntry.COLUMN_NAME_USERID,
@@ -63,11 +62,11 @@ public class Maximo extends AppCompatActivity {
                 FeedReaderContract.FeedEntry.COLUMN_NAME_LASTNAME
         };
 
-    // Filter results WHERE "title" = 'My Title'
+        // Filter results WHERE "title" = 'My Title'
         String selection = FeedReaderContract.FeedEntry.COLUMN_NAME_FIRSTNAME + " = ?";
-        String[] selectionArgs = { "Sebastin" };
+        String[] selectionArgs = { "User" };
 
-    // How you want the results sorted in the resulting Cursor
+        // How you want the results sorted in the resulting Cursor
         String sortOrder =
                 FeedReaderContract.FeedEntry.COLUMN_NAME_USERID + " ASC";
 
@@ -89,7 +88,11 @@ public class Maximo extends AppCompatActivity {
             itemIds.add(itemId);
         }
         cursor.close();
-        Toast.makeText(getApplicationContext(), itemIds.get(0), Toast.LENGTH_LONG).show();
+        userIdentity = " " + itemIds.get(0);
+
+        // We're calling this last so the name can be pulled before
+        // the screen is created
+        setContentView(R.layout.activity_maximo);
     }
 
     @Override

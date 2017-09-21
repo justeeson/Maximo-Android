@@ -38,7 +38,7 @@ public class IntroductionFragment extends Fragment {
         //Set the greeting text in the introduction pane
         View view = inflater.inflate(R.layout.fragment_introduction, container, false);
         TextView textView = view.findViewById(R.id.introTextView);
-        textView.setText(getString(R.string.introduction, greeting));
+        textView.setText(getString(R.string.introduction, greeting, Maximo.userIdentity));
         return view;
     }
 }
