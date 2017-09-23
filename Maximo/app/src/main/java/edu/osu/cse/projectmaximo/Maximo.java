@@ -4,6 +4,7 @@ package edu.osu.cse.projectmaximo;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.ViewPager;
@@ -19,6 +20,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
+
+import edu.osu.cse.projectmaximo.ChatBotUI.ChatTextEntryView;
 
 public class Maximo extends AppCompatActivity {
     public static String userIdentity = "";
@@ -116,4 +119,5 @@ public class Maximo extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }
