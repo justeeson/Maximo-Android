@@ -1,7 +1,9 @@
-package edu.osu.cse.projectmaximo;
+package edu.osu.cse.projectmaximo.ChatBotUI;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import edu.osu.cse.projectmaximo.R;
 
 public class ChatBotActivity extends AppCompatActivity {
 
