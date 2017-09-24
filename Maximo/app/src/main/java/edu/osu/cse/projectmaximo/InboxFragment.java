@@ -22,7 +22,7 @@ public class InboxFragment extends Fragment {
          * we get access to Maximo and are able to display messages.
          */
         View view = inflater.inflate(R.layout.fragment_inbox, container, false);
-        TextView textView = view.findViewById(R.id.rowOneTextView);
+        TextView textView = view.findViewById(R.id.RowOne);
         textView.setText(getString(R.string.empty_inbox, Maximo.userIdentity));
         return view;
     }
