@@ -2,4 +2,6 @@
     <string name="app_name">ProjectMaximo</string>
     <string name="action_settings">Settings</string>
     <string name="introduction">Good %1$s%2$s!</string>
+    <string name="inbox_header">Inbox</string>
+    <string name="empty_inbox">There currently are no messages for %1$s.</string>
 </resources>
