@@ -13,7 +13,7 @@ import edu.osu.cse.projectmaximo.R;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link ChatTextEntryView.OnFragmentInteractionListener} interface
+ * {@link OnMessageSendListener} interface
  * to handle interaction events.
  * Use the {@link ChatTextEntryView#newInstance} factory method to
  * create an instance of this fragment.
@@ -28,7 +28,7 @@ public class ChatTextEntryView extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private OnFragmentInteractionListener mListener;
+    private OnMessageSendListener mListener;
 
     public ChatTextEntryView() {
         // Required empty public constructor
@@ -68,21 +68,14 @@ public class ChatTextEntryView extends Fragment {
         return inflater.inflate(R.layout.fragment_chat_text_entry_view, container, false);
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof OnMessageSendListener) {
+            mListener = (OnMessageSendListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must implement OnMessageSendListener");
         }
     }
 
@@ -102,8 +95,8 @@ public class ChatTextEntryView extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
+    public interface OnMessageSendListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onMessageSend(String message);
     }
 }

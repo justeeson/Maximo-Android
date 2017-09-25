@@ -25,6 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="0dp"
+        android:onClick="onSendButtonPressed"
         android:text="@string/button_send"
         app:layout_constraintBaseline_toBaselineOf="@+id/messageBox"
         app:layout_constraintRight_toRightOf="parent"
