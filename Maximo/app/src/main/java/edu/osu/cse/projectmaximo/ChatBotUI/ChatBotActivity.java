@@ -34,6 +34,8 @@ implements ChatTextEntryView.OnMessageSendListener {
     public void onSendButtonPressed(View view) {
         // Get the message from the EditText
         EditText messageBox = (EditText) findViewById(R.id.messageBox);
-        onMessageSend(messageBox.getText().toString());
+        String message = messageBox.getText().toString();
+        messageBox.setText("");
+        onMessageSend(message);
     }
 }
