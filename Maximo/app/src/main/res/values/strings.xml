@@ -5,4 +5,8 @@
 
     <string name="edit_message">Enter a message</string>
     <string name="button_send">Send</string>
+    <string name="inbox_header">Inbox</string>
+    <string name="bulletin_board_header">Bulletin Board</string>
+    <string name="empty_inbox">There currently are no messages for %1$s.</string>
+    <string name="empty_bulletin_board">There are currently no messages on the bulletin board.</string>
 </resources>

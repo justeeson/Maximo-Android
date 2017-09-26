@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_content"
     android:layout_width="match_parent"
@@ -8,17 +7,37 @@
     android:fitsSystemWindows="true"
     tools:context="edu.osu.cse.projectmaximo.Maximo">
 
-    <ScrollView
-        android:id="@+id/main_dashboard"
+    <fragment
+        android:id="@+id/intro"
+        android:name="edu.osu.cse.projectmaximo.IntroductionFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"/>
 
+    <fragment
+        android:id="@+id/inbox"
+        android:name="edu.osu.cse.projectmaximo.InboxFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"/>
 
-        <fragment
-            android:id="@+id/intro"
-            android:name="edu.osu.cse.projectmaximo.IntroductionFragment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"></fragment>
-    </ScrollView>
-</android.support.design.widget.CoordinatorLayout>
+    <fragment
+        android:id="@+id/bulletin_board"
+        android:name="edu.osu.cse.projectmaximo.BulletinBoardFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"/>
+
+</LinearLayout>

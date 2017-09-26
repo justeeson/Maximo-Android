@@ -16,11 +16,6 @@ import java.util.Calendar;
 
 public class IntroductionFragment extends Fragment {
 
-    /**
-     * The fragment argument representing the hour of the day.
-     */
-    //private static final int currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
