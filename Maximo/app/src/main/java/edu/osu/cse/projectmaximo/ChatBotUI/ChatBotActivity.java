@@ -20,14 +20,17 @@ implements ChatTextEntryView.OnMessageSendListener {
         setContentView(R.layout.activity_chat_bot);
     }
 
+    /**
+     * Handles adding the message to the message history, and sending
+     * @param message The text of the message being added to the chat history.
+     */
     @Override
     public void onMessageSend(String message) {
-        // TODO
+        // TODO: Update this to add text to chat history and save in the database.
         Context context = getApplicationContext();
-        CharSequence text = message;
         int duration = Toast.LENGTH_SHORT;
 
-        Toast toast = Toast.makeText(context, text, duration);
+        Toast toast = Toast.makeText(context, message, duration);
         toast.show();
     }
 
