@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:fitsSystemWindows="true"
     tools:context="edu.osu.cse.projectmaximo.Maximo">
 
@@ -11,33 +13,66 @@
         android:id="@+id/intro"
         android:name="edu.osu.cse.projectmaximo.IntroductionFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_height="51dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"/>
 
-    <fragment
-        android:id="@+id/inbox"
-        android:name="edu.osu.cse.projectmaximo.InboxFragment"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"/>
+        android:orientation="horizontal">
 
-    <fragment
-        android:id="@+id/bulletin_board"
-        android:name="edu.osu.cse.projectmaximo.BulletinBoardFragment"
+        <fragment
+            android:id="@+id/inbox"
+            android:name="edu.osu.cse.projectmaximo.InboxFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1" />
+
+        <fragment
+            android:id="@+id/bulletin_board"
+            android:name="edu.osu.cse.projectmaximo.BulletinBoardFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"/>
+        android:orientation="horizontal">
+
+        <pl.pawelkleczkowski.customgauge.CustomGauge
+            android:id="@+id/gauge"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            app:gaugeEndValue="800"
+            app:gaugePointEndColor="#011d67"
+            app:gaugePointStartColor="#3b98ee"
+            app:gaugeStartAngle="135"
+            app:gaugeStartValue="200"
+            app:gaugeStrokeCap="ROUND"
+            app:gaugeStrokeColor="#808080"
+            app:gaugeStrokeWidth="10dp"
+            app:gaugeSweepAngle="270" />
+    </LinearLayout>
 
 </LinearLayout>
+
