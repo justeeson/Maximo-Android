@@ -1,11 +1,15 @@
 package edu.osu.cse.projectmaximo.ChatBotUI;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.net.Uri;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import edu.osu.cse.projectmaximo.R;
@@ -27,11 +31,13 @@ implements ChatTextEntryView.OnMessageSendListener {
     @Override
     public void onMessageSend(String message) {
         // TODO: Update this to add text to chat history and save in the database.
-        Context context = getApplicationContext();
-        int duration = Toast.LENGTH_SHORT;
+        // Place a message in chat history.
+        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+        android.support.v4.app.FragmentTransaction transaction = fragmentManager.beginTransaction();
+        Fragment msg = new ChatMessage();
+        transaction.add(R.id.chat_message_history, msg);
+        transaction.commit();
 
-        Toast toast = Toast.makeText(context, message, duration);
-        toast.show();
     }
 
     public void onSendButtonPressed(View view) {
