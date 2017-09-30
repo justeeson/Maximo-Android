@@ -34,7 +34,9 @@ implements ChatTextEntryView.OnMessageSendListener {
         // Place a message in chat history.
         android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction transaction = fragmentManager.beginTransaction();
-        Fragment msg = new ChatMessage();
+        ChatMessage msg = ChatMessage.newInstance(message);
+        //msg.setText("Hello");
+
         transaction.add(R.id.chat_message_history, msg);
         transaction.commit();
 
