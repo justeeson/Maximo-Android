@@ -7,15 +7,18 @@ import java.util.GregorianCalendar;
  * Represents a message put into the chat.
  */
 public class ChatMessage {
-    private String message;
+    private String message = "";
 
-    private long time;
+    private long time = 0;
 
     private boolean isResponse = false;
 
+    public ChatMessage() {
+    }
+
     public ChatMessage(String message, long timeInMillis) {
         this.message = message;
-        this.time = time;
+        this.time = timeInMillis;
     }
 
     /**
