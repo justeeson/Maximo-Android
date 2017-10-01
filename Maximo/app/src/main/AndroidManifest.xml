@@ -20,7 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ChatBotUI.ChatBotActivity"
+        <activity android:name=".ChatBot.ChatBotActivity"
             android:exported="true"></activity>
     </application>
 

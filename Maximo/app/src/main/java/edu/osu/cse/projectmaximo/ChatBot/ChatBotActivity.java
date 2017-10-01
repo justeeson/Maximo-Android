@@ -1,16 +1,9 @@
-package edu.osu.cse.projectmaximo.ChatBotUI;
+package edu.osu.cse.projectmaximo.ChatBot;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.content.Context;
-import android.net.Uri;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import edu.osu.cse.projectmaximo.R;
 
@@ -35,7 +28,7 @@ implements ChatTextEntryView.OnMessageSendListener {
         if (message != null && !message.isEmpty()) {
             android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
             android.support.v4.app.FragmentTransaction transaction = fragmentManager.beginTransaction();
-            ChatMessage msg = ChatMessage.newInstance(message);
+            ChatMessageFragment msg = ChatMessageFragment.newInstance(message);
 
             transaction.add(R.id.chat_message_history, msg);
             transaction.commit();

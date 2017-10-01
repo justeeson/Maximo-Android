@@ -1,7 +1,6 @@
-package edu.osu.cse.projectmaximo.ChatBotUI;
+package edu.osu.cse.projectmaximo.ChatBot;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;

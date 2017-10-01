@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="edu.osu.cse.projectmaximo.ChatBotUI.ChatBotActivity">
+    tools:context="edu.osu.cse.projectmaximo.ChatBot.ChatBotActivity">
 
     <ScrollView
         android:layout_width="0dp"
@@ -29,7 +29,7 @@
 
     <fragment
         android:id="@+id/chat_message_entry"
-        android:name="edu.osu.cse.projectmaximo.ChatBotUI.ChatTextEntryView"
+        android:name="edu.osu.cse.projectmaximo.ChatBot.ChatTextEntryView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"

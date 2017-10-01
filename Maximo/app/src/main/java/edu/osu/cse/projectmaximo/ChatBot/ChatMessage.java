@@ -1,17 +1,14 @@
-package edu.osu.cse.projectmaximo;
+package edu.osu.cse.projectmaximo.ChatBot;
 
-import java.sql.Timestamp;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 /**
  * Represents a message put into the chat.
  */
 public class ChatMessage {
-    private final String message;
+    private String message;
 
-    private final Date time;
+    private Date time;
 
     public ChatMessage(String message, Date time) {
         this.message = message;
@@ -27,10 +24,22 @@ public class ChatMessage {
     }
 
     /**
+     * Sets the text of the message.
+     * @param message The new message.
+     */
+    public void setMessage(String message) { this.message = message; }
+
+    /**
      * Gets the time the message was created.
      * @return THe Date the message was created.
      */
     public Date getTime() {
         return this.time;
     }
+
+    /**
+     * Sets the time the message was created.
+     * @param time The time created.
+     */
+    public void setTime(Date time) { this.time = time; }
 }
