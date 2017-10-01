@@ -1,6 +1,7 @@
 package edu.osu.cse.projectmaximo.ChatBot;
 
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * Represents a message put into the chat.
@@ -8,9 +9,11 @@ import java.util.Date;
 public class ChatMessage {
     private String message;
 
-    private Date time;
+    private long time;
 
-    public ChatMessage(String message, Date time) {
+    private boolean isResponse = false;
+
+    public ChatMessage(String message, long timeInMillis) {
         this.message = message;
         this.time = time;
     }
@@ -33,13 +36,23 @@ public class ChatMessage {
      * Gets the time the message was created.
      * @return THe Date the message was created.
      */
-    public Date getTime() {
-        return this.time;
-    }
+    public long getTime() { return this.time; }
 
     /**
      * Sets the time the message was created.
-     * @param time The time created.
+     * @param timeInMillis The time created.
      */
-    public void setTime(Date time) { this.time = time; }
+    public void setTime(long timeInMillis) { this.time = timeInMillis; }
+
+    /**
+     * Gets whether or not the message
+     * @return True if the message is a response. False if it is a request.
+     */
+    public boolean getIsResponse() { return this.isResponse; }
+
+    /**
+     * Sets if the message is a response from the chat bot.
+     * @param isResponse Use false if a request to the chat bot. Use true if response.
+     */
+    public void setIsResponse(boolean isResponse) {this.isResponse = isResponse; }
 }
