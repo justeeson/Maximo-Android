@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import java.util.GregorianCalendar;
+
 import edu.osu.cse.projectmaximo.R;
 
 public class ChatBotActivity extends AppCompatActivity
@@ -22,10 +24,10 @@ implements ChatTextEntryView.OnMessageSendListener {
      * @param message The text of the message being added to the chat history.
      */
     @Override
-    public void onMessageSend(String message) {
+    public void onMessageSend(ChatMessage message) {
         // TODO: Update this to add text to chat history and save in the database.
         // Place a message in chat history UI.
-        if (message != null && !message.isEmpty()) {
+        if (message != null) {
             android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
             android.support.v4.app.FragmentTransaction transaction = fragmentManager.beginTransaction();
             ChatMessageFragment msg = ChatMessageFragment.newInstance(message);
@@ -41,6 +43,8 @@ implements ChatTextEntryView.OnMessageSendListener {
         EditText messageBox = (EditText) findViewById(R.id.messageBox);
         String message = messageBox.getText().toString();
         messageBox.setText("");
-        onMessageSend(message);
+
+        ChatMessage chat = new ChatMessage(message, (new GregorianCalendar()).getTimeInMillis());
+        onMessageSend(chat);
     }
 }

@@ -29,24 +29,6 @@ public class ChatMessageFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Creates a new instance of ChatMessageFragment which displays the text passed.
-     *
-     * @param msg Text to display on the message.
-     * @return A new instance of fragment ChatMessageFragment.
-     */
-    public static ChatMessageFragment newInstance(String msg) {
-        ChatMessageFragment fragment = new ChatMessageFragment();
-        Bundle args = new Bundle();
-
-        args.putString(ARG_MESSAGE_TEXT, msg);
-        args.putLong(ARG_TIME, (new GregorianCalendar().getTimeInMillis()));
-        args.putBoolean(ARG_IS_RESPONSE, false);
-
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     public static ChatMessageFragment newInstance(ChatMessage message) {
         ChatMessageFragment fragment = new ChatMessageFragment();
         Bundle args = new Bundle();
@@ -84,7 +66,7 @@ public class ChatMessageFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_chat_message, container, false);
-        
+
         TextView messageText = view.findViewById(R.id.chat_message_text);
         messageText.setText(mMessageText);
 
