@@ -31,14 +31,15 @@ implements ChatTextEntryView.OnMessageSendListener {
     @Override
     public void onMessageSend(String message) {
         // TODO: Update this to add text to chat history and save in the database.
-        // Place a message in chat history.
-        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-        android.support.v4.app.FragmentTransaction transaction = fragmentManager.beginTransaction();
-        ChatMessage msg = ChatMessage.newInstance(message);
-        //msg.setText("Hello");
+        // Place a message in chat history UI.
+        if (message != null && !message.isEmpty()) {
+            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+            android.support.v4.app.FragmentTransaction transaction = fragmentManager.beginTransaction();
+            ChatMessage msg = ChatMessage.newInstance(message);
 
-        transaction.add(R.id.chat_message_history, msg);
-        transaction.commit();
+            transaction.add(R.id.chat_message_history, msg);
+            transaction.commit();
+        }
 
     }
 
