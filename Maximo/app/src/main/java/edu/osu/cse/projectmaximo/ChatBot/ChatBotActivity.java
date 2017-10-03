@@ -1,12 +1,11 @@
-package edu.osu.cse.projectmaximo.ChatBotUI;
+package edu.osu.cse.projectmaximo.ChatBot;
 
-import android.content.Context;
-import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
+
+import java.util.GregorianCalendar;
 
 import edu.osu.cse.projectmaximo.R;
 
@@ -25,13 +24,18 @@ implements ChatTextEntryView.OnMessageSendListener {
      * @param message The text of the message being added to the chat history.
      */
     @Override
-    public void onMessageSend(String message) {
+    public void onMessageSend(ChatMessage message) {
         // TODO: Update this to add text to chat history and save in the database.
-        Context context = getApplicationContext();
-        int duration = Toast.LENGTH_SHORT;
+        // Place a message in chat history UI.
+        if (message != null) {
+            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+            android.support.v4.app.FragmentTransaction transaction = fragmentManager.beginTransaction();
+            ChatMessageFragment msg = ChatMessageFragment.newInstance(message);
 
-        Toast toast = Toast.makeText(context, message, duration);
-        toast.show();
+            transaction.add(R.id.chat_message_history, msg);
+            transaction.commit();
+        }
+
     }
 
     public void onSendButtonPressed(View view) {
@@ -39,6 +43,8 @@ implements ChatTextEntryView.OnMessageSendListener {
         EditText messageBox = (EditText) findViewById(R.id.messageBox);
         String message = messageBox.getText().toString();
         messageBox.setText("");
-        onMessageSend(message);
+
+        ChatMessage chat = new ChatMessage(message, (new GregorianCalendar()).getTimeInMillis());
+        onMessageSend(chat);
     }
 }
