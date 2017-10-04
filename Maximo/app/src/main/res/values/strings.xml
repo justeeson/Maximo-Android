@@ -12,5 +12,8 @@
 <string name="empty_bulletin_board">There are currently no messages on the bulletin board.</string>
 <string name="what_s_on_your_mind">Enter your query</string>
 <string name="gauge_val">%1$d</string>
+    <string name="empty_string">%1$s</string>
     <string name="hello_blank_fragment">Hello, blank fragment.</string>
+    <string name="sensor">"Sensor"</string>
+    <string name="status">"Status"</string>
 </resources>

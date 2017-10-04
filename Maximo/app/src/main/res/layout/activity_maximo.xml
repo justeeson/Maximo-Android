@@ -34,10 +34,10 @@
                 android:name="edu.osu.cse.projectmaximo.InboxFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="20dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="20dp"
                 android:layout_weight="1" />
 
             <fragment
@@ -45,10 +45,10 @@
                 android:name="edu.osu.cse.projectmaximo.BulletinBoardFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="20dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="20dp"
                 android:layout_weight="1" />
         </LinearLayout>
 
@@ -64,10 +64,21 @@
                 android:name="edu.osu.cse.projectmaximo.SensorGaugeFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="20dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1" />
+
+            <fragment
+                android:id="@+id/status_window"
+                android:name="edu.osu.cse.projectmaximo.StatusWindowFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="20dp"
                 android:layout_weight="1" />
 
         </LinearLayout>
