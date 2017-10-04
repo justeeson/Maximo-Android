@@ -40,13 +40,34 @@ public class Maximo extends AppCompatActivity {
         ContentValues values = new ContentValues();
         values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_USERID, "1");
         values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_USERNAME, "userone");
-        values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_FIRSTNAME, "User");
-        values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_LASTNAME, "One");
+        values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_FIRSTNAME, "Mike");
+        values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_LASTNAME, "Rowsoft");
 
         // Insert the new row, returning the primary key value of the new row
         long newRowId = dbWriteable.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, values);
 
+        //Sensor Gauge Sensor 1
+        values = new ContentValues();
+        values.put(SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORID, "1");
+        values.put(SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORNAME, "Sensor 1");
+        values.put(SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORTOTALVALUE, "500");
+        values.put(SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORACTUALVALUE, "325");
+
+        newRowId = dbWriteable.insert(SensorGaugeReaderContract.FeedEntry.TABLE_NAME, null, values);
+
+
+        //Sensor Gauge Sensor 2
+        values = new ContentValues();
+        values.put(SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORID, "2");
+        values.put(SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORNAME, "Sensor 2");
+        values.put(SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORTOTALVALUE, "700");
+        values.put(SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORACTUALVALUE, "405");
+
+        newRowId = dbWriteable.insert(SensorGaugeReaderContract.FeedEntry.TABLE_NAME, null, values);
+
+        //Get Readable versions of both databases
         SQLiteDatabase dbReadable = mDbHelper.getReadableDatabase();
+        SQLiteDatabase sdbReadable = sDbHelper.getReadableDatabase();
 
         // Define a projection that specifies which columns from the database
         // you will actually use after this query.

@@ -12,8 +12,8 @@ public final class SensorGaugeReaderContract {
         public static final String TABLE_NAME = "SensorsDB";
         public static final String COLUMN_NAME_SENSORID = "sensors";
         public static final String COLUMN_NAME_SENSORNAME = "sensornames";
-        public static final String COLUMN_NAME_STATUS = "sensorstatuses";
-        public static final String COLUMN_NAME_TOTALVALUE = "sensortotalvalues";
-        public static final String COLUMN_NAME_ACTUALVALUE = "sensoractualvalues";
+        public static final String COLUMN_NAME_SENSORSTATUS = "sensorstatuses";
+        public static final String COLUMN_NAME_SENSORTOTALVALUE = "sensortotalvalues";
+        public static final String COLUMN_NAME_SENSORACTUALVALUE = "sensoractualvalues";
     }
 }
