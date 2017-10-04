@@ -34,8 +34,8 @@ public class SensorGaugeReaderDbHelper extends SQLiteOpenHelper {
                     SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORID + " INTEGER UNIQUE," +
                     SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORNAME + " TEXT UNIQUE," +
                     SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORSTATUS + " TEXT," +
-                    SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_TOTALVALUE + " TEXT," +
-                    SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_ACTUALVALUE + " TEXT)";
+                    SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORTOTALVALUE + " TEXT," +
+                    SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORACTUALVALUE + " TEXT)";
     public static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + SensorGaugeReaderContract.FeedEntry.TABLE_NAME;
 }
