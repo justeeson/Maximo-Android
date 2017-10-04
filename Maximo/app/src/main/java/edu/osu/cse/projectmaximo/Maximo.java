@@ -4,11 +4,14 @@ package edu.osu.cse.projectmaximo;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.os.Bundle;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.content.Intent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,6 +92,20 @@ public class Maximo extends AppCompatActivity {
         // We're calling this last so the name can be pulled before
         // the screen is created
         setContentView(R.layout.activity_maximo);
+
+
+        //set intent
+        Button media_dash  = (Button)findViewById(R.id.MediaDashboardBtn);
+        media_dash.setOnClickListener(
+                new Button.OnClickListener()
+                {
+                    public void onClick(View view){
+
+                        Intent intent_to_media =  new Intent(view.getContext(), MediaDashboardActivity.class);
+                        startActivity(intent_to_media);
+                    }
+                }
+        );
     }
 
     @Override
