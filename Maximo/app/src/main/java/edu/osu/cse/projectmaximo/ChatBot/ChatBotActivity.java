@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ScrollView;
 
 import java.util.GregorianCalendar;
 
@@ -27,15 +28,16 @@ implements ChatTextEntryView.OnMessageSendListener {
     public void onMessageSend(ChatMessage message) {
         // TODO: Update this to add text to chat history and save in the database.
         // Place a message in chat history UI.
-        if (message != null) {
+        boolean sendMessage = message != null && message.getMessage() != null
+                && !message.getMessage().isEmpty();
+        if (sendMessage) {
             android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
             android.support.v4.app.FragmentTransaction transaction = fragmentManager.beginTransaction();
             ChatMessageFragment msg = ChatMessageFragment.newInstance(message);
 
             transaction.add(R.id.chat_message_history, msg);
-            transaction.commit();
+            transaction.commitNow();
         }
-
     }
 
     public void onSendButtonPressed(View view) {
@@ -46,5 +48,12 @@ implements ChatTextEntryView.OnMessageSendListener {
 
         ChatMessage chat = new ChatMessage(message, (new GregorianCalendar()).getTimeInMillis());
         onMessageSend(chat);
+        scrollToMostRecentMessage();
+    }
+
+    public void scrollToMostRecentMessage() {
+        // Scroll to bottom
+        ScrollView scrollView = findViewById(R.id.chat_scroll_view);
+        scrollView.fullScroll(View.FOCUS_DOWN);
     }
 }
