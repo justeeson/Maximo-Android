@@ -130,13 +130,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        inputMessage = (EditText) findViewById(R.id.message);
-        btnSend = (ImageButton) findViewById(R.id.btn_send);
-        btnRecord= (ImageButton) findViewById(R.id.btn_record);
+        inputMessage = findViewById(R.id.message);
+        btnSend = findViewById(R.id.btn_send);
+        btnRecord= findViewById(R.id.btn_record);
         String customFont = "Montserrat-Regular.ttf";
         Typeface typeface = Typeface.createFromAsset(getAssets(), customFont);
         inputMessage.setTypeface(typeface);
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        recyclerView = findViewById(R.id.recycler_view);
 
         messageArrayList = new ArrayList<>();
         mAdapter = new ChatAdapter(messageArrayList);
@@ -211,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
                 recordMessage();
             }
         });
-    };
+    }
 
     // Speech-to-Text Record Audio permission
     @Override

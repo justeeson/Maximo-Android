@@ -31,13 +31,7 @@ public class ChatTextEntryView extends Fragment {
      * @return A new instance of fragment ChatTextEntryView.
      */
     public static ChatTextEntryView newInstance() {
-        ChatTextEntryView fragment = new ChatTextEntryView();
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        return new ChatTextEntryView();
     }
 
     @Override

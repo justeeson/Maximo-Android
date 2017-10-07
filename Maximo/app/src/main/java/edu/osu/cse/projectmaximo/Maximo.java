@@ -116,7 +116,7 @@ public class Maximo extends AppCompatActivity {
 
 
         //set intent
-        Button media_dash  = (Button)findViewById(R.id.MediaDashboardBtn);
+        Button media_dash  = findViewById(R.id.MediaDashboardBtn);
         media_dash.setOnClickListener(
                 new Button.OnClickListener()
                 {
@@ -150,5 +150,4 @@ public class Maximo extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
 }

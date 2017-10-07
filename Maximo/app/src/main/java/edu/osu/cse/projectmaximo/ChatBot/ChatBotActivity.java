@@ -42,7 +42,7 @@ implements ChatTextEntryView.OnMessageSendListener {
 
     public void onSendButtonPressed(View view) {
         // Get the message from the EditText
-        EditText messageBox = (EditText) findViewById(R.id.messageBox);
+        EditText messageBox = findViewById(R.id.messageBox);
         String message = messageBox.getText().toString();
         messageBox.setText("");
 
@@ -51,7 +51,7 @@ implements ChatTextEntryView.OnMessageSendListener {
         scrollToMostRecentMessage();
     }
 
-    public void scrollToMostRecentMessage() {
+    private void scrollToMostRecentMessage() {
         // Scroll to bottom
         ScrollView scrollView = findViewById(R.id.chat_scroll_view);
         scrollView.fullScroll(View.FOCUS_DOWN);
