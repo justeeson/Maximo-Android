@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
 import java.util.GregorianCalendar;
@@ -31,12 +32,11 @@ implements ChatTextEntryFragment.OnMessageSendListener {
         boolean sendMessage = message != null && message.getMessage() != null
                 && !message.getMessage().isEmpty();
         if (sendMessage) {
-            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-            android.support.v4.app.FragmentTransaction transaction = fragmentManager.beginTransaction();
-            ChatMessageFragment msg = ChatMessageFragment.newInstance(message);
-
-            transaction.add(R.id.chat_message_history, msg);
-            transaction.commitNow();
+            // Add message to convo history
+            LinearLayout convoHistory = findViewById(R.id.chat_message_history);
+            ChatMessageView view = new ChatMessageView(this);
+            view.makeRequest();
+            convoHistory.addView(view);
         }
     }
 

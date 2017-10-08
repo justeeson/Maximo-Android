@@ -1,22 +1,16 @@
 package edu.osu.cse.projectmaximo.ChatBot;
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.Color;
-import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.support.v4.content.ContextCompat;
-import android.util.AttributeSet;
 import android.view.View;
-import android.widget.LinearLayout;
 
 import edu.osu.cse.projectmaximo.R;
 
 /**
- * Created by jonms on 10/7/2017.
+ * View which represents a chat layout.
  */
-
 public class ChatMessageView extends ConstraintLayout {
     public ChatMessageView(Context context) {
         super(context);
@@ -32,7 +26,7 @@ public class ChatMessageView extends ConstraintLayout {
      */
     public void makeRequest() {
         setColor(R.color.colorChatRequest);
-        setAlignment(ConstraintSet.RIGHT);
+        setHorizontalAlignment(ConstraintSet.RIGHT);
     }
 
     /**
@@ -40,23 +34,28 @@ public class ChatMessageView extends ConstraintLayout {
      */
     public void makeResponse() {
         setColor(R.color.colorChatResponse);
-        setAlignment(ConstraintSet.LEFT);
+        setHorizontalAlignment(ConstraintSet.LEFT);
     }
 
     private void setColor(int color) {
         // Set the background color for the text box.
         View msgText = this.findViewById(R.id.chat_message_text);
-        msgText.setBackgroundColor(color);
+        msgText.setBackgroundColor(ContextCompat.getColor(getContext(), color));
     }
 
-    private void setAlignment(int alignment) {
-        View msgText = this.findViewById(R.id.chat_message_text);
+    private void setHorizontalAlignment(int alignment) {
+        // TODO: Remove this line. Used for testing...
+        // FIXME: This method does not appear to do anything.
+        alignment = ConstraintSet.LEFT;
 
-        // TODO: Test this.
-        int endSide = alignment == ConstraintSet.LEFT ? ConstraintSet.RIGHT : ConstraintSet.LEFT;
+        int id = R.id.chat_message_text;
 
         ConstraintSet constraintSet = new ConstraintSet();
-        constraintSet.connect(msgText.getId(), alignment, ConstraintSet.PARENT_ID, endSide);
+        constraintSet.clear(id, ConstraintSet.RIGHT);
+        constraintSet.clear(id, ConstraintSet.LEFT);
+
+        constraintSet.connect(id, alignment, ConstraintSet.PARENT_ID, alignment);
+        constraintSet.applyTo(this);
 
     }
 }
