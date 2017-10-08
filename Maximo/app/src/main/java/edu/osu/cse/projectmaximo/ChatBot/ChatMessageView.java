@@ -38,17 +38,11 @@ public class ChatMessageView extends ConstraintLayout {
      */
     public void makeResponse() {
         setColor(R.color.colorChatResponse);
-
     }
 
     private void setColor(int color) {
-        // Should have only one child, but just in case.
-        for (int i = 0; i < this.getChildCount(); i++) {
-            // Set chat_message_text color.
-            View child = this.getChildAt(i);
-            if (child.getId() == R.id.chat_message_text) {
-                child.setBackgroundColor(color);
-            }
-        }
+        // Set the background color for the text box.
+        View msgText = this.findViewById(R.id.chat_message_text);
+        msgText.setBackgroundColor(color);
     }
 }
