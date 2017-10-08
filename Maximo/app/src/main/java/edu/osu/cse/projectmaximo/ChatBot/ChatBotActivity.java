@@ -11,7 +11,7 @@ import java.util.GregorianCalendar;
 import edu.osu.cse.projectmaximo.R;
 
 public class ChatBotActivity extends AppCompatActivity
-implements ChatTextEntryView.OnMessageSendListener {
+implements ChatTextEntryFragment.OnMessageSendListener {
 
 
     @Override
