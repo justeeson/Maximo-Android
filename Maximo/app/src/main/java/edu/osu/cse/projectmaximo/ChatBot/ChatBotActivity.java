@@ -37,7 +37,6 @@ implements ChatTextEntryFragment.OnMessageSendListener {
             // Add message to convo history
             LinearLayout convoHistory = findViewById(R.id.chat_message_history);
             ChatMessageView view = new ChatMessageView(this, message);
-            view.makeResponse();
             convoHistory.addView(view);
         }
     }
