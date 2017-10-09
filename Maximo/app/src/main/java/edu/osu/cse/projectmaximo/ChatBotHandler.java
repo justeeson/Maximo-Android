@@ -61,7 +61,9 @@ public class ChatBotHandler {
     private String analytics_APIKEY;
     private String inputmessage;
 
-    //Call this function to initialize the chat bot variables
+    /**
+     * Initialize all necessary variables and also call the related methods
+     */
     public void initializeChatBot() {
 
         mContext = MainActivity.appContext;
@@ -126,14 +128,18 @@ public class ChatBotHandler {
         }
     }
 
-
+    /**
+     * Make a request asking for permission to record audio
+     */
     protected void makeRequest() {
         ActivityCompat.requestPermissions(MainActivity.activity,
                 new String[]{Manifest.permission.RECORD_AUDIO},
                 MicrophoneHelper.REQUEST_PERMISSION);
     }
 
-    // Sending a message to Watson Conversation Service
+    /**
+     * Send a message to the Watson service
+     */
     private void sendMessage() {
 
         //TODO: Obtain value of input message here
@@ -211,7 +217,7 @@ public class ChatBotHandler {
     /**
      * Check Internet Connection
      *
-     * @return
+     * @return      a boolean value indicating network status
      */
     private boolean checkInternetConnection() {
         // get Connectivity Manager object to check connection
