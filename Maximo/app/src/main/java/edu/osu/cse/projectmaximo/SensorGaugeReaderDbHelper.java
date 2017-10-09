@@ -28,6 +28,7 @@ public class SensorGaugeReaderDbHelper extends SQLiteOpenHelper {
         onUpgrade(db, oldVersion, newVersion);
     }
 
+    // This String specifies the SQL command to generate the necessary table
     public static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + SensorGaugeReaderContract.FeedEntry.TABLE_NAME + " (" +
                     SensorGaugeReaderContract.FeedEntry._ID + " INTEGER PRIMARY KEY," +
@@ -36,6 +37,8 @@ public class SensorGaugeReaderDbHelper extends SQLiteOpenHelper {
                     SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORSTATUS + " TEXT," +
                     SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORTOTALVALUE + " TEXT," +
                     SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORACTUALVALUE + " TEXT)";
+
+    // This String specifies the SQL command to delete the table
     public static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + SensorGaugeReaderContract.FeedEntry.TABLE_NAME;
 }

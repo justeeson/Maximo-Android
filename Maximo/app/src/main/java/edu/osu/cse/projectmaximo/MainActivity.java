@@ -1,6 +1,8 @@
 package edu.osu.cse.projectmaximo;
 
 import android.Manifest;
+import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
@@ -61,14 +63,16 @@ public class MainActivity extends AppCompatActivity {
     private boolean initialRequest;
     private boolean permissionToRecordAccepted = false;
     private static final int REQUEST_RECORD_AUDIO_PERMISSION = 200;
-    private static String TAG = "MainActivity";
+    private static String TAG = "ChatBotHandler";
     private static final int RECORD_REQUEST_CODE = 101;
     private boolean listening = false;
     private SpeechToText speechService;
     private TextToSpeech textToSpeech;
     private MicrophoneInputStream capture;
     private Logger myLogger;
-    private Context mContext;
+    public static Context appContext;
+    public static Application application;
+    public static Activity activity;
     private String workspace_id;
     private String conversation_username;
     private String conversation_password;
@@ -87,15 +91,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mContext = getApplicationContext();
-        conversation_username = mContext.getString(R.string.conversation_username);
-        conversation_password = mContext.getString(R.string.conversation_password);
-        workspace_id = mContext.getString(R.string.workspace_id);
-        STT_username = mContext.getString(R.string.STT_username);
-        STT_password = mContext.getString(R.string.STT_password);
-        TTS_username = mContext.getString(R.string.TTS_username);
-        TTS_password = mContext.getString(R.string.TTS_password);
-        analytics_APIKEY = mContext.getString(R.string.mobileanalytics_apikey);
+        appContext = getApplicationContext();
+        application = getApplication();
+        activity = this;
+        conversation_username = appContext.getString(R.string.conversation_username);
+        conversation_password = appContext.getString(R.string.conversation_password);
+        workspace_id = appContext.getString(R.string.workspace_id);
+        STT_username = appContext.getString(R.string.STT_username);
+        STT_password = appContext.getString(R.string.STT_password);
+        TTS_username = appContext.getString(R.string.TTS_username);
+        TTS_password = appContext.getString(R.string.TTS_password);
+        analytics_APIKEY = appContext.getString(R.string.mobileanalytics_apikey);
 
 
         //Bluemix Mobile Analytics
