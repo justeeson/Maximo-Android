@@ -7,6 +7,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.GregorianCalendar;
 
 import edu.osu.cse.projectmaximo.R;
@@ -26,16 +28,16 @@ implements ChatTextEntryFragment.OnMessageSendListener {
      * @param message The text of the message being added to the chat history.
      */
     @Override
-    public void onMessageSend(ChatMessage message) {
+    public void onMessageSend(@NotNull ChatMessage message) {
         // TODO: Update this to add text to chat history and save in the database.
         // Place a message in chat history UI.
-        boolean sendMessage = message != null && message.getMessage() != null
+        boolean sendMessage = message.getMessage() != null
                 && !message.getMessage().isEmpty();
         if (sendMessage) {
             // Add message to convo history
             LinearLayout convoHistory = findViewById(R.id.chat_message_history);
-            ChatMessageView view = new ChatMessageView(this);
-            view.makeRequest();
+            ChatMessageView view = new ChatMessageView(this, message);
+            view.makeResponse();
             convoHistory.addView(view);
         }
     }
@@ -52,8 +54,13 @@ implements ChatTextEntryFragment.OnMessageSendListener {
     }
 
     private void scrollToMostRecentMessage() {
-        // Scroll to bottom
-        ScrollView scrollView = findViewById(R.id.chat_scroll_view);
-        scrollView.fullScroll(View.FOCUS_DOWN);
+        // Scroll to bottom.
+        final ScrollView scrollView = findViewById(R.id.chat_scroll_view);
+        scrollView.post(new Runnable() {
+            @Override
+            public void run() {
+                scrollView.fullScroll(View.FOCUS_DOWN);
+            }
+        });
     }
 }

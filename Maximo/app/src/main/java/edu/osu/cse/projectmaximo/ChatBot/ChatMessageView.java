@@ -5,6 +5,9 @@ import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
+import android.widget.TextView;
+
+import org.jetbrains.annotations.NotNull;
 
 import edu.osu.cse.projectmaximo.R;
 
@@ -15,6 +18,20 @@ public class ChatMessageView extends ConstraintLayout {
     public ChatMessageView(Context context) {
         super(context);
         initView();
+    }
+
+    /**
+     * Instantiates a ChatMessageView representing a given message.
+     * @param context
+     * @param message The message to represent with the view.
+     */
+    public ChatMessageView(Context context, @NotNull ChatMessage message) {
+        super(context);
+        initView();
+        if (message.getIsResponse()) {
+            makeResponse();
+        }
+        setText(message.getMessage());
     }
 
     private void initView() {
@@ -35,6 +52,11 @@ public class ChatMessageView extends ConstraintLayout {
     public void makeResponse() {
         setColor(R.color.colorChatResponse);
         setHorizontalAlignment(ConstraintSet.LEFT);
+    }
+
+    private void setText(String message) {
+        TextView text = this.findViewById(R.id.chat_message_text);
+        text.setText(message);
     }
 
     private void setColor(int color) {
