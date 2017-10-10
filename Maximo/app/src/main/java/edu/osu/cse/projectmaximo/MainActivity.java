@@ -90,10 +90,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        ChatBotHandler.initialize();
-        ChatBotHandler.sendMessage("fetch part x");
-
         appContext = getApplicationContext();
         application = getApplication();
         activity = this;

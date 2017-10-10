@@ -73,26 +73,50 @@ public class ChatBotHandler{
     public static String sendMessage(String messageToWatson){
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-        String responseFromWatson = "";
+        if(checkInternetConnection()) {
+            String responseFromWatson = "";
 
-        // Build and send a message to the Watson API
-        MessageRequest newMessage = new MessageRequest.Builder()
-                .inputText(messageToWatson)
-                .context(contextMap)
-                .build();
+            // Build and send a message to the Watson API
+            MessageRequest newMessage = new MessageRequest.Builder()
+                    .inputText(messageToWatson)
+                    .context(contextMap)
+                    .build();
 
-        MessageResponse response = service
-                .message(workspaceId, newMessage)
-                .execute();
+            MessageResponse response = service
+                    .message(workspaceId, newMessage)
+                    .execute();
 
-        System.out.println(response);
+            System.out.println(response);
 
-        // Obtain response from Watson API
-        ArrayList responseList = (ArrayList) response.getOutput().get("text");
-        if(null !=responseList && responseList.size()>0){
-            responseFromWatson = ((String)responseList.get(0));
+            // Obtain response from Watson API
+            ArrayList responseList = (ArrayList) response.getOutput().get("text");
+            if (null != responseList && responseList.size() > 0) {
+                responseFromWatson = ((String) responseList.get(0));
+            }
+            return responseFromWatson;
         }
-        return responseFromWatson;
+        else{
+            return "Please check your internet connection";
+        }
+    }
+
+    private static boolean checkInternetConnection() {
+        // get Connectivity Manager object to check connection
+        ConnectivityManager cm =
+                (ConnectivityManager)MainActivity.appContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null &&
+                activeNetwork.isConnectedOrConnecting();
+
+        // Check for network connections
+        if (isConnected){
+            return true;
+        }
+        else {
+            return false;
+        }
+
     }
 }
 
