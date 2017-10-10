@@ -73,9 +73,9 @@ public class MainActivity extends AppCompatActivity {
     public static Context appContext;
     public static Application application;
     public static Activity activity;
-    private String workspace_id;
-    private String conversation_username;
-    private String conversation_password;
+    public static String workspace_id;
+    public static String conversation_username;
+    public static String conversation_password;
     private String STT_username;
     private String STT_password;
     private String TTS_username;
@@ -91,6 +91,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ChatBotHandler.initialize();
+        ChatBotHandler.sendMessage("fetch part x");
+
         appContext = getApplicationContext();
         application = getApplication();
         activity = this;
@@ -102,7 +105,6 @@ public class MainActivity extends AppCompatActivity {
         TTS_username = appContext.getString(R.string.TTS_username);
         TTS_password = appContext.getString(R.string.TTS_password);
         analytics_APIKEY = appContext.getString(R.string.mobileanalytics_apikey);
-
 
         //Bluemix Mobile Analytics
         BMSClient.getInstance().initialize(getApplicationContext(), BMSClient.REGION_US_SOUTH);
@@ -156,7 +158,6 @@ public class MainActivity extends AppCompatActivity {
         this.inputMessage.setText("");
         this.initialRequest = true;
         sendMessage();
-
 
         //Watson Text-to-Speech Service on Bluemix
         textToSpeech = new TextToSpeech();
