@@ -47,7 +47,7 @@ public class Maximo extends AppCompatActivity {
         values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_LASTNAME, "Rowsoft");
 
         // Insert the new row, returning the primary key value of the new row
-        long newRowId = dbWriteable.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, values);
+        dbWriteable.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, values);
 
         //Sensor Gauge Sensor 1
         values = new ContentValues();
@@ -56,7 +56,7 @@ public class Maximo extends AppCompatActivity {
         values.put(SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORTOTALVALUE, "500");
         values.put(SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORACTUALVALUE, "325");
 
-        newRowId = dbWriteable.insert(SensorGaugeReaderContract.FeedEntry.TABLE_NAME, null, values);
+        sdbWriteable.insert(SensorGaugeReaderContract.FeedEntry.TABLE_NAME, null, values);
 
 
         //Sensor Gauge Sensor 2
@@ -66,7 +66,7 @@ public class Maximo extends AppCompatActivity {
         values.put(SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORTOTALVALUE, "700");
         values.put(SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORACTUALVALUE, "405");
 
-        newRowId = dbWriteable.insert(SensorGaugeReaderContract.FeedEntry.TABLE_NAME, null, values);
+        sdbWriteable.insert(SensorGaugeReaderContract.FeedEntry.TABLE_NAME, null, values);
 
         //Get Readable versions of both databases
         SQLiteDatabase dbReadable = mDbHelper.getReadableDatabase();
@@ -84,7 +84,7 @@ public class Maximo extends AppCompatActivity {
 
         // Filter results WHERE "title" = 'My Title'
         String selection = FeedReaderContract.FeedEntry.COLUMN_NAME_FIRSTNAME + " = ?";
-        String[] selectionArgs = { "User" };
+        String[] selectionArgs = { "Mike" };
 
         // How you want the results sorted in the resulting Cursor
         String sortOrder =
