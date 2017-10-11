@@ -60,7 +60,11 @@ public class ChatBotHandler{
     private static String workspaceId;
     private static Map<String,Object> contextMap;
 
-    public static void initialize(){
+    static {
+        initialize();
+    }
+
+    private static void initialize(){
         username = "633ae577-2173-451d-b54f-aebf71c1c97a";
         password = "LTshbwXUFevy";
         workspaceId = "914d9594-adee-472e-90c4-c987f2d489be";

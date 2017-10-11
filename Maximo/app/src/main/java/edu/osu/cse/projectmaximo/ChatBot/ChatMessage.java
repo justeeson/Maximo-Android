@@ -1,5 +1,7 @@
 package edu.osu.cse.projectmaximo.ChatBot;
 
+import java.util.GregorianCalendar;
+
 /**
  * Represents a message put into the chat.
  */
@@ -9,6 +11,11 @@ class ChatMessage {
     private long time = 0;
 
     private boolean isResponse = false;
+
+    public ChatMessage(String message) {
+        this.message = message;
+        this.time = new GregorianCalendar().getTimeInMillis();
+    }
 
     public ChatMessage(String message, long timeInMillis) {
         this.message = message;
