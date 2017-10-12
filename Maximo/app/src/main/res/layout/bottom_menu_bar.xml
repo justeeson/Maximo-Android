@@ -13,32 +13,35 @@
         android:id="@+id/home_button"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_weight="1"
         android:layout_gravity="center_vertical"
+        android:layout_weight="1"
         android:background="#00FFFFFF"
-        android:textColor="#d6d6d6"
-        android:text="Home" />
+        android:onClick="onClick"
+        android:text="Home"
+        android:textColor="#d6d6d6" />
 
     <!-- Button to navigate to media dashboard -->
     <Button
         android:id="@+id/media_dashboard_btn"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:background="#00FFFFFF"
-        android:layout_weight="1"
         android:layout_gravity="center_vertical"
-        android:textColor="#d6d6d6"
-        android:text="Media" />
+        android:layout_weight="1"
+        android:background="#00FFFFFF"
+        android:onClick="onClick"
+        android:text="Media"
+        android:textColor="#d6d6d6" />
 
     <!-- Button to navigate to Chatbot dashboard -->
     <Button
         android:id="@+id/chat_btn"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_weight="1"
         android:layout_gravity="center_vertical"
+        android:layout_weight="1"
         android:background="#00FFFFFF"
-        android:textColor="#d6d6d6"
-        android:text="Chat" />
+        android:onClick="onClick"
+        android:text="Chat"
+        android:textColor="#d6d6d6" />
 
 </LinearLayout>
