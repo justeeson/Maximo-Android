@@ -114,19 +114,6 @@ public class Maximo extends AppCompatActivity {
         // the screen is created
         setContentView(R.layout.activity_maximo);
 
-
-        //set intent
-        Button media_dash  = (Button)findViewById(R.id.MediaDashboardBtn);
-        media_dash.setOnClickListener(
-                new Button.OnClickListener()
-                {
-                    public void onClick(View view){
-
-                        Intent intent_to_media =  new Intent(view.getContext(), MediaDashboardActivity.class);
-                        startActivity(intent_to_media);
-                    }
-                }
-        );
     }
 
     @Override

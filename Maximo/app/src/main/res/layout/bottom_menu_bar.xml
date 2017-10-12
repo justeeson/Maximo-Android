@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Row of buttons on bottom of screen -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/navbar_scroll_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#6426bb">
+
+    <!-- Button to navigate to main dashboard -->
+    <Button
+        android:id="@+id/home_button"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_gravity="center_vertical"
+        android:background="#00FFFFFF"
+        android:textColor="#d6d6d6"
+        android:text="Home" />
+
+    <!-- Button to navigate to media dashboard -->
+    <Button
+        android:id="@+id/media_dashboard_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="#00FFFFFF"
+        android:layout_weight="1"
+        android:layout_gravity="center_vertical"
+        android:textColor="#d6d6d6"
+        android:text="Media" />
+
+    <!-- Button to navigate to Chatbot dashboard -->
+    <Button
+        android:id="@+id/chat_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_gravity="center_vertical"
+        android:background="#00FFFFFF"
+        android:textColor="#d6d6d6"
+        android:text="Chat" />
+
+</LinearLayout>
