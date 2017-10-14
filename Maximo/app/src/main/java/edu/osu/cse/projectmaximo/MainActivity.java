@@ -78,8 +78,8 @@ public class MainActivity extends AppCompatActivity {
     public static String conversation_password;
     private String STT_username;
     private String STT_password;
-    private String TTS_username;
-    private String TTS_password;
+    public static String TTS_username;
+    public static String TTS_password;
     private String analytics_APIKEY;
     private SpeakerLabelsDiarization.RecoTokens recoTokens;
     private MicrophoneHelper microphoneHelper;
@@ -90,6 +90,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        /* This is just me testing random stuff with the chatbothandler, ignore this */
+        ChatBotHandler.initialize();
+        ChatBotHandler.sendMessage("Fetch Item X");
+
+
         appContext = getApplicationContext();
         application = getApplication();
         activity = this;
@@ -393,10 +399,8 @@ public class MainActivity extends AppCompatActivity {
         return new RecognizeOptions.Builder()
                 .continuous(true)
                 .contentType(ContentType.OPUS.toString())
-                //.model("en-UK_NarrowbandModel")
                 .interimResults(true)
                 .inactivityTimeout(2000)
-                // Comment out to disable speech to text
                 .speakerLabels(true)
                 .build();
     }
@@ -406,14 +410,6 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onTranscription(SpeechResults speechResults) {
             recoTokens = new SpeakerLabelsDiarization.RecoTokens();
-            /*
-            if(speechResults.getSpeakerLabels() !=null)
-            {
-                recoTokens.add(speechResults);
-                Log.i("SPEECHRESULTS",speechResults.getSpeakerLabels().get(0).toString());
-
-
-            }*/
             if(speechResults.getResults() != null && !speechResults.getResults().isEmpty()) {
                 String text = speechResults.getResults().get(0).getAlternatives().get(0).getTranscript();
                 showMicText(text);
