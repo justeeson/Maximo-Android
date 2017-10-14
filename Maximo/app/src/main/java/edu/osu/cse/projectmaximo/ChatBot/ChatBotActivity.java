@@ -11,7 +11,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.GregorianCalendar;
 
-import edu.osu.cse.projectmaximo.ChatBotHandler;
 import edu.osu.cse.projectmaximo.R;
 
 public class ChatBotActivity extends AppCompatActivity

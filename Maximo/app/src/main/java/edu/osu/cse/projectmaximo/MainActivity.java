@@ -48,6 +48,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import edu.osu.cse.projectmaximo.ChatBot.ChatBotHandler;
+
 
 public class MainActivity extends AppCompatActivity {
 

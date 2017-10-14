@@ -1,4 +1,4 @@
-package edu.osu.cse.projectmaximo;
+package edu.osu.cse.projectmaximo.ChatBot;
 
 import android.Manifest;
 import android.app.Activity;
@@ -50,6 +50,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import edu.osu.cse.projectmaximo.WatsonMessage;
 
 
 public class ChatBotHandler{
