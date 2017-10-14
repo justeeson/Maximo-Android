@@ -92,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         /* This is just me testing random stuff with the chatbothandler, ignore this */
-        ChatBotHandler.initialize();
         ChatBotHandler.sendMessage("Fetch Item X");
 
 

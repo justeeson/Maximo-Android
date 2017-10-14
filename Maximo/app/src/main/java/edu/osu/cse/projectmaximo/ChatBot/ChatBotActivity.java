@@ -11,6 +11,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.GregorianCalendar;
 
+import edu.osu.cse.projectmaximo.ChatBotHandler;
 import edu.osu.cse.projectmaximo.R;
 
 public class ChatBotActivity extends AppCompatActivity
@@ -38,6 +39,13 @@ implements ChatTextEntryFragment.OnMessageSendListener {
             LinearLayout convoHistory = findViewById(R.id.chat_message_history);
             ChatMessageView view = new ChatMessageView(this, message);
             convoHistory.addView(view);
+
+            // TODO: Make this async
+            // Get the message from the chat bot handler.
+            String response = ChatBotHandler.sendMessage(message.getMessage());
+            ChatMessageView responseView = new ChatMessageView(this, new ChatMessage(response));
+            responseView.makeResponse();
+            convoHistory.addView(responseView);
         }
     }
 
