@@ -271,7 +271,7 @@ public class MainActivity extends AppCompatActivity {
             inputMessage.setMessage(inputmessage);
             inputMessage.setId("100");
             this.initialRequest = false;
-            Toast.makeText(getApplicationContext(),"Tap on the message for Voice",Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"Tap on the message for Voice",Toast.LENGTH_SHORT).show();
 
         }
 
@@ -396,8 +396,8 @@ public class MainActivity extends AppCompatActivity {
                 //.model("en-UK_NarrowbandModel")
                 .interimResults(true)
                 .inactivityTimeout(2000)
-                //TODO: Uncomment this to enable Speaker Diarization
-                //.speakerLabels(true)
+                // Comment out to disable speech to text
+                .speakerLabels(true)
                 .build();
     }
 
@@ -405,8 +405,8 @@ public class MainActivity extends AppCompatActivity {
     private class MicrophoneRecognizeDelegate implements RecognizeCallback {
         @Override
         public void onTranscription(SpeechResults speechResults) {
-            //TODO: Uncomment this to enable Speaker Diarization
-            /*recoTokens = new SpeakerLabelsDiarization.RecoTokens();
+            recoTokens = new SpeakerLabelsDiarization.RecoTokens();
+            /*
             if(speechResults.getSpeakerLabels() !=null)
             {
                 recoTokens.add(speechResults);

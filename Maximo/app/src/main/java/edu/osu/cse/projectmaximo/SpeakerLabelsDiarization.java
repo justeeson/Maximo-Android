@@ -193,9 +193,9 @@ public class SpeakerLabelsDiarization {
         private void cleanFinal() {
             Set<Map.Entry<Double, RecoToken>> set = recoTokenMap.entrySet();
             for (Map.Entry<Double, RecoToken> e : set) {
-                if (e.getValue().spLabelIsFinal) {
-                    recoTokenMap.remove(e.getKey());
-                }
+                    if (e.getValue().spLabelIsFinal) {
+                        recoTokenMap.remove(e.getKey());
+                    }
             }
         }
 
