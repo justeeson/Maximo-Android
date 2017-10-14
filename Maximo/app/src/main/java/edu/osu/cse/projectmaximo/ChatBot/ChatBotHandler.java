@@ -88,37 +88,47 @@ public class ChatBotHandler{
 
     public static String sendMessage(String messageToWatson){
         final String messagedToBePassed = messageToWatson;
-        responseFromWatson.setWatsonMessage(messagedToBePassed);
+        responseFromWatson.setWatsonMessage("Sorry, the watson service is unavailable right now.");
 
-        new Thread(new Runnable() {
-            @Override public void run() {
+        Thread networkThread = new Thread(){
+            public void run(){
                 try {
-                        String replyFromWatson = "";
-                        // Build and send a message to the Watson API
-                        MessageRequest newMessage = new MessageRequest.Builder()
-                                .inputText(messagedToBePassed)
-                                .context(contextMap)
-                                .build();
+                    String replyFromWatson = "";
+                    // Build and send a message to the Watson API
+                    MessageRequest newMessage = new MessageRequest.Builder()
+                            .inputText(messagedToBePassed)
+                            .context(contextMap)
+                            .build();
 
-                        MessageResponse response = service
-                                .message(workspaceId, newMessage)
-                                .execute();
+                    MessageResponse response = service
+                            .message(workspaceId, newMessage)
+                            .execute();
 
-                        System.out.println(response);
+                    System.out.println(response);
 
-                        // Obtain response from Watson API
-                        ArrayList responseList = (ArrayList) response.getOutput().get("text");
-                        if (null != responseList && responseList.size() > 0) {
-                            replyFromWatson = ((String) responseList.get(0));
-                        }
+                    // Obtain response from Watson API
+                    ArrayList responseList = (ArrayList) response.getOutput().get("text");
+                    if (null != responseList && responseList.size() > 0) {
+                        replyFromWatson = ((String) responseList.get(0));
                         responseFromWatson.setWatsonMessage(replyFromWatson);
+                    }
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
-        }).start();
-        responseFromWatsonAsString = responseFromWatson.getMessageAsString();
-        return responseFromWatsonAsString;
+        };
+
+        networkThread.start();
+        try {
+            networkThread.join();
+        }
+        catch(InterruptedException e)
+        {
+            e.printStackTrace();
+        }
+
+        return responseFromWatson.getMessageAsString();
     }
 
     public static void textToSpeech(String messageToWatson){
