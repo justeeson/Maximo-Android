@@ -57,8 +57,15 @@ public class ChatBotHandler{
     private static ConversationService service;
     private static String username;
     private static String password;
+    private static String TTS_username;
+    private static String TTS_password;
     private static String workspaceId;
+    private static TextToSpeech textToSpeech;
     private static Map<String,Object> contextMap;
+    private static RecyclerView recyclerView;
+    private static StreamPlayer streamPlayer;
+    private static WatsonMessage responseFromWatson;
+    private static String responseFromWatsonAsString;
 
     static {
         initialize();
@@ -67,62 +74,80 @@ public class ChatBotHandler{
     private static void initialize(){
         username = "633ae577-2173-451d-b54f-aebf71c1c97a";
         password = "LTshbwXUFevy";
+        TTS_username = "050f005d-938d-4dd0-86db-ace397b9f839";
+        TTS_password = "CIvPNzSqYdMo";
         workspaceId = "914d9594-adee-472e-90c4-c987f2d489be";
         service = new ConversationService(ConversationService.VERSION_DATE_2017_02_03);
         service.setUsernameAndPassword(username, password);
         contextMap = new HashMap<>();
+        responseFromWatson = new WatsonMessage();
 
     }
 
     public static String sendMessage(String messageToWatson){
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-        if(checkInternetConnection()) {
-            String responseFromWatson = "";
+        final String messagedToBePassed = messageToWatson;
+        responseFromWatson.setWatsonMessage(messagedToBePassed);
 
-            // Build and send a message to the Watson API
-            MessageRequest newMessage = new MessageRequest.Builder()
-                    .inputText(messageToWatson)
-                    .context(contextMap)
-                    .build();
+        new Thread(new Runnable() {
+            @Override public void run() {
+                try {
+                        String replyFromWatson = "";
+                        // Build and send a message to the Watson API
+                        MessageRequest newMessage = new MessageRequest.Builder()
+                                .inputText(messagedToBePassed)
+                                .context(contextMap)
+                                .build();
 
-            MessageResponse response = service
-                    .message(workspaceId, newMessage)
-                    .execute();
+                        MessageResponse response = service
+                                .message(workspaceId, newMessage)
+                                .execute();
 
-            System.out.println(response);
+                        System.out.println(response);
 
-            // Obtain response from Watson API
-            ArrayList responseList = (ArrayList) response.getOutput().get("text");
-            if (null != responseList && responseList.size() > 0) {
-                responseFromWatson = ((String) responseList.get(0));
+                        // Obtain response from Watson API
+                        ArrayList responseList = (ArrayList) response.getOutput().get("text");
+                        if (null != responseList && responseList.size() > 0) {
+                            replyFromWatson = ((String) responseList.get(0));
+                        }
+                        responseFromWatson.setWatsonMessage(replyFromWatson);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-            return responseFromWatson;
-        }
-        else{
-            return "Please check your internet connection";
-        }
+        }).start();
+        responseFromWatsonAsString = responseFromWatson.getMessageAsString();
+        return responseFromWatsonAsString;
     }
 
-    private static boolean checkInternetConnection() {
-        // get Connectivity Manager object to check connection
-        ConnectivityManager cm =
-                (ConnectivityManager)MainActivity.appContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+    public static void textToSpeech(String messageToWatson){
+        final String message = messageToWatson;
+        // Initialize necessary variables
+        textToSpeech = new TextToSpeech();
+        textToSpeech.setUsernameAndPassword(TTS_username, TTS_password);
 
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        boolean isConnected = activeNetwork != null &&
-                activeNetwork.isConnectedOrConnecting();
+        // Run the stream player on a separate thread to prevent resource locking
+        new Thread(new Runnable() {
+            @Override public void run() {
+                try {
+                    streamPlayer = new StreamPlayer();
+                    streamPlayer.playStream(textToSpeech.synthesize(message, Voice.EN_LISA).execute());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
 
-        // Check for network connections
-        if (isConnected){
-            return true;
-        }
-        else {
-            return false;
-        }
-
+    public static void speechToText()
+    {
+        //TODO:
     }
 }
+
+
+
+
+
 
 
 

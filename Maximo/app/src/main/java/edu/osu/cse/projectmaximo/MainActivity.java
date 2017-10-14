@@ -78,8 +78,8 @@ public class MainActivity extends AppCompatActivity {
     public static String conversation_password;
     private String STT_username;
     private String STT_password;
-    private String TTS_username;
-    private String TTS_password;
+    public static String TTS_username;
+    public static String TTS_password;
     private String analytics_APIKEY;
     private SpeakerLabelsDiarization.RecoTokens recoTokens;
     private MicrophoneHelper microphoneHelper;
@@ -90,6 +90,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        /* This is just me testing random stuff with the chatbothandler, ignore this */
+        ChatBotHandler.initialize();
+        ChatBotHandler.sendMessage("Fetch Item X");
+
+
         appContext = getApplicationContext();
         application = getApplication();
         activity = this;
@@ -271,7 +277,7 @@ public class MainActivity extends AppCompatActivity {
             inputMessage.setMessage(inputmessage);
             inputMessage.setId("100");
             this.initialRequest = false;
-            Toast.makeText(getApplicationContext(),"Tap on the message for Voice",Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"Tap on the message for Voice",Toast.LENGTH_SHORT).show();
 
         }
 
@@ -393,11 +399,9 @@ public class MainActivity extends AppCompatActivity {
         return new RecognizeOptions.Builder()
                 .continuous(true)
                 .contentType(ContentType.OPUS.toString())
-                //.model("en-UK_NarrowbandModel")
                 .interimResults(true)
                 .inactivityTimeout(2000)
-                //TODO: Uncomment this to enable Speaker Diarization
-                //.speakerLabels(true)
+                .speakerLabels(true)
                 .build();
     }
 
@@ -405,15 +409,7 @@ public class MainActivity extends AppCompatActivity {
     private class MicrophoneRecognizeDelegate implements RecognizeCallback {
         @Override
         public void onTranscription(SpeechResults speechResults) {
-            //TODO: Uncomment this to enable Speaker Diarization
-            /*recoTokens = new SpeakerLabelsDiarization.RecoTokens();
-            if(speechResults.getSpeakerLabels() !=null)
-            {
-                recoTokens.add(speechResults);
-                Log.i("SPEECHRESULTS",speechResults.getSpeakerLabels().get(0).toString());
-
-
-            }*/
+            recoTokens = new SpeakerLabelsDiarization.RecoTokens();
             if(speechResults.getResults() != null && !speechResults.getResults().isEmpty()) {
                 String text = speechResults.getResults().get(0).getAlternatives().get(0).getTranscript();
                 showMicText(text);
