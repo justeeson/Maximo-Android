@@ -4,19 +4,15 @@ package edu.osu.cse.projectmaximo;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.Button;
+import android.content.Intent;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,20 +33,44 @@ public class Maximo extends AppCompatActivity {
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
         FeedReaderDbHelper mDbHelper = new FeedReaderDbHelper(getApplicationContext());
+        SensorGaugeReaderDbHelper sDbHelper = new SensorGaugeReaderDbHelper(getApplicationContext());
+
         // Gets the data repository in write mode
         SQLiteDatabase dbWriteable = mDbHelper.getWritableDatabase();
+        SQLiteDatabase sdbWriteable = sDbHelper.getWritableDatabase();
 
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
         values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_USERID, "1");
         values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_USERNAME, "userone");
-        values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_FIRSTNAME, "User");
-        values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_LASTNAME, "One");
+        values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_FIRSTNAME, "Mike");
+        values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_LASTNAME, "Rowsoft");
 
         // Insert the new row, returning the primary key value of the new row
-        long newRowId = dbWriteable.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, values);
+        dbWriteable.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, values);
 
+        //Sensor Gauge Sensor 1
+        values = new ContentValues();
+        values.put(SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORID, "1");
+        values.put(SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORNAME, "Sensor 1");
+        values.put(SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORTOTALVALUE, "500");
+        values.put(SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORACTUALVALUE, "325");
+
+        sdbWriteable.insert(SensorGaugeReaderContract.FeedEntry.TABLE_NAME, null, values);
+
+
+        //Sensor Gauge Sensor 2
+        values = new ContentValues();
+        values.put(SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORID, "2");
+        values.put(SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORNAME, "Sensor 2");
+        values.put(SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORTOTALVALUE, "700");
+        values.put(SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORACTUALVALUE, "405");
+
+        sdbWriteable.insert(SensorGaugeReaderContract.FeedEntry.TABLE_NAME, null, values);
+
+        //Get Readable versions of both databases
         SQLiteDatabase dbReadable = mDbHelper.getReadableDatabase();
+        SQLiteDatabase sdbReadable = sDbHelper.getReadableDatabase();
 
         // Define a projection that specifies which columns from the database
         // you will actually use after this query.
@@ -64,7 +84,7 @@ public class Maximo extends AppCompatActivity {
 
         // Filter results WHERE "title" = 'My Title'
         String selection = FeedReaderContract.FeedEntry.COLUMN_NAME_FIRSTNAME + " = ?";
-        String[] selectionArgs = { "User" };
+        String[] selectionArgs = { "Mike" };
 
         // How you want the results sorted in the resulting Cursor
         String sortOrder =
@@ -93,6 +113,20 @@ public class Maximo extends AppCompatActivity {
         // We're calling this last so the name can be pulled before
         // the screen is created
         setContentView(R.layout.activity_maximo);
+
+
+        //set intent
+        Button media_dash  = (Button)findViewById(R.id.MediaDashboardBtn);
+        media_dash.setOnClickListener(
+                new Button.OnClickListener()
+                {
+                    public void onClick(View view){
+
+                        Intent intent_to_media =  new Intent(view.getContext(), MediaDashboardActivity.class);
+                        startActivity(intent_to_media);
+                    }
+                }
+        );
     }
 
     @Override
@@ -116,4 +150,5 @@ public class Maximo extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }

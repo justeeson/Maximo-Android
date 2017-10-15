@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="CustomGauge-1.0.3">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.android/build-cache/894bdd90d4603681049f8e2e37e47111ccf7f2ec/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/894bdd90d4603681049f8e2e37e47111ccf7f2ec/output/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/pl.pawelkleczkowski.customgauge/CustomGauge/1.0.3/f15be117831bc3741f883cc1b66943a51e936441/CustomGauge-1.0.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

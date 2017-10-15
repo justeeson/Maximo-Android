@@ -1,24 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_content"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context="edu.osu.cse.projectmaximo.Maximo">
+    android:layout_height="match_parent">
 
-    <fragment
-        android:id="@+id/intro"
-        android:name="edu.osu.cse.projectmaximo.IntroductionFragment"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1" />
+        android:orientation="vertical"
+        android:fitsSystemWindows="true"
+        tools:context="edu.osu.cse.projectmaximo.Maximo">
 
-    <fragment
-        android:id="@+id/inbox"
-        android:name="edu.osu.cse.projectmaximo.InboxFragment"
+        <fragment
+            android:id="@+id/intro"
+            android:name="edu.osu.cse.projectmaximo.IntroductionFragment"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <fragment
+                android:id="@+id/inbox"
+                android:name="edu.osu.cse.projectmaximo.InboxFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1" />
+
+            <fragment
+                android:id="@+id/bulletin_board"
+                android:name="edu.osu.cse.projectmaximo.BulletinBoardFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <fragment
+                android:id="@+id/gauge"
+                android:name="edu.osu.cse.projectmaximo.SensorGaugeFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1" />
+
+            <fragment
+                android:id="@+id/status_window"
+                android:name="edu.osu.cse.projectmaximo.StatusWindowFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" />
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/MediaDashboardBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="36dp"
+            android:onClick="onClick"
+            android:text="Media Dashboard" />
+
+    </LinearLayout>
 
 </LinearLayout>
+
+</ScrollView>
+
