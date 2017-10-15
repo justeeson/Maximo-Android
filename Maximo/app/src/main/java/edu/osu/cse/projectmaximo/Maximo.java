@@ -71,19 +71,33 @@ public class Maximo extends AppCompatActivity {
 
         newRowId = dbWriteable.insert(SensorGaugeReaderContract.FeedEntry.TABLE_NAME, null, values);
 
+        //delete all items in workitem table
+        wdbWriteable.delete(WorkItemsContract.WorkItemsEntry.TABLE_NAME, null, null);
         // Work Items 1
         values = new ContentValues();
         values.put(WorkItemsContract.WorkItemsEntry.COLUMN_NAME_ITEM, "item1");
 
         newRowId = wdbWriteable.insert(WorkItemsContract.WorkItemsEntry.TABLE_NAME, null, values);
-
-        // Work Items 2
         values = new ContentValues();
         values.put(WorkItemsContract.WorkItemsEntry.COLUMN_NAME_ITEM, "item2");
 
         newRowId = wdbWriteable.insert(WorkItemsContract.WorkItemsEntry.TABLE_NAME, null, values);
 
-        //Get Readable versions of both databases
+        values = new ContentValues();
+        values.put(WorkItemsContract.WorkItemsEntry.COLUMN_NAME_ITEM, "item3");
+
+        newRowId = wdbWriteable.insert(WorkItemsContract.WorkItemsEntry.TABLE_NAME, null, values);
+
+        values = new ContentValues();
+        values.put(WorkItemsContract.WorkItemsEntry.COLUMN_NAME_ITEM, "item4");
+
+        newRowId = wdbWriteable.insert(WorkItemsContract.WorkItemsEntry.TABLE_NAME, null, values);
+
+
+        /**
+         *
+         * Get Readable versions of databases
+         * */
         SQLiteDatabase dbReadable = mDbHelper.getReadableDatabase();
         SQLiteDatabase sdbReadable = sDbHelper.getReadableDatabase();
         SQLiteDatabase wdbReadable = wDbHelper.getReadableDatabase();
@@ -124,38 +138,26 @@ public class Maximo extends AppCompatActivity {
             itemIds.add(itemId);
         }
         cursor.close();
-        userIdentity = " " + itemIds.get(0);
+        //userIdentity = " " + itemIds.get(0);
 
-        //read work items
-        String[] workItems_projection = {
-                WorkItemsContract.WorkItemsEntry.COLUMN_NAME_ITEM
-        };
-        selection = WorkItemsContract.WorkItemsEntry.COLUMN_NAME_ITEM + " = ?";
+        /**
+         * read work items
+         *
+         * */
+        cursor = wdbReadable.rawQuery("select * from "+WorkItemsContract.WorkItemsEntry.TABLE_NAME, null);
 
-        // How you want the results sorted in the resulting Cursor
-         sortOrder =
-                WorkItemsContract.WorkItemsEntry.COLUMN_NAME_ITEM + " DESC";
-
-         cursor = wdbReadable.query(
-                WorkItemsContract.WorkItemsEntry.TABLE_NAME,                     // The table to query
-                workItems_projection,                               // The columns to return
-                selection,                                // The columns for the WHERE clause
-                null,                                     // The values for the WHERE clause
-                null,                                     // don't group the rows
-                null,                                     // don't filter by row groups
-                sortOrder                                 // The sort order
-        );
-        List workitem_list = new ArrayList<>();
+        ArrayList<WorkItem>  workitem_list = new ArrayList<WorkItem> ();
         while(cursor.moveToNext()) {
             String itemId = cursor.getString(
-                    cursor.getColumnIndexOrThrow(WorkItemsContract.WorkItemsEntry._ID));
-            workitem_list.add(itemId);
+                    cursor.getColumnIndexOrThrow(WorkItemsContract.WorkItemsEntry.COLUMN_NAME_ITEM));
+            workitem_list.add(new WorkItem(itemId));
         }
 
         cursor.close();
 
         // We're calling this last so the name can be pulled before
         // the screen is created
+
         setContentView(R.layout.activity_maximo);
 
         //set intent
@@ -173,27 +175,21 @@ public class Maximo extends AppCompatActivity {
         displayWorkItems(workitem_list);
     }
 
-    /**
-     * Displays the current user's work list
-     *
-     * @param  workitem_list an ArrayList that stores all the work items
-     *
-     *  */
-    public void displayWorkItems( List workitem_list) {
-        //get work items list
-//        ArrayList<WorkItem> work_item_array = new ArrayList<WorkItem>();
-//        for(int i = 0; i < workitem_list.size(); i++){
-//            WorkItem item = new WorkItem( );
-//            work_item_array.add(item);
-//
-//        }
 
-//        WorkItem item1 = new WorkItem(String.valueOf(workitem_list.size()));
-//        WorkItem item2 = new WorkItem("item2");
-//        work_item_array.add(item1);
-//        work_item_array.add(item2);
+    public void displayWorkItems(ArrayList<WorkItem> workitem_list) {
+
         //set adapter for work item list
-        WorkItemAdapter work_item_adapter = new WorkItemAdapter(this, (ArrayList<WorkItem>) workitem_list);
+        //display at most ten items
+        WorkItemAdapter work_item_adapter;
+        if(workitem_list.size() >10){
+            ArrayList<WorkItem> firstTen = new ArrayList<WorkItem>();
+            for(int i = 0; i < 10; i++){
+                firstTen.add(workitem_list.get(i));
+            }
+            work_item_adapter = new WorkItemAdapter(this, firstTen);
+        }else{
+            work_item_adapter = new WorkItemAdapter(this, workitem_list);
+        }
 
         ListView work_item_list = (ListView) findViewById(R.id.WorkItemList);
         work_item_list.setAdapter(work_item_adapter);
