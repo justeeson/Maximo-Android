@@ -16,7 +16,6 @@
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
         android:background="#00FFFFFF"
-        android:onClick="onClick"
         android:text="Home"
         android:textColor="#d6d6d6" />
 
@@ -28,7 +27,6 @@
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
         android:background="#00FFFFFF"
-        android:onClick="onClick"
         android:text="Media"
         android:textColor="#d6d6d6" />
 
@@ -40,7 +38,6 @@
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
         android:background="#00FFFFFF"
-        android:onClick="onClick"
         android:text="Chat"
         android:textColor="#d6d6d6" />
 
