@@ -114,8 +114,30 @@ public class Maximo extends AppCompatActivity {
         // the screen is created
         setContentView(R.layout.activity_maximo);
 
+        //bottom navbar menu button functionality
+        final Button homeButton = findViewById(R.id.home_button);
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                BottomMenuBar.menuClick(v);
+            }
+        });
+
+        final Button mediaButton = findViewById(R.id.media_dashboard_btn);
+        mediaButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                BottomMenuBar.menuClick(v);
+            }
+        });
+
+        final Button chatButton = findViewById(R.id.chat_btn);
+        chatButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                BottomMenuBar.menuClick(v);
+            }
+        });
 
         //set intent
+        /*
         Button media_dash  = findViewById(R.id.MediaDashboardBtn);
         media_dash.setOnClickListener(
                 new Button.OnClickListener()
@@ -127,6 +149,7 @@ public class Maximo extends AppCompatActivity {
                     }
                 }
         );
+        */
     }
 
     @Override
