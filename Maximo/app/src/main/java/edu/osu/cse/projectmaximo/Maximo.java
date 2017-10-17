@@ -136,6 +136,20 @@ public class Maximo extends AppCompatActivity {
             }
         });
 
+        //set intent
+        /*
+        Button media_dash  = findViewById(R.id.MediaDashboardBtn);
+        media_dash.setOnClickListener(
+                new Button.OnClickListener()
+                {
+                    public void onClick(View view){
+
+                        Intent intent_to_media =  new Intent(view.getContext(), MediaDashboardActivity.class);
+                        startActivity(intent_to_media);
+                    }
+                }
+        );
+        */
     }
 
     @Override
@@ -159,5 +173,4 @@ public class Maximo extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
 }

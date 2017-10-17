@@ -48,6 +48,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import edu.osu.cse.projectmaximo.ChatBot.ChatBotHandler;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -78,8 +80,8 @@ public class MainActivity extends AppCompatActivity {
     public static String conversation_password;
     private String STT_username;
     private String STT_password;
-    private String TTS_username;
-    private String TTS_password;
+    public static String TTS_username;
+    public static String TTS_password;
     private String analytics_APIKEY;
     private SpeakerLabelsDiarization.RecoTokens recoTokens;
     private MicrophoneHelper microphoneHelper;
@@ -90,6 +92,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        /* This is just me testing random stuff with the chatbothandler, ignore this */
+        ChatBotHandler.sendMessage("Fetch Item X");
+
+
         appContext = getApplicationContext();
         application = getApplication();
         activity = this;
@@ -134,13 +141,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        inputMessage = (EditText) findViewById(R.id.message);
-        btnSend = (ImageButton) findViewById(R.id.btn_send);
-        btnRecord= (ImageButton) findViewById(R.id.btn_record);
+        inputMessage = findViewById(R.id.message);
+        btnSend = findViewById(R.id.btn_send);
+        btnRecord= findViewById(R.id.btn_record);
         String customFont = "Montserrat-Regular.ttf";
         Typeface typeface = Typeface.createFromAsset(getAssets(), customFont);
         inputMessage.setTypeface(typeface);
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        recyclerView = findViewById(R.id.recycler_view);
 
         messageArrayList = new ArrayList<>();
         mAdapter = new ChatAdapter(messageArrayList);
@@ -214,7 +221,7 @@ public class MainActivity extends AppCompatActivity {
                 recordMessage();
             }
         });
-    };
+    }
 
     // Speech-to-Text Record Audio permission
     @Override
@@ -393,10 +400,8 @@ public class MainActivity extends AppCompatActivity {
         return new RecognizeOptions.Builder()
                 .continuous(true)
                 .contentType(ContentType.OPUS.toString())
-                //.model("en-UK_NarrowbandModel")
                 .interimResults(true)
                 .inactivityTimeout(2000)
-                // Comment out to disable speech to text
                 .speakerLabels(true)
                 .build();
     }
@@ -406,14 +411,6 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onTranscription(SpeechResults speechResults) {
             recoTokens = new SpeakerLabelsDiarization.RecoTokens();
-            /*
-            if(speechResults.getSpeakerLabels() !=null)
-            {
-                recoTokens.add(speechResults);
-                Log.i("SPEECHRESULTS",speechResults.getSpeakerLabels().get(0).toString());
-
-
-            }*/
             if(speechResults.getResults() != null && !speechResults.getResults().isEmpty()) {
                 String text = speechResults.getResults().get(0).getAlternatives().get(0).getTranscript();
                 showMicText(text);

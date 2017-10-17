@@ -4,14 +4,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.GregorianCalendar;
 
 import edu.osu.cse.projectmaximo.R;
 
 public class ChatBotActivity extends AppCompatActivity
-implements ChatTextEntryView.OnMessageSendListener {
+implements ChatTextEntryFragment.OnMessageSendListener {
 
 
     @Override
@@ -25,24 +28,29 @@ implements ChatTextEntryView.OnMessageSendListener {
      * @param message The text of the message being added to the chat history.
      */
     @Override
-    public void onMessageSend(ChatMessage message) {
+    public void onMessageSend(@NotNull ChatMessage message) {
         // TODO: Update this to add text to chat history and save in the database.
         // Place a message in chat history UI.
-        boolean sendMessage = message != null && message.getMessage() != null
+        boolean sendMessage = message.getMessage() != null
                 && !message.getMessage().isEmpty();
         if (sendMessage) {
-            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-            android.support.v4.app.FragmentTransaction transaction = fragmentManager.beginTransaction();
-            ChatMessageFragment msg = ChatMessageFragment.newInstance(message);
+            // Add message to convo history
+            LinearLayout convoHistory = findViewById(R.id.chat_message_history);
+            ChatMessageView view = new ChatMessageView(this, message);
+            convoHistory.addView(view);
 
-            transaction.add(R.id.chat_message_history, msg);
-            transaction.commitNow();
+            // TODO: Make this async
+            // Get the message from the chat bot handler.
+            String response = ChatBotHandler.sendMessage(message.getMessage());
+            ChatMessageView responseView = new ChatMessageView(this, new ChatMessage(response));
+            responseView.makeResponse();
+            convoHistory.addView(responseView);
         }
     }
 
     public void onSendButtonPressed(View view) {
         // Get the message from the EditText
-        EditText messageBox = (EditText) findViewById(R.id.messageBox);
+        EditText messageBox = findViewById(R.id.messageBox);
         String message = messageBox.getText().toString();
         messageBox.setText("");
 
@@ -51,9 +59,14 @@ implements ChatTextEntryView.OnMessageSendListener {
         scrollToMostRecentMessage();
     }
 
-    public void scrollToMostRecentMessage() {
-        // Scroll to bottom
-        ScrollView scrollView = findViewById(R.id.chat_scroll_view);
-        scrollView.fullScroll(View.FOCUS_DOWN);
+    private void scrollToMostRecentMessage() {
+        // Scroll to bottom.
+        final ScrollView scrollView = findViewById(R.id.chat_scroll_view);
+        scrollView.post(new Runnable() {
+            @Override
+            public void run() {
+                scrollView.fullScroll(View.FOCUS_DOWN);
+            }
+        });
     }
 }
