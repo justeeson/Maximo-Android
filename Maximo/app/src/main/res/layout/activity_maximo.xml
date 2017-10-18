@@ -8,8 +8,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:fitsSystemWindows="true"
+        android:orientation="vertical"
         tools:context="edu.osu.cse.projectmaximo.Maximo">
 
         <!-- Introduction pane fragment -->
@@ -18,10 +18,10 @@
             android:name="edu.osu.cse.projectmaximo.IntroductionFragment"
             android:layout_width="match_parent"
             android:layout_height="51dp"
+            android:layout_marginBottom="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"/>
+            android:layout_marginTop="8dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -88,6 +88,15 @@
 
         </LinearLayout>
 
+        <fragment
+            android:id="@+id/work_item"
+            android:name="edu.osu.cse.projectmaximo.WorkItemFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="85dp"
+            android:layout_marginRight="70dp"
+            android:layout_weight="1" />
+
         <!-- Bottom navbar -->
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -98,4 +107,3 @@
 </LinearLayout>
 
 </ScrollView>
-
