@@ -53,7 +53,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import edu.osu.cse.projectmaximo.MainActivity;
+import edu.osu.cse.projectmaximo.ChatBot.ChatBotActivity;
 import edu.osu.cse.projectmaximo.SpeakerLabelsDiarization;
 import edu.osu.cse.projectmaximo.WatsonMessage;
 
@@ -95,7 +95,7 @@ public class ChatBotHandler{
         service.setUsernameAndPassword(username, password);
         contextMap = new HashMap<>();
         responseFromWatson = new WatsonMessage();
-        microphoneHelper = new MicrophoneHelper(MainActivity.activity);
+        microphoneHelper = new MicrophoneHelper(ChatBotActivity.appActivity);
         speechToTextService = new SpeechToText();
         speechToTextService.setUsernameAndPassword(STT_username,  STT_password);
         speechToTextService.setDefaultHeaders(headers);
@@ -187,12 +187,12 @@ public class ChatBotHandler{
                 }
             }).start();
             listening = true;
-            Toast.makeText(MainActivity.appContext,"Listening....Click to Stop", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ChatBotActivity.appContext,"Listening....Click to Stop", Toast.LENGTH_SHORT).show();
         } else {
             try {
                 microphoneHelper.closeInputStream();
                 listening = false;
-                Toast.makeText(MainActivity.appContext,"Stopped Listening....Click to Start", Toast.LENGTH_LONG).show();
+                Toast.makeText(ChatBotActivity.appContext,"Stopped Listening....Click to Start", Toast.LENGTH_LONG).show();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -218,6 +218,7 @@ public class ChatBotHandler{
             recoTokens = new SpeakerLabelsDiarization.RecoTokens();
             if(speechResults.getResults() != null && !speechResults.getResults().isEmpty()) {
                 String text = speechResults.getResults().get(0).getAlternatives().get(0).getTranscript();
+                System.out.println(text);
             }
         }
 

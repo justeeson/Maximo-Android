@@ -9,27 +9,37 @@
         android:id="@+id/messageBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
+        android:layout_marginLeft="60dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="0dp"
         android:ems="10"
         android:hint="@string/edit_message"
         android:inputType="textPersonName"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/sendButton"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="16dp" />
 
     <Button
         android:id="@+id/sendButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="0dp"
         android:onClick="onSendButtonPressed"
         android:text="@string/button_send"
         app:layout_constraintBaseline_toBaselineOf="@+id/messageBox"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintTop_creator="1" />
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <android.support.v7.widget.AppCompatImageButton
+        android:id="@+id/btn_record"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:background="@null"
+        android:elevation="0dp"
+        android:paddingLeft="5dp"
+        android:scaleType="fitCenter"
+        android:src="@mipmap/ic_mic"
+        tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="0dp" />
 
 </android.support.constraint.ConstraintLayout>
