@@ -30,24 +30,31 @@ import com.ibm.mobilefirstplatform.clientsdk.android.core.api.BMSClient;
 import com.ibm.mobilefirstplatform.clientsdk.android.core.api.Response;
 import com.ibm.mobilefirstplatform.clientsdk.android.core.api.ResponseListener;
 import com.ibm.mobilefirstplatform.clientsdk.android.logger.api.Logger;
+import com.ibm.watson.developer_cloud.android.library.audio.MicrophoneHelper;
+import com.ibm.watson.developer_cloud.android.library.audio.MicrophoneInputStream;
 import com.ibm.watson.developer_cloud.android.library.audio.StreamPlayer;
+import com.ibm.watson.developer_cloud.android.library.audio.utils.ContentType;
 import com.ibm.watson.developer_cloud.conversation.v1.ConversationService;
 import com.ibm.watson.developer_cloud.conversation.v1.model.MessageRequest;
 import com.ibm.watson.developer_cloud.conversation.v1.model.MessageResponse;
 import com.ibm.watson.developer_cloud.speech_to_text.v1.SpeechToText;
 import com.ibm.watson.developer_cloud.speech_to_text.v1.model.RecognizeOptions;
+import com.ibm.watson.developer_cloud.speech_to_text.v1.model.SpeechModel;
 import com.ibm.watson.developer_cloud.speech_to_text.v1.model.SpeechResults;
 import com.ibm.watson.developer_cloud.speech_to_text.v1.websocket.RecognizeCallback;
 import com.ibm.watson.developer_cloud.text_to_speech.v1.TextToSpeech;
 import com.ibm.watson.developer_cloud.text_to_speech.v1.model.Voice;
-
+import com.ibm.watson.developer_cloud.speech_to_text.v1.model.SpeechModel;
 
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import edu.osu.cse.projectmaximo.MainActivity;
+import edu.osu.cse.projectmaximo.SpeakerLabelsDiarization;
 import edu.osu.cse.projectmaximo.WatsonMessage;
 
 
@@ -58,35 +65,56 @@ public class ChatBotHandler{
     private static String password;
     private static String TTS_username;
     private static String TTS_password;
+    private static String STT_username;
+    private static String STT_password;
     private static String workspaceId;
-    private static TextToSpeech textToSpeech;
+    private static boolean listening = false;
     private static Map<String,Object> contextMap;
-    private static RecyclerView recyclerView;
     private static StreamPlayer streamPlayer;
     private static WatsonMessage responseFromWatson;
-    private static String responseFromWatsonAsString;
+    private static SpeechToText speechToTextService;
+    private static MicrophoneInputStream capture;
+    private static TextToSpeech textToSpeechService;
+    private static SpeakerLabelsDiarization.RecoTokens recoTokens;
+    private static Map<String, String> headers = new HashMap<String, String>();
+    private static MicrophoneHelper microphoneHelper;
 
-    static {
+    static{
         initialize();
     }
 
-    private static void initialize(){
-        username = "633ae577-2173-451d-b54f-aebf71c1c97a";
-        password = "LTshbwXUFevy";
-        TTS_username = "050f005d-938d-4dd0-86db-ace397b9f839";
-        TTS_password = "CIvPNzSqYdMo";
-        workspaceId = "914d9594-adee-472e-90c4-c987f2d489be";
+    public static void initialize(){
+        username = "3072f50f-4f30-424d-83a4-1a3cd970a4af";
+        password = "flEyamA3drcv";
+        TTS_username = "894dc105-4f3b-406f-bd5e-021a096b6a35";
+        TTS_password = "VLOHR4BWSRLa";
+        STT_username = "c96da939-81fe-4057-a026-4f8465076666";
+        STT_password = "mPnVQaebCMrP";
+        workspaceId = "fcd7dbf9-47c6-4f2e-8384-d358db00a087";
         service = new ConversationService(ConversationService.VERSION_DATE_2017_02_03);
         service.setUsernameAndPassword(username, password);
         contextMap = new HashMap<>();
         responseFromWatson = new WatsonMessage();
+        microphoneHelper = new MicrophoneHelper(MainActivity.activity);
+        speechToTextService = new SpeechToText();
+        speechToTextService.setUsernameAndPassword(STT_username,  STT_password);
+        speechToTextService.setDefaultHeaders(headers);
+        Thread modelThread = new Thread(){
+            public void run(){
+                SpeechModel model = speechToTextService.getModel("en-US_BroadbandModel").execute();
+            }
+        };
 
+        modelThread.start();
+
+        textToSpeechService = new TextToSpeech();
+        textToSpeechService.setUsernameAndPassword(TTS_username, TTS_password);
+        headers.put("X-Watson-Learning-Opt-Out", "true");
     }
 
     public static String sendMessage(String messageToWatson){
         final String messagedToBePassed = messageToWatson;
         responseFromWatson.setWatsonMessage("Sorry, the watson service is unavailable right now.");
-
         Thread networkThread = new Thread(){
             public void run(){
                 try {
@@ -130,16 +158,12 @@ public class ChatBotHandler{
 
     public static void textToSpeech(String messageToWatson){
         final String message = messageToWatson;
-        // Initialize necessary variables
-        textToSpeech = new TextToSpeech();
-        textToSpeech.setUsernameAndPassword(TTS_username, TTS_password);
-
         // Run the stream player on a separate thread to prevent resource locking
         new Thread(new Runnable() {
             @Override public void run() {
                 try {
                     streamPlayer = new StreamPlayer();
-                    streamPlayer.playStream(textToSpeech.synthesize(message, Voice.EN_LISA).execute());
+                    streamPlayer.playStream(textToSpeechService.synthesize(message, Voice.EN_LISA).execute());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -147,11 +171,86 @@ public class ChatBotHandler{
         }).start();
     }
 
-    public static void speechToText()
+    // Main logic for speech to text
+    public static void speechToText(Boolean status)
     {
-        //TODO:
+        listening = status;
+        if(listening != true) {
+            capture = microphoneHelper.getInputStream(true);
+            new Thread(new Runnable() {
+                @Override public void run() {
+                    try {
+                        speechToTextService.recognizeUsingWebSocket(capture, getRecognizeOptions(), new MicrophoneRecognizeDelegate());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
+            listening = true;
+            Toast.makeText(MainActivity.appContext,"Listening....Click to Stop", Toast.LENGTH_SHORT).show();
+        } else {
+            try {
+                microphoneHelper.closeInputStream();
+                listening = false;
+                Toast.makeText(MainActivity.appContext,"Stopped Listening....Click to Start", Toast.LENGTH_LONG).show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
     }
-}
+
+    // Method defining options for speech to text
+    private static RecognizeOptions getRecognizeOptions() {
+        return new RecognizeOptions.Builder()
+                .continuous(true)
+                .contentType(ContentType.OPUS.toString())
+                .interimResults(true)
+                .inactivityTimeout(2000)
+                .speakerLabels(true)
+                .build();
+    }
+
+    //Watson Speech to Text Methods.
+    private static class MicrophoneRecognizeDelegate implements RecognizeCallback {
+        @Override
+        public void onTranscription(SpeechResults speechResults) {
+            recoTokens = new SpeakerLabelsDiarization.RecoTokens();
+            if(speechResults.getResults() != null && !speechResults.getResults().isEmpty()) {
+                String text = speechResults.getResults().get(0).getAlternatives().get(0).getTranscript();
+            }
+        }
+
+        @Override public void onConnected() {
+
+        }
+
+        @Override public void onError(Exception e) {
+            e.printStackTrace();
+        }
+
+        @Override public void onDisconnected() {
+
+        }
+
+        @Override
+        public void onInactivityTimeout(RuntimeException runtimeException) {
+
+        }
+
+        @Override
+        public void onListening() {
+
+        }
+
+        @Override
+        public void onTranscriptionComplete() {
+
+        }
+    }
+    }
+
+
 
 
 

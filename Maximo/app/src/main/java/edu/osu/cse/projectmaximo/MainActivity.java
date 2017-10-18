@@ -41,7 +41,6 @@ import com.ibm.watson.developer_cloud.speech_to_text.v1.websocket.RecognizeCallb
 import com.ibm.watson.developer_cloud.text_to_speech.v1.TextToSpeech;
 import com.ibm.watson.developer_cloud.text_to_speech.v1.model.Voice;
 
-
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -92,11 +91,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        /* This is just me testing random stuff with the chatbothandler, ignore this */
-        ChatBotHandler.sendMessage("Fetch Item X");
-
-
         appContext = getApplicationContext();
         application = getApplication();
         activity = this;
@@ -160,6 +154,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(mAdapter);
         this.inputMessage.setText("");
         this.initialRequest = true;
+          /* This is just me testing random stuff with the chatbothandler, ignore this*/
+        //ChatBotHandler.speechToText(false);
         sendMessage();
 
         //Watson Text-to-Speech Service on Bluemix
@@ -173,6 +169,8 @@ public class MainActivity extends AppCompatActivity {
         if (permission != PackageManager.PERMISSION_GRANTED) {
             Log.i(TAG, "Permission to record denied");
             makeRequest();
+
+
         }
 
 
