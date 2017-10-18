@@ -101,15 +101,17 @@
                 android:onClick="onClick"
                 android:text="Media Dashboard" />
 
-            <ListView
-                android:id="@+id/WorkItemList"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+            <fragment
+                android:id="@+id/work_item"
+                android:name="edu.osu.cse.projectmaximo.WorkItemFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="85dp"
+                android:layout_marginRight="70dp"
+                android:layout_weight="1" />
+
 
         </LinearLayout>
-
-
-
     </LinearLayout>
 
 </ScrollView>

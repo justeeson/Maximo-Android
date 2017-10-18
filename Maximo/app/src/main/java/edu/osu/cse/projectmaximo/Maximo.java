@@ -12,13 +12,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Maximo extends AppCompatActivity {
     public static String userIdentity = "";
+    public static ArrayList<WorkItem>  workitem_list;
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -76,21 +76,18 @@ public class Maximo extends AppCompatActivity {
         // Work Items 1
         values = new ContentValues();
         values.put(WorkItemsContract.WorkItemsEntry.COLUMN_NAME_ITEM, "item1");
-
         newRowId = wdbWriteable.insert(WorkItemsContract.WorkItemsEntry.TABLE_NAME, null, values);
+
         values = new ContentValues();
         values.put(WorkItemsContract.WorkItemsEntry.COLUMN_NAME_ITEM, "item2");
-
         newRowId = wdbWriteable.insert(WorkItemsContract.WorkItemsEntry.TABLE_NAME, null, values);
 
         values = new ContentValues();
         values.put(WorkItemsContract.WorkItemsEntry.COLUMN_NAME_ITEM, "item3");
-
         newRowId = wdbWriteable.insert(WorkItemsContract.WorkItemsEntry.TABLE_NAME, null, values);
 
         values = new ContentValues();
         values.put(WorkItemsContract.WorkItemsEntry.COLUMN_NAME_ITEM, "item4");
-
         newRowId = wdbWriteable.insert(WorkItemsContract.WorkItemsEntry.TABLE_NAME, null, values);
 
 
@@ -146,7 +143,7 @@ public class Maximo extends AppCompatActivity {
          * */
         cursor = wdbReadable.rawQuery("select * from "+WorkItemsContract.WorkItemsEntry.TABLE_NAME, null);
 
-        ArrayList<WorkItem>  workitem_list = new ArrayList<WorkItem> ();
+        workitem_list = new ArrayList<WorkItem> ();
         while(cursor.moveToNext()) {
             String itemId = cursor.getString(
                     cursor.getColumnIndexOrThrow(WorkItemsContract.WorkItemsEntry.COLUMN_NAME_ITEM));
@@ -171,30 +168,8 @@ public class Maximo extends AppCompatActivity {
                     }
                 }
         );
-        //display all the current work item via a list view
-        displayWorkItems(workitem_list);
     }
 
-
-    public void displayWorkItems(ArrayList<WorkItem> workitem_list) {
-
-        //set adapter for work item list
-        //display at most ten items
-        WorkItemAdapter work_item_adapter;
-        if(workitem_list.size() >10){
-            ArrayList<WorkItem> firstTen = new ArrayList<WorkItem>();
-            for(int i = 0; i < 10; i++){
-                firstTen.add(workitem_list.get(i));
-            }
-            work_item_adapter = new WorkItemAdapter(this, firstTen);
-        }else{
-            work_item_adapter = new WorkItemAdapter(this, workitem_list);
-        }
-
-        ListView work_item_list = (ListView) findViewById(R.id.WorkItemList);
-        work_item_list.setAdapter(work_item_adapter);
-
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
