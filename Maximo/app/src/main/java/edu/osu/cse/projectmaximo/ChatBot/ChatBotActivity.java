@@ -5,6 +5,7 @@ import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -16,6 +17,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.GregorianCalendar;
 
+import edu.osu.cse.projectmaximo.BottomMenuBar;
 import edu.osu.cse.projectmaximo.R;
 
 public class ChatBotActivity extends AppCompatActivity
@@ -30,6 +32,21 @@ implements ChatTextEntryFragment.OnMessageSendListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_bot);
+
+        //bottom navbar menu button functionality
+        final Button mediaButton = findViewById(R.id.dashboard_nav_btn);
+        mediaButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                BottomMenuBar.menuClick(v);
+            }
+        });
+        final Button homeButton = findViewById(R.id.home_nav_btn);
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                BottomMenuBar.menuClick(v);
+            }
+        });
+
         appActivity = this;
         appContext = getApplicationContext();
         messageBox = (EditText) this.findViewById(R.id.messageBox);
