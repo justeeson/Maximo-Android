@@ -7,4 +7,7 @@
     <color name="colorChatResponse">#EAE5FF</color>
     <color name="bg_bubble_self">#62caa6</color>
     <color name="bg_bubble_watbot">#ecf0f1</color>
+    <color name="realwear_purple">#6426bb</color>
+    <color name="realwear_gray">#d6d6d6</color>
+    <color name="transparent">#00FFFFFF</color>
 </resources>
