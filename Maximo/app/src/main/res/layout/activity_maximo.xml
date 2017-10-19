@@ -12,6 +12,7 @@
         android:fitsSystemWindows="true"
         tools:context="edu.osu.cse.projectmaximo.Maximo">
 
+        <!-- Introduction pane fragment -->
         <fragment
             android:id="@+id/intro"
             android:name="edu.osu.cse.projectmaximo.IntroductionFragment"
@@ -29,6 +30,7 @@
             android:baselineAligned="false"
             android:orientation="horizontal">
 
+            <!-- Inbox fragment -->
             <fragment
                 android:id="@+id/inbox"
                 android:name="edu.osu.cse.projectmaximo.InboxFragment"
@@ -40,6 +42,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_weight="1" />
 
+            <!-- Bulletin Board fragment -->
             <fragment
                 android:id="@+id/bulletin_board"
                 android:name="edu.osu.cse.projectmaximo.BulletinBoardFragment"
@@ -59,6 +62,7 @@
             android:baselineAligned="false"
             android:orientation="horizontal">
 
+            <!-- Sensor gauge fragment -->
             <fragment
                 android:id="@+id/gauge"
                 android:name="edu.osu.cse.projectmaximo.SensorGaugeFragment"
@@ -70,6 +74,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_weight="1" />
 
+            <!-- Sensor status window fragment -->
             <fragment
                 android:id="@+id/status_window"
                 android:name="edu.osu.cse.projectmaximo.StatusWindowFragment"
@@ -83,25 +88,12 @@
 
         </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:baselineAligned="false"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/MediaDashboardBtn"
+        <!-- Bottom navbar -->
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="36dp"
-            android:onClick="onClick"
-            android:text="Media Dashboard" />
-
-    </LinearLayout>
+            android:layout_height="wrap_content">
+            <include layout="@layout/bottom_menu_bar"/>
+        </RelativeLayout>
 
 </LinearLayout>
 

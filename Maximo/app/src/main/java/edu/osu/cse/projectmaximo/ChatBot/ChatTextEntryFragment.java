@@ -14,13 +14,14 @@ import edu.osu.cse.projectmaximo.R;
  * Activities that contain this fragment must implement the
  * {@link OnMessageSendListener} interface
  * to handle interaction events.
- * Use the {@link ChatTextEntryView#newInstance} factory method to
+ * Use the {@link ChatTextEntryFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ChatTextEntryView extends Fragment {
+public class ChatTextEntryFragment
+        extends Fragment {
     private OnMessageSendListener mListener;
 
-    public ChatTextEntryView() {
+    public ChatTextEntryFragment() {
         // Required empty public constructor
     }
 
@@ -28,16 +29,10 @@ public class ChatTextEntryView extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @return A new instance of fragment ChatTextEntryView.
+     * @return A new instance of fragment ChatTextEntryFragment.
      */
-    public static ChatTextEntryView newInstance() {
-        ChatTextEntryView fragment = new ChatTextEntryView();
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public static ChatTextEntryFragment newInstance() {
+        return new ChatTextEntryFragment();
     }
 
     @Override
