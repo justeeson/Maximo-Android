@@ -2,7 +2,6 @@ package edu.osu.cse.projectmaximo;
 
 
 import android.content.ContentValues;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -59,7 +58,7 @@ public class Maximo extends AppCompatActivity {
         values.put(SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORTOTALVALUE, "500");
         values.put(SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORACTUALVALUE, "325");
 
-        newRowId = dbWriteable.insert(SensorGaugeReaderContract.FeedEntry.TABLE_NAME, null, values);
+        newRowId = sdbWriteable.insert(SensorGaugeReaderContract.FeedEntry.TABLE_NAME, null, values);
 
 
         //Sensor Gauge Sensor 2
@@ -69,7 +68,7 @@ public class Maximo extends AppCompatActivity {
         values.put(SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORTOTALVALUE, "700");
         values.put(SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORACTUALVALUE, "405");
 
-        newRowId = dbWriteable.insert(SensorGaugeReaderContract.FeedEntry.TABLE_NAME, null, values);
+        newRowId = sdbWriteable.insert(SensorGaugeReaderContract.FeedEntry.TABLE_NAME, null, values);
 
         //delete all items in workitem table
         wdbWriteable.delete(WorkItemsContract.WorkItemsEntry.TABLE_NAME, null, null);
@@ -135,7 +134,7 @@ public class Maximo extends AppCompatActivity {
             itemIds.add(itemId);
         }
         cursor.close();
-        //userIdentity = " " + itemIds.get(0);
+        userIdentity = " " + itemIds.get(0);
 
         /**
          * read work items
