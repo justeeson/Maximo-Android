@@ -19,13 +19,13 @@ public class BottomMenuBar{
     public static void menuClick(View v) {
         // Find which button was clicked. Call appropriate activity
         switch (v.getId()) {
-            case R.id.home_button: // Home
+            case R.id.home_nav_btn: // Home
                 v.getContext().startActivity(new Intent(v.getContext(), Maximo.class));
                 break;
-            case R.id.media_dashboard_btn: // Media
+            case R.id.dashboard_nav_btn: // Media
                 v.getContext().startActivity(new Intent(v.getContext(), MediaDashboardActivity.class));
                 break;
-            case R.id.chat_btn: // Chat
+            case R.id.chat_nav_btn: // Chat
                 v.getContext().startActivity(new Intent(v.getContext(), ChatBotActivity.class));
                 break;
             default:
