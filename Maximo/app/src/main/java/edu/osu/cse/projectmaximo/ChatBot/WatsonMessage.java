@@ -1,4 +1,4 @@
-package edu.osu.cse.projectmaximo;
+package edu.osu.cse.projectmaximo.ChatBot;
 
 /**
  * Created by DarkShanks on 10/13/2017.

@@ -22,7 +22,9 @@ public class ChatBotActivity extends AppCompatActivity
 implements ChatTextEntryFragment.OnMessageSendListener {
     public static Activity appActivity;
     public static Context appContext;
-
+    private android.support.v7.widget.AppCompatImageButton micButton;
+    private Boolean recordingStatus = false;
+    public static EditText messageBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,18 @@ implements ChatTextEntryFragment.OnMessageSendListener {
         setContentView(R.layout.activity_chat_bot);
         appActivity = this;
         appContext = getApplicationContext();
+        messageBox = (EditText) this.findViewById(R.id.messageBox);
+        /*
+        micButton = (android.support.v7.widget.AppCompatImageButton) this.findViewById(R.id.btn_record);
+        micButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                    ChatBotHandler.speechToText(recordingStatus, messageBox);
+                    recordingStatus = !recordingStatus;
+            }
+        });
+        */
     }
 
     /**

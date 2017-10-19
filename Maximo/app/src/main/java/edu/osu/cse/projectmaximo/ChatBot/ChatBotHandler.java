@@ -1,35 +1,8 @@
 package edu.osu.cse.projectmaximo.ChatBot;
 
-import android.Manifest;
-import android.app.Activity;
-import android.app.Application;
-import android.content.Context;
-import android.content.pm.PackageManager;
-import android.content.res.Resources;
-import android.graphics.Typeface;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.os.StrictMode;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.ibm.mobilefirstplatform.clientsdk.android.analytics.api.Analytics;
-import com.ibm.mobilefirstplatform.clientsdk.android.core.api.BMSClient;
-import com.ibm.mobilefirstplatform.clientsdk.android.core.api.Response;
-import com.ibm.mobilefirstplatform.clientsdk.android.core.api.ResponseListener;
-import com.ibm.mobilefirstplatform.clientsdk.android.logger.api.Logger;
 import com.ibm.watson.developer_cloud.android.library.audio.MicrophoneHelper;
 import com.ibm.watson.developer_cloud.android.library.audio.MicrophoneInputStream;
 import com.ibm.watson.developer_cloud.android.library.audio.StreamPlayer;
@@ -44,18 +17,12 @@ import com.ibm.watson.developer_cloud.speech_to_text.v1.model.SpeechResults;
 import com.ibm.watson.developer_cloud.speech_to_text.v1.websocket.RecognizeCallback;
 import com.ibm.watson.developer_cloud.text_to_speech.v1.TextToSpeech;
 import com.ibm.watson.developer_cloud.text_to_speech.v1.model.Voice;
-import com.ibm.watson.developer_cloud.speech_to_text.v1.model.SpeechModel;
-
-import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import edu.osu.cse.projectmaximo.ChatBot.ChatBotActivity;
 import edu.osu.cse.projectmaximo.SpeakerLabelsDiarization;
-import edu.osu.cse.projectmaximo.WatsonMessage;
 
 
 public class ChatBotHandler{
@@ -78,6 +45,7 @@ public class ChatBotHandler{
     private static SpeakerLabelsDiarization.RecoTokens recoTokens;
     private static Map<String, String> headers = new HashMap<String, String>();
     private static MicrophoneHelper microphoneHelper;
+    private static EditText inputBox;
 
     static{
         initialize();
@@ -172,8 +140,9 @@ public class ChatBotHandler{
     }
 
     // Main logic for speech to text
-    public static void speechToText(Boolean status)
+    public static void speechToText(Boolean status, EditText messageBox)
     {
+        inputBox = messageBox;
         listening = status;
         if(listening != true) {
             capture = microphoneHelper.getInputStream(true);
@@ -218,7 +187,7 @@ public class ChatBotHandler{
             recoTokens = new SpeakerLabelsDiarization.RecoTokens();
             if(speechResults.getResults() != null && !speechResults.getResults().isEmpty()) {
                 String text = speechResults.getResults().get(0).getAlternatives().get(0).getTranscript();
-                System.out.println(text);
+                //This is where you would get the result of the speech-to-text function
             }
         }
 
