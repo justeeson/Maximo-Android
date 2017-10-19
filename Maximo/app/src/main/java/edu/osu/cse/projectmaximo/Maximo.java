@@ -2,6 +2,7 @@ package edu.osu.cse.projectmaximo;
 
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -11,13 +12,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.content.Intent;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Maximo extends AppCompatActivity {
     public static String userIdentity = "";
+    public static ArrayList<WorkItem>  workitem_list;
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -34,10 +35,12 @@ public class Maximo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         FeedReaderDbHelper mDbHelper = new FeedReaderDbHelper(getApplicationContext());
         SensorGaugeReaderDbHelper sDbHelper = new SensorGaugeReaderDbHelper(getApplicationContext());
+        WorkItemsDbHelper wDbHelper = new WorkItemsDbHelper(getApplicationContext());
 
         // Gets the data repository in write mode
         SQLiteDatabase dbWriteable = mDbHelper.getWritableDatabase();
         SQLiteDatabase sdbWriteable = sDbHelper.getWritableDatabase();
+        SQLiteDatabase wdbWriteable = wDbHelper.getWritableDatabase();
 
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
@@ -47,7 +50,7 @@ public class Maximo extends AppCompatActivity {
         values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_LASTNAME, "Rowsoft");
 
         // Insert the new row, returning the primary key value of the new row
-        dbWriteable.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, values);
+        long newRowId = dbWriteable.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, values);
 
         //Sensor Gauge Sensor 1
         values = new ContentValues();
@@ -56,7 +59,7 @@ public class Maximo extends AppCompatActivity {
         values.put(SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORTOTALVALUE, "500");
         values.put(SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORACTUALVALUE, "325");
 
-        sdbWriteable.insert(SensorGaugeReaderContract.FeedEntry.TABLE_NAME, null, values);
+        newRowId = dbWriteable.insert(SensorGaugeReaderContract.FeedEntry.TABLE_NAME, null, values);
 
 
         //Sensor Gauge Sensor 2
@@ -66,11 +69,35 @@ public class Maximo extends AppCompatActivity {
         values.put(SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORTOTALVALUE, "700");
         values.put(SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORACTUALVALUE, "405");
 
-        sdbWriteable.insert(SensorGaugeReaderContract.FeedEntry.TABLE_NAME, null, values);
+        newRowId = dbWriteable.insert(SensorGaugeReaderContract.FeedEntry.TABLE_NAME, null, values);
 
-        //Get Readable versions of both databases
+        //delete all items in workitem table
+        wdbWriteable.delete(WorkItemsContract.WorkItemsEntry.TABLE_NAME, null, null);
+        // Work Items 1
+        values = new ContentValues();
+        values.put(WorkItemsContract.WorkItemsEntry.COLUMN_NAME_ITEM, "item1");
+        newRowId = wdbWriteable.insert(WorkItemsContract.WorkItemsEntry.TABLE_NAME, null, values);
+
+        values = new ContentValues();
+        values.put(WorkItemsContract.WorkItemsEntry.COLUMN_NAME_ITEM, "item2");
+        newRowId = wdbWriteable.insert(WorkItemsContract.WorkItemsEntry.TABLE_NAME, null, values);
+
+        values = new ContentValues();
+        values.put(WorkItemsContract.WorkItemsEntry.COLUMN_NAME_ITEM, "item3");
+        newRowId = wdbWriteable.insert(WorkItemsContract.WorkItemsEntry.TABLE_NAME, null, values);
+
+        values = new ContentValues();
+        values.put(WorkItemsContract.WorkItemsEntry.COLUMN_NAME_ITEM, "item4");
+        newRowId = wdbWriteable.insert(WorkItemsContract.WorkItemsEntry.TABLE_NAME, null, values);
+
+
+        /**
+         *
+         * Get Readable versions of databases
+         * */
         SQLiteDatabase dbReadable = mDbHelper.getReadableDatabase();
         SQLiteDatabase sdbReadable = sDbHelper.getReadableDatabase();
+        SQLiteDatabase wdbReadable = wDbHelper.getReadableDatabase();
 
         // Define a projection that specifies which columns from the database
         // you will actually use after this query.
@@ -102,16 +129,32 @@ public class Maximo extends AppCompatActivity {
 
         // Read in the rows with the cursor
         List<String> itemIds = new ArrayList<String>();
-        while(cursor.moveToNext()) {
+        while (cursor.moveToNext()) {
             String itemId = cursor.getString(
                     cursor.getColumnIndexOrThrow(FeedReaderContract.FeedEntry.COLUMN_NAME_FIRSTNAME));
             itemIds.add(itemId);
         }
         cursor.close();
-        userIdentity = " " + itemIds.get(0);
+        //userIdentity = " " + itemIds.get(0);
+
+        /**
+         * read work items
+         *
+         * */
+        cursor = wdbReadable.rawQuery("select * from "+WorkItemsContract.WorkItemsEntry.TABLE_NAME, null);
+
+        workitem_list = new ArrayList<WorkItem> ();
+        while(cursor.moveToNext()) {
+            String itemId = cursor.getString(
+                    cursor.getColumnIndexOrThrow(WorkItemsContract.WorkItemsEntry.COLUMN_NAME_ITEM));
+            workitem_list.add(new WorkItem(itemId));
+        }
+
+        cursor.close();
 
         // We're calling this last so the name can be pulled before
         // the screen is created
+
         setContentView(R.layout.activity_maximo);
 
         //bottom navbar menu button functionality
@@ -140,17 +183,17 @@ public class Maximo extends AppCompatActivity {
         /*
         Button media_dash  = findViewById(R.id.MediaDashboardBtn);
         media_dash.setOnClickListener(
-                new Button.OnClickListener()
-                {
-                    public void onClick(View view){
+                new Button.OnClickListener() {
+                    public void onClick(View view) {
 
-                        Intent intent_to_media =  new Intent(view.getContext(), MediaDashboardActivity.class);
+                        Intent intent_to_media = new Intent(view.getContext(), MediaDashboardActivity.class);
                         startActivity(intent_to_media);
                     }
                 }
         );
         */
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
