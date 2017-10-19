@@ -3,7 +3,9 @@ package edu.osu.cse.projectmaximo;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.io.IOException;
@@ -17,6 +19,20 @@ public class MediaDashboardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_media_dashboard);
+
+        //bottom navbar menu button functionality
+        final Button homeButton = findViewById(R.id.home_nav_btn);
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                BottomMenuBar.menuClick(v);
+            }
+        });
+        final Button chatButton = findViewById(R.id.chat_nav_btn);
+        chatButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                BottomMenuBar.menuClick(v);
+            }
+        });
 
         pupulateMediaAssetsList();
     }
