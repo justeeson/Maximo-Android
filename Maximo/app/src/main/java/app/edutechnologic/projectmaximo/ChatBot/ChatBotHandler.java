@@ -1,4 +1,4 @@
-package edu.osu.cse.projectmaximo.ChatBot;
+package app.edutechnologic.projectmaximo.ChatBot;
 
 import android.widget.EditText;
 import android.widget.Toast;
@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import edu.osu.cse.projectmaximo.SpeakerLabelsDiarization;
+import app.edutechnologic.projectmaximo.SpeakerLabelsDiarization;
 
 
 public class ChatBotHandler{

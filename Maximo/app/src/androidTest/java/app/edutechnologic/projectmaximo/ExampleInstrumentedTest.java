@@ -1,4 +1,4 @@
-package edu.osu.cse.projectmaximo;
+package app.edutechnologic.projectmaximo;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("edu.osu.cse.projectmaximo", appContext.getPackageName());
+        assertEquals("edu.osu.cse.app.edutechnologic.projectmaximo", appContext.getPackageName());
     }
 }

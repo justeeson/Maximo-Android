@@ -1,4 +1,4 @@
-package edu.osu.cse.projectmaximo;
+package app.edutechnologic.projectmaximo;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

@@ -1,4 +1,4 @@
-package edu.osu.cse.projectmaximo.ChatBot;
+package app.edutechnologic.projectmaximo.ChatBot;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import edu.osu.cse.projectmaximo.R;
+import app.edutechnologic.projectmaximo.R;
 
 /**
  * A simple {@link Fragment} subclass.

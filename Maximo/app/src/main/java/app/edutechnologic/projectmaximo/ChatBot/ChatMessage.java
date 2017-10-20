@@ -1,4 +1,4 @@
-package edu.osu.cse.projectmaximo.ChatBot;
+package app.edutechnologic.projectmaximo.ChatBot;
 
 import java.util.GregorianCalendar;
 

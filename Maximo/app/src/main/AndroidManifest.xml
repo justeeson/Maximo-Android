@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="edu.osu.cse.projectmaximo">
+    package="app.edutechnologic.projectmaximo">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -19,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="edu.osu.cse.app.edutechnologic.projectmaximo.Maximo"
+            android:name="app.edutechnologic.projectmaximo.Maximo"
             android:configChanges="orientation"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
@@ -29,9 +29,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="edu.osu.cse.app.edutechnologic.projectmaximo.ChatBot.ChatBotActivity"
+        <activity android:name="app.edutechnologic.projectmaximo.ChatBot.ChatBotActivity"
             android:exported="true"></activity>
-        <activity android:name="edu.osu.cse.app.edutechnologic.projectmaximo.MediaDashboardActivity"
+        <activity android:name="app.edutechnologic.projectmaximo.MediaDashboardActivity"
             android:exported="true"></activity>
     </application>
 

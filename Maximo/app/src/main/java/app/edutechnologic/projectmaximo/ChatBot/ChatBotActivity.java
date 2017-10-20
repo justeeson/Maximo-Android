@@ -1,4 +1,4 @@
-package edu.osu.cse.projectmaximo.ChatBot;
+package app.edutechnologic.projectmaximo.ChatBot;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,8 +14,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.GregorianCalendar;
 
-import edu.osu.cse.projectmaximo.BottomMenuBar;
-import edu.osu.cse.projectmaximo.R;
+import app.edutechnologic.projectmaximo.BottomMenuBar;
+import app.edutechnologic.projectmaximo.R;
 
 public class ChatBotActivity extends AppCompatActivity
 implements ChatTextEntryFragment.OnMessageSendListener {

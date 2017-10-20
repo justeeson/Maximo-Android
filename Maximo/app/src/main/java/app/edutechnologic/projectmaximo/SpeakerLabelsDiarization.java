@@ -1,4 +1,4 @@
-package edu.osu.cse.projectmaximo;
+package app.edutechnologic.projectmaximo;
 
 import com.ibm.watson.developer_cloud.speech_to_text.v1.model.SpeakerLabel;
 import com.ibm.watson.developer_cloud.speech_to_text.v1.model.SpeechAlternative;

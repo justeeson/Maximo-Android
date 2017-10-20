@@ -1,4 +1,4 @@
-package edu.osu.cse.projectmaximo;
+package app.edutechnologic.projectmaximo;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,7 +9,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-import static edu.osu.cse.projectmaximo.Maximo.workitem_list;
+import static app.edutechnologic.projectmaximo.Maximo.workitem_list;
 
 
 /**

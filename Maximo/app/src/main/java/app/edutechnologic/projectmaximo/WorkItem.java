@@ -1,4 +1,4 @@
-package edu.osu.cse.projectmaximo;
+package app.edutechnologic.projectmaximo;
 
 /**
  * Created by momoliu on 10/10/17.

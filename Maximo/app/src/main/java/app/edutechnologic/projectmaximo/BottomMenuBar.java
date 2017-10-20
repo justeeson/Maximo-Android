@@ -1,9 +1,9 @@
-package edu.osu.cse.projectmaximo;
+package app.edutechnologic.projectmaximo;
 
 import android.content.Intent;
 import android.view.View;
 
-import edu.osu.cse.projectmaximo.ChatBot.ChatBotActivity;
+import app.edutechnologic.projectmaximo.ChatBot.ChatBotActivity;
 
 /**
  * Created by Alex on 10/12/2017.

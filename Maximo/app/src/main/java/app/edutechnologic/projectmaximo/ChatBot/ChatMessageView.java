@@ -1,4 +1,4 @@
-package edu.osu.cse.projectmaximo.ChatBot;
+package app.edutechnologic.projectmaximo.ChatBot;
 
 import android.content.Context;
 import android.support.constraint.ConstraintLayout;
@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import org.jetbrains.annotations.NotNull;
 
-import edu.osu.cse.projectmaximo.R;
+import app.edutechnologic.projectmaximo.R;
 
 /**
  * View which represents a chat layout.

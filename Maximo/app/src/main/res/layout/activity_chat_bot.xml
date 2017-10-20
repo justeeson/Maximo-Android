@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="edu.osu.cse.projectmaximo.ChatBot.ChatBotActivity">
+    tools:context="app.edutechnologic.projectmaximo.ChatBot.ChatBotActivity">
 
     <ScrollView
         android:id="@+id/chat_scroll_view"
@@ -29,7 +29,7 @@
 
     <fragment
         android:id="@+id/chat_message_entry"
-        android:name="edu.osu.cse.projectmaximo.ChatBot.ChatTextEntryFragment"
+        android:name="app.edutechnologic.projectmaximo.ChatBot.ChatTextEntryFragment"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -46,11 +46,14 @@
     <!-- Bottom navbar -->
     <RelativeLayout
         android:id="@+id/bottom_menu_bar"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="80dp"
-        tools:layout_editor_absoluteX="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="0dp">
+        android:layout_marginBottom="0dp"
+        android:layout_marginRight="0dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="parent">
 
         <include layout="@layout/bottom_menu_bar" />
     </RelativeLayout>

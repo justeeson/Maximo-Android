@@ -12,12 +12,12 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
         android:orientation="vertical"
-        tools:context="edu.osu.cse.projectmaximo.Maximo">
+        tools:context="app.edutechnologic.projectmaximo.Maximo">
 
         <!-- Introduction pane fragment -->
         <fragment
             android:id="@+id/intro"
-            android:name="edu.osu.cse.projectmaximo.IntroductionFragment"
+            android:name="app.edutechnologic.projectmaximo.IntroductionFragment"
             android:layout_width="match_parent"
             android:layout_height="51dp"
             android:layout_marginBottom="8dp"
@@ -35,7 +35,7 @@
             <!-- Inbox fragment -->
             <fragment
                 android:id="@+id/inbox"
-                android:name="edu.osu.cse.projectmaximo.InboxFragment"
+                android:name="app.edutechnologic.projectmaximo.InboxFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
@@ -47,7 +47,7 @@
             <!-- Bulletin Board fragment -->
             <fragment
                 android:id="@+id/bulletin_board"
-                android:name="edu.osu.cse.projectmaximo.BulletinBoardFragment"
+                android:name="app.edutechnologic.projectmaximo.BulletinBoardFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
@@ -67,7 +67,7 @@
             <!-- Sensor gauge fragment -->
             <fragment
                 android:id="@+id/gauge"
-                android:name="edu.osu.cse.projectmaximo.SensorGaugeFragment"
+                android:name="app.edutechnologic.projectmaximo.SensorGaugeFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="20dp"
@@ -79,7 +79,7 @@
             <!-- Sensor status window fragment -->
             <fragment
                 android:id="@+id/status_window"
-                android:name="edu.osu.cse.projectmaximo.StatusWindowFragment"
+                android:name="app.edutechnologic.projectmaximo.StatusWindowFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="20dp"
@@ -93,7 +93,7 @@
         <!--
         <fragment
             android:id="@+id/work_item"
-            android:name="edu.osu.cse.projectmaximo.WorkItemFragment"
+            android:name="app.edutechnologic.projectmaximologic.projectmaximo.WorkItemFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="85dp"
