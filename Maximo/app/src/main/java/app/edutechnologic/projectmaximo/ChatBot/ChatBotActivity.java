@@ -9,9 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
-import android.widget.Toast;
-
-import com.ibm.watson.developer_cloud.android.library.audio.MicrophoneHelper;
 
 import org.jetbrains.annotations.NotNull;
 

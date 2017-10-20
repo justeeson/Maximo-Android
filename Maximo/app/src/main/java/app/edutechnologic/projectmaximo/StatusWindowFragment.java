@@ -7,8 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.Calendar;
-
 /**
  * Created by Alex on 10/4/2017.
  * Fragment used for displaying various sensors and their operational status.

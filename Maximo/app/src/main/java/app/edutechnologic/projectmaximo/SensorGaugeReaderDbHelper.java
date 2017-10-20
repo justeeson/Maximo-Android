@@ -4,8 +4,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import edu.osu.cse.projectmaximo.FeedReaderContract;
-
 
 public class SensorGaugeReaderDbHelper extends SQLiteOpenHelper {
     // If you change the database schema, you must increment the database version.
