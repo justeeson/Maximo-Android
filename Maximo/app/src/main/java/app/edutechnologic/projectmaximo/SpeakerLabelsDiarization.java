@@ -14,10 +14,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CountDownLatch;
 
-/**
- * Created by VMac on 15/05/17.
- */
-
 public class SpeakerLabelsDiarization {
     public static class RecoToken {
         private Double startTime;
@@ -27,7 +23,7 @@ public class SpeakerLabelsDiarization {
         private Boolean spLabelIsFinal;
 
         /**
-         * Instantiates a new reco token.
+         * Instantiates a new reco token based on timestamp
          *
          * @param speechTimestamp the speech timestamp
          */
@@ -38,7 +34,7 @@ public class SpeakerLabelsDiarization {
         }
 
         /**
-         * Instantiates a new reco token.
+         * Instantiates a new reco token based on label
          *
          * @param speakerLabel the speaker label
          */
@@ -49,7 +45,7 @@ public class SpeakerLabelsDiarization {
         }
 
         /**
-         * Update from.
+         * Get the word
          *
          * @param speechTimestamp the speech timestamp
          */
@@ -58,7 +54,7 @@ public class SpeakerLabelsDiarization {
         }
 
         /**
-         * Update from.
+         * Get the speaker
          *
          * @param speakerLabel the speaker label
          */
@@ -67,17 +63,15 @@ public class SpeakerLabelsDiarization {
         }
     }
 
-    /**
-     * The Class Utterance.
-     */
+
     public static class Utterance {
         private Integer speaker;
         private String transcript = "";
 
         /**
-         * Instantiates a new utterance.
+         * Instantiates a new utterance
          *
-         * @param speaker the speaker
+         * @param speaker    the speaker
          * @param transcript the transcript
          */
         public Utterance(final Integer speaker, final String transcript) {
@@ -86,15 +80,12 @@ public class SpeakerLabelsDiarization {
         }
     }
 
-    /**
-     * The Class RecoTokens.
-     */
     public static class RecoTokens {
 
         private Map<Double, RecoToken> recoTokenMap;
 
         /**
-         * Instantiates a new reco tokens.
+         * Instantiates a new reco tokens
          */
         public RecoTokens() {
             recoTokenMap = new LinkedHashMap<Double, RecoToken>();
@@ -161,11 +152,6 @@ public class SpeakerLabelsDiarization {
             }
         }
 
-        /**
-         *
-         *
-         *
-         */
         private void markTokensBeforeAsFinal(Double from) {
             Map<Double, RecoToken> recoTokenMap = new LinkedHashMap<>();
 
@@ -175,9 +161,6 @@ public class SpeakerLabelsDiarization {
             }
         }
 
-        /**
-         * Report.
-         */
         public void report() {
             List<Utterance> uttterances = new ArrayList<Utterance>();
             Utterance currentUtterance = new Utterance(0, "");
@@ -205,7 +188,6 @@ public class SpeakerLabelsDiarization {
         }
 
     }
-
 
     private static CountDownLatch lock = new CountDownLatch(1);
 }

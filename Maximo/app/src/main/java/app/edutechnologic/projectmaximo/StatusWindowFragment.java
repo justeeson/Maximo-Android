@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 /**
- * Created by Alex on 10/4/2017.
  * Fragment used for displaying various sensors and their operational status.
  * (Temporarily hard-coded in - must change based on number of sensors)
  */

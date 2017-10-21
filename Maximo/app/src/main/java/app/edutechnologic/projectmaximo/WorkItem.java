@@ -1,8 +1,6 @@
 package app.edutechnologic.projectmaximo;
 
 /**
- * Created by momoliu on 10/10/17.
- *
  * Setup a model for displaying work_item_textview
  */
 
