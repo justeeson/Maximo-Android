@@ -2,6 +2,8 @@ package app.edutechnologic.projectmaximo;
 
 
 import android.content.ContentValues;
+import android.content.Context;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -32,6 +34,10 @@ public class Maximo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
+
+        //Initialize chat bot variables
+        MaximoUtility.initialize();
+
         FeedReaderDbHelper mDbHelper = new FeedReaderDbHelper(getApplicationContext());
         SensorGaugeReaderDbHelper sDbHelper = new SensorGaugeReaderDbHelper(getApplicationContext());
         WorkItemsDbHelper wDbHelper = new WorkItemsDbHelper(getApplicationContext());

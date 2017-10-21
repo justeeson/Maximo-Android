@@ -22,6 +22,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import app.edutechnologic.projectmaximo.Maximo;
+import app.edutechnologic.projectmaximo.MaximoUtility;
+import app.edutechnologic.projectmaximo.R;
 import app.edutechnologic.projectmaximo.SpeakerLabelsDiarization;
 
 
@@ -47,26 +50,29 @@ public class ChatBotHandler{
     private static MicrophoneHelper microphoneHelper;
     private static EditText inputBox;
 
-    static{
-        initialize();
-    }
-
     /**
      * This function initializes the necessary variables
      */
     public static void initialize(){
-        username = "3072f50f-4f30-424d-83a4-1a3cd970a4af";
-        password = "flEyamA3drcv";
-        TTS_username = "894dc105-4f3b-406f-bd5e-021a096b6a35";
-        TTS_password = "VLOHR4BWSRLa";
-        STT_username = "c96da939-81fe-4057-a026-4f8465076666";
-        STT_password = "mPnVQaebCMrP";
-        workspaceId = "fcd7dbf9-47c6-4f2e-8384-d358db00a087";
+        username = MaximoUtility.conversation_username;
+        password = MaximoUtility.conversation_password;
+        TTS_username = MaximoUtility.TTS_username;
+        TTS_password = MaximoUtility.TTS_password;
+        STT_username = MaximoUtility.STT_username;
+        STT_password = MaximoUtility.STT_password;
+        workspaceId = MaximoUtility.workspace_id;
+
         service = new ConversationService(ConversationService.VERSION_DATE_2017_02_03);
         service.setUsernameAndPassword(username, password);
         contextMap = new HashMap<>();
         responseFromWatson = new WatsonMessage();
-        microphoneHelper = new MicrophoneHelper(ChatBotActivity.appActivity);
+
+        try{
+            microphoneHelper = new MicrophoneHelper(ChatBotActivity.appActivity);
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+
         speechToTextService = new SpeechToText();
         speechToTextService.setUsernameAndPassword(STT_username,  STT_password);
         speechToTextService.setDefaultHeaders(headers);
