@@ -101,7 +101,7 @@ public class SpeakerLabelsDiarization {
         }
 
         /**
-         * Adds the.
+         * Adds the speech results to the entire sentence
          *
          * @param speechResults the speech results
          */
@@ -126,7 +126,7 @@ public class SpeakerLabelsDiarization {
         }
 
         /**
-         * Adds the.
+         *  Add the timestamp of the record token
          *
          * @param speechTimestamp the speech timestamp
          */
@@ -141,7 +141,7 @@ public class SpeakerLabelsDiarization {
         }
 
         /**
-         * Adds the.
+         * Add the label of the speaker
          *
          * @param speakerLabel the speaker label
          */
@@ -161,6 +161,11 @@ public class SpeakerLabelsDiarization {
             }
         }
 
+        /**
+         *
+         *
+         *
+         */
         private void markTokensBeforeAsFinal(Double from) {
             Map<Double, RecoToken> recoTokenMap = new LinkedHashMap<>();
 

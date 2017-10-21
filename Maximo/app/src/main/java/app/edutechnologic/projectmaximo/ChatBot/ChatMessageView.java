@@ -22,8 +22,9 @@ public class ChatMessageView extends ConstraintLayout {
 
     /**
      * Instantiates a ChatMessageView representing a given message.
-     * @param context
-     * @param message The message to represent with the view.
+     *
+     * @param context the context from which the ChatMessageView object was created
+     * @param message the message to represent with the view.
      */
     public ChatMessageView(Context context, @NotNull ChatMessage message) {
         super(context);
@@ -34,6 +35,9 @@ public class ChatMessageView extends ConstraintLayout {
         setText(message.getMessage());
     }
 
+    /**
+     * Sets the initial view
+     */
     private void initView() {
         inflate(getContext(), R.layout.chatbot_chatmessage_view, this);
     }
@@ -47,24 +51,39 @@ public class ChatMessageView extends ConstraintLayout {
     }
 
     /**
-     * Adjusts the styling of this chat message to be a respone to the chat bot.
+     * Adjusts the styling of this chat message to be a response to the chat bot.
      */
     public void makeResponse() {
         setColor(R.color.colorChatResponse);
         setHorizontalAlignment(ConstraintSet.LEFT);
     }
 
+    /**
+     * Sets the text of the TextView object
+     *
+     * @param message string to insert into the TextView
+     */
     private void setText(String message) {
         TextView text = this.findViewById(R.id.chat_message_text);
         text.setText(message);
     }
 
+    /**
+     * Sets the color of the message box
+     *
+     * @param color the color to set the message box background to
+     */
     private void setColor(int color) {
         // Set the background color for the text box.
         View msgText = this.findViewById(R.id.chat_message_text);
         msgText.setBackgroundColor(ContextCompat.getColor(getContext(), color));
     }
 
+    /**
+     * Sets the alignment of the chat view
+     *
+     * @param alignment the passed alignment value
+     */
     private void setHorizontalAlignment(int alignment) {
         // TODO: Remove this line. Used for testing...
         // FIXME: This method does not appear to do anything.

@@ -17,12 +17,18 @@ public class WorkItemsDbHelper extends SQLiteOpenHelper{
                     WorkItemsContract.WorkItemsEntry._ID + " INTEGER PRIMARY KEY," +
                     WorkItemsContract.WorkItemsEntry.COLUMN_NAME_ITEM + " TEXT)";
 
+    // Use this to drop the table completely.
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + WorkItemsContract.WorkItemsEntry.TABLE_NAME;
 
+    /**
+     * Generates the database with the mentioned name and version number
+     * @param  context the context from which the function was called
+     */
     public WorkItemsDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
+
      @Override
     public void onCreate(SQLiteDatabase db) {db.execSQL(SQL_CREATE_ENTRIES);}
 

@@ -26,8 +26,6 @@ public class StatusWindowFragment extends Fragment {
         TextView sensorTwo = view.findViewById(R.id.sensorTwo);
         sensorTwo.setText(getString(R.string.empty_string, "Sensor 2"));
 
-        //Get operational status of each sensor
-
         //Fill in operational status of each sensor
         TextView statusOne = view.findViewById(R.id.statusOne);
         statusOne.setText(getString(R.string.empty_string, "Operational"));

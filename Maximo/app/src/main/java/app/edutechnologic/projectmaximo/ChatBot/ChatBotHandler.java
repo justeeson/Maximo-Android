@@ -51,6 +51,9 @@ public class ChatBotHandler{
         initialize();
     }
 
+    /**
+     * This function initializes the necessary variables
+     */
     public static void initialize(){
         username = "3072f50f-4f30-424d-83a4-1a3cd970a4af";
         password = "flEyamA3drcv";
@@ -80,6 +83,11 @@ public class ChatBotHandler{
         headers.put("X-Watson-Learning-Opt-Out", "true");
     }
 
+    /**
+     * This function sends a string to the Watson API to get a text response
+     * @param messageToWatson the string message that is being passed to Watson
+     * @return                string response from Watson API
+     */
     public static String sendMessage(String messageToWatson){
         final String messagedToBePassed = messageToWatson;
         responseFromWatson.setWatsonMessage("Sorry, the watson service is unavailable right now.");
@@ -124,6 +132,10 @@ public class ChatBotHandler{
         return responseFromWatson.getMessageAsString();
     }
 
+    /**
+     * This function sends a string to the Watson API to get a voice response
+     * @param messageToWatson the string message that is being passed to Watson
+     */
     public static void textToSpeech(String messageToWatson){
         final String message = messageToWatson;
         // Run the stream player on a separate thread to prevent resource locking

@@ -106,6 +106,10 @@ implements ChatTextEntryFragment.OnMessageSendListener {
         }
     }
 
+    /**
+     * This function handles bot response when send button is pressed
+     * @param view the view that invoked this function on being pressed
+     */
     public void onSendButtonPressed(View view) {
         // Get the message from the EditText
         EditText messageBox = findViewById(R.id.messageBox);
@@ -117,6 +121,9 @@ implements ChatTextEntryFragment.OnMessageSendListener {
         scrollToMostRecentMessage();
     }
 
+    /**
+     * This function lets the user scroll immediately to the most recent message in the conversation history
+     */
     private void scrollToMostRecentMessage() {
         // Scroll to bottom.
         final ScrollView scrollView = findViewById(R.id.chat_scroll_view);
