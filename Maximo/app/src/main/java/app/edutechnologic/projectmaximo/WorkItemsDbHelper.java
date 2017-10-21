@@ -23,6 +23,7 @@ public class WorkItemsDbHelper extends SQLiteOpenHelper{
 
     /**
      * Generates the database with the mentioned name and version number
+     *
      * @param  context the context from which the function was called
      */
     public WorkItemsDbHelper(Context context) {

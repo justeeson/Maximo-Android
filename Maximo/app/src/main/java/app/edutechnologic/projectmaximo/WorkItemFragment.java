@@ -11,10 +11,6 @@ import java.util.ArrayList;
 
 import static app.edutechnologic.projectmaximo.Maximo.workitem_list;
 
-
-/**
- *
- */
 public class WorkItemFragment extends Fragment {
 
     @Override

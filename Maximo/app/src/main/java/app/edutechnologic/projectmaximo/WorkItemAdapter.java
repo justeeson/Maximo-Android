@@ -9,10 +9,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-/**
- * Created by momoliu on 10/10/17.
- */
-
 public class WorkItemAdapter extends ArrayAdapter<WorkItem> {
     public WorkItemAdapter(Context context, ArrayList<WorkItem> work_item) {
         super(context, 0, work_item);
