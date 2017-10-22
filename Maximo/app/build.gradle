@@ -4,12 +4,14 @@ android {
     compileSdkVersion 26
     buildToolsVersion "26.0.1"
     defaultConfig {
-        applicationId "edu.osu.cse.projectmaximo"
+        applicationId "edu.osu.cse.app.edutechnologic.projectmaximo"
         minSdkVersion 22
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+
     }
     buildTypes {
         release {
@@ -27,9 +29,9 @@ dependencies {
     compile 'pl.pawelkleczkowski.customgauge:CustomGauge:1.0.3'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'pl.pawelkleczkowski.customgauge:CustomGauge:1.0.3'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support:design:26.+'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:support-v4:26.+'
     compile 'com.android.support:recyclerview-v7:26.0.0'
     compile 'com.squareup.okhttp3:okhttp:3.8.0'
@@ -41,4 +43,5 @@ dependencies {
     compile 'com.ibm.watson.developer_cloud:android-sdk:0.4.2'
     compile 'com.ibm.mobilefirstplatform.clientsdk.android:analytics:1.1.0'
     testCompile 'junit:junit:4.12'
+    compile 'org.jetbrains:annotations-java5:15.0'
 }
