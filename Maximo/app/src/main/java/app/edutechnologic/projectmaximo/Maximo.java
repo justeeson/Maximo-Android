@@ -2,8 +2,6 @@ package app.edutechnologic.projectmaximo;
 
 
 import android.content.ContentValues;
-import android.content.Context;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -171,6 +169,12 @@ public class Maximo extends AppCompatActivity {
         });
         final Button chatButton = findViewById(R.id.chat_nav_btn);
         chatButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                BottomMenuBar.menuClick(v);
+            }
+        });
+        final Button dashboardSettingsButton = findViewById(R.id.dashboard_settings_btn);
+        dashboardSettingsButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 BottomMenuBar.menuClick(v);
             }

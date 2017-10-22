@@ -68,8 +68,6 @@ public class MediaDashboardActivity extends AppCompatActivity {
         }
 
         // display media asset files name on screen
-//        ArrayAdapter<String> media_adapter = new ArrayAdapter<String>(getListView().getContext(), R.layout.activity_media_dashboard, final_media_assets);
-//        getListView().setAdapter(media_adapter);
         ArrayAdapter<String> media_adapter = new ArrayAdapter<String>(this, R.layout.media_assets_list, final_media_assets);
         media_assets_list = (ListView)findViewById(R.id.media_list);
         media_assets_list.setAdapter(media_adapter);

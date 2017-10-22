@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="app.edutechnologic.projectmaximo.DashboardSettingsActivity">
+
+
+    <LinearLayout
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/dashboard_settings_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="17dp"
+            android:text="@string/dashboard_settings_header"
+            android:textSize="25sp"
+            android:textStyle="bold|italic" />
+
+
+        <CheckBox
+            android:id="@+id/mediaDashboardCheckbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="19sp"
+            android:padding="10sp"
+            android:layout_marginLeft="15dp"
+            android:text="@string/media_dashboard"
+            android:onClick="selectItem"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="92dp" />
+
+        <CheckBox
+            android:id="@+id/chatBotCheckbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="19sp"
+            android:padding="10sp"
+            android:layout_marginLeft="15dp"
+            android:text="@string/chat_bot"
+            android:onClick="selectItem"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="92dp" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/save"
+            android:layout_gravity="center_horizontal"
+            android:onClick="finalSelection"
+            tools:layout_editor_absoluteX="70dp"
+            tools:layout_editor_absoluteY="190dp" />
+
+        <TextView
+            android:id="@+id/selectionForDashboard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="17dp"
+            android:textSize="20sp"
+            android:text="Will display selection here" />
+    </LinearLayout>
+
+    <!-- Bottom navbar -->
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.8">
+        <include layout="@layout/bottom_menu_bar"/>
+    </RelativeLayout>
+
+
+
+
+</android.support.constraint.ConstraintLayout>

@@ -142,6 +142,29 @@
                     android:textColor="@color/realwear_gray" />
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/dashboard_settings_nav"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:src="@drawable/ic_chat" />
+
+                <Button
+                    android:id="@+id/dashboard_settings_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/navbar_textview_height"
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/transparent"
+                    android:contentDescription="Dashboard Settings"
+                    android:text="Dashboard Settings"
+                    android:textColor="@color/realwear_gray" />
+            </LinearLayout>
+
         </LinearLayout>
     </HorizontalScrollView>
 
