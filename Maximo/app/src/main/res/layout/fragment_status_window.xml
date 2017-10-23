@@ -16,6 +16,7 @@
             android:id="@+id/sensorOne"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/forest"
             android:gravity="center"/>
 
         <TextView android:layout_width="wrap_content"
@@ -27,6 +28,7 @@
             android:id="@+id/statusOne"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/forest"
             android:gravity="center"/>
     </TableRow>
 
@@ -40,6 +42,7 @@
             android:id="@+id/sensorTwo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/forest"
             android:gravity="center"/>
 
         <TextView android:layout_width="wrap_content"
@@ -51,6 +54,7 @@
             android:id="@+id/statusTwo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/forest"
             android:gravity="center"/>
     </TableRow>
 </TableLayout>
