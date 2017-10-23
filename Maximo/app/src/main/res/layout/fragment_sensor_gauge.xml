@@ -6,10 +6,20 @@
 
     <!-- Create the sensor gauge (from https://github.com/pkleczko/CustomGauge)
     Original colors have been modified-->
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/gaugeName"
+            android:layout_width="120dp"
+            android:layout_height="30dp"
+            android:text="Sensor 1"
+            android:gravity="center_horizontal"
+            android:textSize="16sp"
+            android:textColor="#000000" />
 
         <pl.pawelkleczkowski.customgauge.CustomGauge
             android:id="@+id/gauge"
@@ -19,23 +29,32 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:paddingTop="10dp"
-            app:gaugeEndValue="800"
-            app:gaugePointEndColor="#011d67"
-            app:gaugePointStartColor="#3b98ee"
-            app:gaugeStartAngle="135"
-            app:gaugeStartValue="200"
-            app:gaugeStrokeCap="ROUND"
-            app:gaugeStrokeColor="#808080"
-            app:gaugeStrokeWidth="10dp"
-            app:gaugeSweepAngle="270" />
+            android:layout_below="@id/gaugeName"
+            app:gaugeEndValue="100"
+            app:gaugePointEndColor="#259b24"
+            app:gaugePointStartColor="#e51c23"
+            app:gaugeStartAngle="180"
+            app:gaugeStartValue="0"
+            app:gaugeStrokeCap="BUTT"
+            app:gaugeStrokeColor="#bdbdbd"
+            app:gaugeStrokeWidth="20dp"
+            app:gaugeSweepAngle="180"
+            app:gaugeDividerSize="1"
+            app:gaugeDividerColor="#ffeb3b"
+            app:gaugeDividerStep="10"
+            app:gaugeDividerDrawFirst="false"
+            app:gaugeDividerDrawLast="true"
+            />
 
         <TextView
             android:id="@+id/gaugeText"
-            android:layout_width="200dp"
-            android:layout_height="0sp"
-            android:textSize="25sp"
-            android:textColor="#000000"
-            android:layout_weight="1"/>
-    </LinearLayout>
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_below="@id/gaugeName"
+            android:gravity="center"
+            android:textSize="17sp"
+            android:textColor="#000000" />
+
+    </RelativeLayout>
 
 </LinearLayout>
