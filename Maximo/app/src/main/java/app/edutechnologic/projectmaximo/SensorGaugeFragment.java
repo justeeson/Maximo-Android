@@ -26,9 +26,9 @@ public class SensorGaugeFragment extends Fragment {
         CustomGauge gauge = view.findViewById(R.id.gauge);
         TextView gaugeText = view.findViewById(R.id.gaugeText);
         //value is temporarily hard-coded in
-        gauge.setValue(500);
+        gauge.setValue(87);
         Integer gaugeValue = gauge.getValue();
-        gaugeText.setText(getString(R.string.gauge_val, gaugeValue));
+        gaugeText.setText(getString(R.string.val, gaugeValue));
         return view;
     }
 }
