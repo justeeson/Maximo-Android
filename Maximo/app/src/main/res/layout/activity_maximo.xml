@@ -6,104 +6,108 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:fitsSystemWindows="true"
-        tools:context="edu.osu.cse.projectmaximo.Maximo">
-
-        <fragment
-            android:id="@+id/intro"
-            android:name="edu.osu.cse.projectmaximo.IntroductionFragment"
-            android:layout_width="match_parent"
-            android:layout_height="51dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:baselineAligned="false"
-            android:orientation="horizontal">
-
-            <fragment
-                android:id="@+id/inbox"
-                android:name="edu.osu.cse.projectmaximo.InboxFragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginTop="20dp"
-                android:layout_weight="1" />
-
-            <fragment
-                android:id="@+id/bulletin_board"
-                android:name="edu.osu.cse.projectmaximo.BulletinBoardFragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginTop="20dp"
-                android:layout_weight="1" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:baselineAligned="false"
-            android:orientation="horizontal">
-
-            <fragment
-                android:id="@+id/gauge"
-                android:name="edu.osu.cse.projectmaximo.SensorGaugeFragment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginTop="20dp"
-                android:layout_weight="1" />
-
-            <fragment
-                android:id="@+id/status_window"
-                android:name="edu.osu.cse.projectmaximo.StatusWindowFragment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginTop="20dp"
-                android:layout_weight="1" />
-
-        </LinearLayout>
-
-    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:baselineAligned="false"
-        android:orientation="horizontal">
+        android:fitsSystemWindows="true"
+        android:orientation="vertical"
+        tools:context="app.edutechnologic.projectmaximo.Maximo">
 
-        <Button
-            android:id="@+id/MediaDashboardBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <!-- Introduction pane fragment -->
+        <fragment
+            android:id="@+id/intro"
+            android:name="app.edutechnologic.projectmaximo.IntroductionFragment"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
             android:layout_marginBottom="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginTop="36dp"
-            android:onClick="onClick"
-            android:text="Media Dashboard" />
+            android:layout_marginTop="8dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <!-- Inbox fragment -->
+            <fragment
+                android:id="@+id/inbox"
+                android:name="app.edutechnologic.projectmaximo.InboxFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1" />
+
+            <!-- Bulletin Board fragment -->
+            <fragment
+                android:id="@+id/bulletin_board"
+                android:name="app.edutechnologic.projectmaximo.BulletinBoardFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <!-- Sensor gauge fragment -->
+            <fragment
+                android:id="@+id/gauge"
+                android:name="app.edutechnologic.projectmaximo.SensorGaugeFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1" />
+
+            <!-- Sensor status window fragment -->
+            <fragment
+                android:id="@+id/status_window"
+                android:name="app.edutechnologic.projectmaximo.StatusWindowFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <!--
+        <fragment
+            android:id="@+id/work_item"
+            android:name="app.edutechnologic.projectmaximologic.projectmaximo.WorkItemFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="85dp"
+            android:layout_marginRight="70dp"
+            android:layout_weight="1" />
+        -->
+
+        <!-- Bottom navbar -->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <include layout="@layout/bottom_menu_bar"/>
+        </RelativeLayout>
 
     </LinearLayout>
 
-</LinearLayout>
-
 </ScrollView>
-

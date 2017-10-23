@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="edu.osu.cse.projectmaximo">
+    package="app.edutechnologic.projectmaximo">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
@@ -18,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Maximo"
+            android:name="app.edutechnologic.projectmaximo.Maximo"
             android:configChanges="orientation"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
@@ -28,11 +29,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ChatBot.ChatBotActivity"
+        <activity android:name="app.edutechnologic.projectmaximo.ChatBot.ChatBotActivity"
             android:exported="true"></activity>
-        <activity android:name=".MainActivity"
-            android:exported="true"></activity>
-        <activity android:name=".MediaDashboardActivity"
+        <activity android:name="app.edutechnologic.projectmaximo.MediaDashboardActivity"
             android:exported="true"></activity>
     </application>
 

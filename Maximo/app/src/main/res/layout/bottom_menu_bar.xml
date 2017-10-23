@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Row of buttons on bottom of screen -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transparent" >
+
+    <LinearLayout
+        android:id="@+id/swipe_left"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/realwear_purple"
+        android:clickable="true"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:src="@drawable/ic_swipe_left" />
+
+        <Button
+            android:id="@+id/swipe_left_button"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/navbar_textview_height"
+            android:layout_gravity="center_vertical"
+            android:background="@color/transparent"
+            android:text="Swipe Left"
+            android:textColor="@color/realwear_gray" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/swipe_right"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:background="@color/realwear_purple"
+        android:clickable="true"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:src="@drawable/ic_swipe_right" />
+
+        <Button
+            android:id="@+id/swipe_right_button"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/navbar_textview_height"
+            android:layout_gravity="center_vertical"
+            android:background="@color/transparent"
+            android:text="Swipe Right"
+            android:textColor="@color/realwear_gray" />
+    </LinearLayout>
+
+    <HorizontalScrollView
+        android:id="@+id/navbar_horizontal_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_toLeftOf="@id/swipe_right"
+        android:layout_toRightOf="@id/swipe_left"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@color/realwear_purple">
+
+        <LinearLayout
+            android:id="@+id/navbar_scroll_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/realwear_purple"
+            android:paddingBottom="@dimen/navbar_button_margin"
+            android:paddingTop="@dimen/navbar_button_margin">
+
+            <LinearLayout
+                android:id="@+id/home_nav"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:src="@drawable/ic_home" />
+
+                <Button
+                    android:id="@+id/home_nav_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/navbar_textview_height"
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/transparent"
+                    android:contentDescription="Go Home"
+                    android:text="Home"
+                    android:textColor="@color/realwear_gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/dashboard_nav"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:src="@drawable/ic_media_assets" />
+
+                <Button
+                    android:id="@+id/dashboard_nav_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/navbar_textview_height"
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/transparent"
+                    android:text="Dashboard"
+                    android:textColor="@color/realwear_gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/chat_nav"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:src="@drawable/ic_chat" />
+
+                <Button
+                    android:id="@+id/chat_nav_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/navbar_textview_height"
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/transparent"
+                    android:contentDescription="Chatbot"
+                    android:text="Chat"
+                    android:textColor="@color/realwear_gray" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+</RelativeLayout>

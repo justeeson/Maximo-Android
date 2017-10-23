@@ -1,0 +1,15 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="app.edutechnologic.projectmaximo.WorkItemFragment">
+    list.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, 220px));
+
+    <ListView
+        android:id="@+id/WorkItemList"
+
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        />
+
+</FrameLayout>
