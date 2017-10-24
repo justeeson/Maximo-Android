@@ -17,6 +17,8 @@ import android.widget.Button;
 import java.util.ArrayList;
 import java.util.List;
 
+import app.edutechnologic.projectmaximo.ChatBot.ChatBotHandler;
+
 public class Maximo extends AppCompatActivity {
     public static String userIdentity = "";
     public static ArrayList<WorkItem>  workitem_list;
@@ -37,6 +39,7 @@ public class Maximo extends AppCompatActivity {
 
         //Initialize chat bot variables
         MaximoUtility.initialize();
+        ChatBotHandler.initialize();
 
         FeedReaderDbHelper mDbHelper = new FeedReaderDbHelper(getApplicationContext());
         SensorGaugeReaderDbHelper sDbHelper = new SensorGaugeReaderDbHelper(getApplicationContext());

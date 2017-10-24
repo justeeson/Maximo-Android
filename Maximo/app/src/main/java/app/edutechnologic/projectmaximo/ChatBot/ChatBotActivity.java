@@ -2,6 +2,7 @@ package app.edutechnologic.projectmaximo.ChatBot;
 
 import android.app.Activity;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.GregorianCalendar;
 
 import app.edutechnologic.projectmaximo.BottomMenuBar;
+import app.edutechnologic.projectmaximo.MaximoUtility;
 import app.edutechnologic.projectmaximo.R;
 
 public class ChatBotActivity extends AppCompatActivity
@@ -29,7 +31,15 @@ implements ChatTextEntryFragment.OnMessageSendListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_bot);
+        MaximoUtility.initialize();
+        ChatBotHandler.initialize();
+        /*
+        //Set up the database for chat bot message history
+        ChatBotHistoryDbHelper chatDbHelper = new ChatBotHistoryDbHelper(getApplicationContext());
 
+        // Gets the data repository in write mode
+        SQLiteDatabase chatdbWriteable = chatDbHelper.getWritableDatabase();
+*/
         //bottom navbar menu button functionality
         final Button mediaButton = findViewById(R.id.dashboard_nav_btn);
         mediaButton.setOnClickListener(new View.OnClickListener() {

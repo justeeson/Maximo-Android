@@ -6,20 +6,29 @@ package app.edutechnologic.projectmaximo.ChatBot;
 
 public class WatsonMessage {
     private String message;
+    private String timestamp;
 
     public WatsonMessage(){
-        message = "";
+        this.message = "";
     }
 
     public WatsonMessage(String passedString){
-        message = passedString;
+        this.message = passedString;
     }
 
     public void setWatsonMessage(String passedString){
-        message = passedString;
+        this.message = passedString;
     }
 
     public String getMessageAsString(){
-        return message;
+        return this.message;
+    }
+
+    public void setTimeStamp(String time) {
+        this.timestamp = time;
+    }
+
+    public String getTimeStamp() {
+        return this.timestamp;
     }
 }
