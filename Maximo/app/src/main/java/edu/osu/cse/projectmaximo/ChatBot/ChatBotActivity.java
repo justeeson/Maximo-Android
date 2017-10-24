@@ -40,6 +40,10 @@ implements ChatTextEntryView.OnMessageSendListener {
         }
     }
 
+    /**
+     * Handles what happens when the send button is pressed
+     * @param view The View object from which resulted in the function being invoked
+     */
     public void onSendButtonPressed(View view) {
         // Get the message from the EditText
         EditText messageBox = (EditText) findViewById(R.id.messageBox);
@@ -51,6 +55,9 @@ implements ChatTextEntryView.OnMessageSendListener {
         scrollToMostRecentMessage();
     }
 
+    /**
+     * Use this to set the screen focus on the most recent message in the conversation history
+     */
     public void scrollToMostRecentMessage() {
         // Scroll to bottom
         ScrollView scrollView = findViewById(R.id.chat_scroll_view);

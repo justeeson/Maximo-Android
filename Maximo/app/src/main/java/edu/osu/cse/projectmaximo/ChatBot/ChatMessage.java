@@ -16,6 +16,11 @@ public class ChatMessage {
     public ChatMessage() {
     }
 
+    /**
+     * Sets the text of the message.
+     * @param message      The message to be passed on to Watson API
+     * @param timeInMillis Holds the current time in milliseconds
+     */
     public ChatMessage(String message, long timeInMillis) {
         this.message = message;
         this.time = timeInMillis;
