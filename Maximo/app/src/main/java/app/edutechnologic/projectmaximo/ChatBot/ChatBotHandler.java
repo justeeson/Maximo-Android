@@ -18,7 +18,10 @@ import com.ibm.watson.developer_cloud.speech_to_text.v1.websocket.RecognizeCallb
 import com.ibm.watson.developer_cloud.text_to_speech.v1.TextToSpeech;
 import com.ibm.watson.developer_cloud.text_to_speech.v1.model.Voice;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -66,7 +69,7 @@ public class ChatBotHandler{
         service.setUsernameAndPassword(username, password);
         contextMap = new HashMap<>();
         responseFromWatson = new WatsonMessage();
-
+/*
         try{
             microphoneHelper = new MicrophoneHelper(ChatBotActivity.appActivity);
         } catch(Exception e){
@@ -83,7 +86,7 @@ public class ChatBotHandler{
         };
 
         modelThread.start();
-
+*/
         textToSpeechService = new TextToSpeech();
         textToSpeechService.setUsernameAndPassword(TTS_username, TTS_password);
         headers.put("X-Watson-Learning-Opt-Out", "true");
