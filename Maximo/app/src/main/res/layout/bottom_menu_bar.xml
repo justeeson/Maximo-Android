@@ -161,7 +161,7 @@
                     android:layout_gravity="center_vertical"
                     android:background="@color/transparent"
                     android:contentDescription="Dashboard Settings"
-                    android:text="Dashboard Settings"
+                    android:text="Settings"
                     android:textColor="@color/realwear_gray" />
             </LinearLayout>
 

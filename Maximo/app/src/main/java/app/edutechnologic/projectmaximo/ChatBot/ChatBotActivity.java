@@ -43,6 +43,12 @@ implements ChatTextEntryFragment.OnMessageSendListener {
                 BottomMenuBar.menuClick(v);
             }
         });
+        final Button dashboardSettingsButton = findViewById(R.id.dashboard_settings_btn);
+        dashboardSettingsButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                BottomMenuBar.menuClick(v);
+            }
+        });
 
         appActivity = this;
         appContext = getApplicationContext();

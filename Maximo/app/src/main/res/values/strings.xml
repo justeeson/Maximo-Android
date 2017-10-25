@@ -17,7 +17,10 @@
     <string name="sensor">"Sensor"</string>
     <string name="status">"Status"</string>
     <string name="dashboard_settings_header">Dashboard Settings</string>
-    <string name="media_dashboard">Media Dashboard</string>
-    <string name="chat_bot">Chat Bot</string>
+    <string name="introduction_pane">Introduction pane</string>
+    <string name="bulletin_board">Bulletin Board</string>
+    <string name="sensor_gauge">Sensor gauge</string>
+    <string name="work_item">Work item</string>
+    <string name="status_window">Status Window</string>
     <string name="save">Save</string>
 </resources>

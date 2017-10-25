@@ -18,6 +18,7 @@ import java.util.List;
 public class Maximo extends AppCompatActivity {
     public static String userIdentity = "";
     public static ArrayList<WorkItem>  workitem_list;
+    public ArrayList<String> previous_settings = new ArrayList<String>();
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -180,6 +181,7 @@ public class Maximo extends AppCompatActivity {
             }
         });
     }
+
 
 
     @Override

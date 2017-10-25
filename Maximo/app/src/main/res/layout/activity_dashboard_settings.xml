@@ -13,6 +13,15 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/introTextView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:text="@string/introduction_pane"
+            android:gravity="center"
+            android:textColor="#000000"/>
+
+        <TextView
             android:id="@+id/dashboard_settings_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -23,46 +32,70 @@
 
 
         <CheckBox
-            android:id="@+id/mediaDashboardCheckbox"
+            android:id="@+id/introPaneCheckbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="19sp"
             android:padding="10sp"
             android:layout_marginLeft="15dp"
-            android:text="@string/media_dashboard"
-            android:onClick="selectItem"
+            android:text="@string/introduction_pane"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="92dp" />
 
         <CheckBox
-            android:id="@+id/chatBotCheckbox"
+            android:id="@+id/bulletinCheckbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="19sp"
             android:padding="10sp"
             android:layout_marginLeft="15dp"
-            android:text="@string/chat_bot"
-            android:onClick="selectItem"
+            android:text="@string/bulletin_board"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="92dp" />
+
+        <CheckBox
+            android:id="@+id/sensorGaugeCheckbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="19sp"
+            android:padding="10sp"
+            android:layout_marginLeft="15dp"
+            android:text="@string/sensor_gauge"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="92dp" />
+
+        <CheckBox
+            android:id="@+id/statusCheckbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="19sp"
+            android:padding="10sp"
+            android:layout_marginLeft="15dp"
+            android:text="@string/status_window"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="92dp" />
+
+        <CheckBox
+            android:id="@+id/workItemCheckbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="19sp"
+            android:padding="10sp"
+            android:layout_marginLeft="15dp"
+            android:text="@string/work_item"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="92dp" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/SaveDashboardSettingBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/save"
+            android:layout_marginTop="30dp"
             android:layout_gravity="center_horizontal"
-            android:onClick="finalSelection"
             tools:layout_editor_absoluteX="70dp"
             tools:layout_editor_absoluteY="190dp" />
 
-        <TextView
-            android:id="@+id/selectionForDashboard"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="17dp"
-            android:textSize="20sp"
-            android:text="Will display selection here" />
     </LinearLayout>
 
     <!-- Bottom navbar -->
