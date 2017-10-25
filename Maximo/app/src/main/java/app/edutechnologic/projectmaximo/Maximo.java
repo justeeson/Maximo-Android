@@ -45,6 +45,7 @@ public class Maximo extends AppCompatActivity {
         SensorGaugeReaderDbHelper sDbHelper = new SensorGaugeReaderDbHelper(getApplicationContext());
         WorkItemsDbHelper wDbHelper = new WorkItemsDbHelper(getApplicationContext());
 
+
         // Gets the data repository in write mode
         SQLiteDatabase dbWriteable = mDbHelper.getWritableDatabase();
         SQLiteDatabase sdbWriteable = sDbHelper.getWritableDatabase();

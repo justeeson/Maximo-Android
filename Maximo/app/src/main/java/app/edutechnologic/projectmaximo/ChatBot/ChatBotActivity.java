@@ -26,6 +26,8 @@ implements ChatTextEntryFragment.OnMessageSendListener {
     private android.support.v7.widget.AppCompatImageButton micButton;
     private Boolean recordingStatus = false;
     public static EditText messageBox;
+    public static ChatBotHistoryDbHelper chatDbHelper;
+    public static SQLiteDatabase chatDbWriteable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,13 +35,13 @@ implements ChatTextEntryFragment.OnMessageSendListener {
         setContentView(R.layout.activity_chat_bot);
         MaximoUtility.initialize();
         ChatBotHandler.initialize();
-        /*
+
         //Set up the database for chat bot message history
-        ChatBotHistoryDbHelper chatDbHelper = new ChatBotHistoryDbHelper(getApplicationContext());
+        chatDbHelper = new ChatBotHistoryDbHelper(getApplicationContext());
 
         // Gets the data repository in write mode
-        SQLiteDatabase chatdbWriteable = chatDbHelper.getWritableDatabase();
-*/
+        chatDbWriteable = chatDbHelper.getWritableDatabase();
+
         //bottom navbar menu button functionality
         final Button mediaButton = findViewById(R.id.dashboard_nav_btn);
         mediaButton.setOnClickListener(new View.OnClickListener() {

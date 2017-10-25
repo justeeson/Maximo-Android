@@ -1,5 +1,6 @@
 package app.edutechnologic.projectmaximo.ChatBot;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
@@ -19,12 +20,17 @@ import org.jetbrains.annotations.NotNull;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import app.edutechnologic.projectmaximo.FeedReaderContract;
 import app.edutechnologic.projectmaximo.R;
 
 /**
  * View which represents a chat layout.
  */
 public class ChatMessageView extends ConstraintLayout {
+    private String messageAsString;
+    private long dateInMilliseconds;
+    private String date;
+
     public ChatMessageView(Context context) {
         super(context);
         initView();
@@ -38,15 +44,19 @@ public class ChatMessageView extends ConstraintLayout {
      */
     public ChatMessageView(Context context, @NotNull ChatMessage message) {
         super(context);
+        Date now = new Date();
+        this.messageAsString = message.getMessage();
+        dateInMilliseconds = System.currentTimeMillis();
+
         initView();
         if (message.getIsResponse()) {
             makeResponse();
         }
 
-        Date now = new Date();
         SimpleDateFormat dateFormatter = new SimpleDateFormat("E, y-M-d h:ma");
+        date = dateFormatter.format(now);
 
-        String date = dateFormatter.format(now);
+
         String chatMessage = message.getMessage();
 
         String finalMessage = date + "\t" + chatMessage;
@@ -66,10 +76,17 @@ public class ChatMessageView extends ConstraintLayout {
 
     /**
      * Adjusts the styling of this chat message to be a request to the chat bot.
+     * Also adds the conversation to the history.
      */
     public void makeRequest() {
         setColor(R.color.colorChatRequest);
         setHorizontalAlignment(ConstraintSet.RIGHT);
+        // Add the message to the conversation history
+        ContentValues values = new ContentValues();
+        values.put(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_USERTYPE, "user");
+        values.put(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_MESSAGE, messageAsString);
+        values.put(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_TIMESTAMP, dateInMilliseconds);
+        ChatBotActivity.chatDbWriteable.insert(ChatBotHistoryContract.ChatBotHistoryEntry.TABLE_NAME, null, values);
     }
 
     /**
@@ -78,6 +95,12 @@ public class ChatMessageView extends ConstraintLayout {
     public void makeResponse() {
         setColor(R.color.colorChatResponse);
         setHorizontalAlignment(ConstraintSet.LEFT);
+        // Add the message to the conversation history
+        ContentValues values = new ContentValues();
+        values.put(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_USERTYPE, "bot");
+        values.put(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_MESSAGE, messageAsString);
+        values.put(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_TIMESTAMP, dateInMilliseconds);
+        ChatBotActivity.chatDbWriteable.insert(ChatBotHistoryContract.ChatBotHistoryEntry.TABLE_NAME, null, values);
     }
 
     /**
