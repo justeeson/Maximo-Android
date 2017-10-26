@@ -192,21 +192,6 @@ public class Maximo extends AppCompatActivity {
         }
         sensorGaugeCursor.close();
 
-        /**
-         * read work items
-         *
-         * */
-        cursor = wdbReadable.rawQuery("select * from "+WorkItemsContract.WorkItemsEntry.TABLE_NAME, null);
-
-        workitem_list = new ArrayList<WorkItem> ();
-        while(cursor.moveToNext()) {
-            String itemId = cursor.getString(
-                    cursor.getColumnIndexOrThrow(WorkItemsContract.WorkItemsEntry.COLUMN_NAME_ITEM));
-            workitem_list.add(new WorkItem(itemId));
-        }
-
-        cursor.close();
-
         // We're calling this last so the name can be pulled before
         // the screen is created
 
@@ -221,6 +206,12 @@ public class Maximo extends AppCompatActivity {
         });
         final Button chatButton = findViewById(R.id.chat_nav_btn);
         chatButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                BottomMenuBar.menuClick(v);
+            }
+        });
+        final Button workOrdersButton = findViewById(R.id.work_orders_nav_btn);
+        workOrdersButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 BottomMenuBar.menuClick(v);
             }
