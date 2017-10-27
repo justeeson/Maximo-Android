@@ -14,6 +14,7 @@ import android.text.style.SubscriptSpan;
 import android.text.style.SuperscriptSpan;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -52,6 +53,14 @@ public class ChatMessageView extends ConstraintLayout {
         if (message.getIsResponse()) {
             makeResponse();
         }
+        else{
+            // Add the message to the conversation history
+            ContentValues values = new ContentValues();
+            values.put(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_USERTYPE, "user");
+            values.put(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_MESSAGE, messageAsString);
+            values.put(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_TIMESTAMP, dateInMilliseconds);
+            ChatBotActivity.chatDbWriteable.insert(ChatBotHistoryContract.ChatBotHistoryEntry.TABLE_NAME, null, values);
+        }
 
         SimpleDateFormat dateFormatter = new SimpleDateFormat("E, y-M-d h:ma");
         date = dateFormatter.format(now);
@@ -81,12 +90,7 @@ public class ChatMessageView extends ConstraintLayout {
     public void makeRequest() {
         setColor(R.color.colorChatRequest);
         setHorizontalAlignment(ConstraintSet.RIGHT);
-        // Add the message to the conversation history
-        ContentValues values = new ContentValues();
-        values.put(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_USERTYPE, "user");
-        values.put(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_MESSAGE, messageAsString);
-        values.put(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_TIMESTAMP, dateInMilliseconds);
-        ChatBotActivity.chatDbWriteable.insert(ChatBotHistoryContract.ChatBotHistoryEntry.TABLE_NAME, null, values);
+        Toast.makeText(ChatBotActivity.appContext, "Request", Toast.LENGTH_LONG).show();
     }
 
     /**
@@ -95,6 +99,7 @@ public class ChatMessageView extends ConstraintLayout {
     public void makeResponse() {
         setColor(R.color.colorChatResponse);
         setHorizontalAlignment(ConstraintSet.LEFT);
+        Toast.makeText(ChatBotActivity.appContext, "Response", Toast.LENGTH_LONG).show();
         // Add the message to the conversation history
         ContentValues values = new ContentValues();
         values.put(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_USERTYPE, "bot");
