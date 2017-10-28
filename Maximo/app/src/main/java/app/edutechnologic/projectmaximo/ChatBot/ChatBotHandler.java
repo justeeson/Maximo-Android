@@ -116,6 +116,8 @@ public class ChatBotHandler{
 
                     System.out.println(response);
 
+                    // TODO: HandleAction(response)
+
                     // Obtain response from Watson API
                     ArrayList responseList = (ArrayList) response.getOutput().get("text");
                     if (null != responseList && responseList.size() > 0) {
