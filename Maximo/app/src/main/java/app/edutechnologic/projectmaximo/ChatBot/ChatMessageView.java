@@ -51,6 +51,12 @@ public class ChatMessageView extends ConstraintLayout {
 
         initView();
         if (message.getIsResponse()) {
+            // Add the message to the conversation history
+            ContentValues values = new ContentValues();
+            values.put(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_USERTYPE, "bot");
+            values.put(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_MESSAGE, messageAsString);
+            values.put(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_TIMESTAMP, dateInMilliseconds);
+            ChatBotActivity.chatDbWriteable.insert(ChatBotHistoryContract.ChatBotHistoryEntry.TABLE_NAME, null, values);
             makeResponse();
         }
         else{
@@ -90,7 +96,6 @@ public class ChatMessageView extends ConstraintLayout {
     public void makeRequest() {
         setColor(R.color.colorChatRequest);
         setHorizontalAlignment(ConstraintSet.RIGHT);
-        Toast.makeText(ChatBotActivity.appContext, "Request", Toast.LENGTH_LONG).show();
     }
 
     /**
@@ -99,13 +104,6 @@ public class ChatMessageView extends ConstraintLayout {
     public void makeResponse() {
         setColor(R.color.colorChatResponse);
         setHorizontalAlignment(ConstraintSet.LEFT);
-        Toast.makeText(ChatBotActivity.appContext, "Response", Toast.LENGTH_LONG).show();
-        // Add the message to the conversation history
-        ContentValues values = new ContentValues();
-        values.put(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_USERTYPE, "bot");
-        values.put(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_MESSAGE, messageAsString);
-        values.put(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_TIMESTAMP, dateInMilliseconds);
-        ChatBotActivity.chatDbWriteable.insert(ChatBotHistoryContract.ChatBotHistoryEntry.TABLE_NAME, null, values);
     }
 
     /**

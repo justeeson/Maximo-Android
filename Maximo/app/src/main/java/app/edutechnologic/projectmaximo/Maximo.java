@@ -144,6 +144,7 @@ public class Maximo extends AppCompatActivity {
             itemIds.add(itemId);
         }
         cursor.close();
+
         userIdentity = " " + itemIds.get(0);
 
         /**

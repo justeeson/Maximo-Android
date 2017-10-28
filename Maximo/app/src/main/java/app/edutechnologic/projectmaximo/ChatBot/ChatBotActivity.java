@@ -70,6 +70,7 @@ implements ChatTextEntryFragment.OnMessageSendListener {
             }
         });
         */
+        ChatBotConversationHistory.fetchHistory();
     }
 
     /**
