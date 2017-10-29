@@ -1,6 +1,5 @@
 package app.edutechnologic.projectmaximo;
 
-
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -12,12 +11,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+// import static app.edutechnologic.projectmaximo.DashboardSettingsActivity.changes;
+
 public class Maximo extends AppCompatActivity {
     public static String userIdentity = "";
-    public static ArrayList<WorkItem>  workitem_list;
+    public static ArrayList<WorkItem> workitem_list;
     public ArrayList<String> previous_settings = new ArrayList<String>();
 
     /**
@@ -115,7 +119,7 @@ public class Maximo extends AppCompatActivity {
 
         // Filter results WHERE "title" = 'My Title'
         String selection = FeedReaderContract.FeedEntry.COLUMN_NAME_FIRSTNAME + " = ?";
-        String[] selectionArgs = { "Mike" };
+        String[] selectionArgs = {"Mike"};
 
         // How you want the results sorted in the resulting Cursor
         String sortOrder =
@@ -145,10 +149,10 @@ public class Maximo extends AppCompatActivity {
          * read work items
          *
          * */
-        cursor = wdbReadable.rawQuery("select * from "+WorkItemsContract.WorkItemsEntry.TABLE_NAME, null);
+        cursor = wdbReadable.rawQuery("select * from " + WorkItemsContract.WorkItemsEntry.TABLE_NAME, null);
 
-        workitem_list = new ArrayList<WorkItem> ();
-        while(cursor.moveToNext()) {
+        workitem_list = new ArrayList<WorkItem>();
+        while (cursor.moveToNext()) {
             String itemId = cursor.getString(
                     cursor.getColumnIndexOrThrow(WorkItemsContract.WorkItemsEntry.COLUMN_NAME_ITEM));
             workitem_list.add(new WorkItem(itemId));
@@ -156,10 +160,69 @@ public class Maximo extends AppCompatActivity {
 
         cursor.close();
 
+
         // We're calling this last so the name can be pulled before
         // the screen is created
 
         setContentView(R.layout.activity_maximo);
+
+        /**
+         * set fragment's visibility based on the dashboard settings view
+         */
+        View inbox = findViewById(R.id.inbox);
+        View bulletin_board = findViewById(R.id.bulletin_board);
+        View gauge = findViewById(R.id.gauge);
+        View status_window = findViewById(R.id.status_window);
+        ArrayList<String> curr_settings = new ArrayList<String>();
+        File file = new File(getFilesDir(), "dashboardSetting.txt");
+
+        // file.delete();
+        if(!file.exists()){
+            inbox.setVisibility(View.VISIBLE);
+            bulletin_board.setVisibility(View.VISIBLE);
+            gauge.setVisibility(View.VISIBLE);
+            status_window.setVisibility(View.VISIBLE);
+        }else{
+            // read the file
+            try {
+                InputStreamReader isr = new InputStreamReader(openFileInput("dashboardSetting.txt"));
+                BufferedReader br = new BufferedReader(isr);
+
+                String sLine = null;
+                while ((sLine = br.readLine()) != null) {
+                    curr_settings.add(sLine);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            if(curr_settings.contains("inbox")){
+                inbox.setVisibility(View.VISIBLE);
+            }else{
+                inbox.setVisibility(View.GONE);
+            }
+
+            if(curr_settings.contains("bulletin_board")){
+                bulletin_board.setVisibility(View.VISIBLE);
+            }else{
+                bulletin_board.setVisibility(View.GONE);
+            }
+
+            if(curr_settings.contains("gauge")){
+                gauge.setVisibility(View.VISIBLE);
+            }else{
+                gauge.setVisibility(View.GONE);
+            }
+
+            if(curr_settings.contains("status_window")){
+                status_window.setVisibility(View.VISIBLE);
+            }else{
+                status_window.setVisibility(View.GONE);
+            }
+
+        }
+
 
         //bottom navbar menu button functionality
         final Button mediaButton = findViewById(R.id.dashboard_nav_btn);
@@ -181,7 +244,6 @@ public class Maximo extends AppCompatActivity {
             }
         });
     }
-
 
 
     @Override
