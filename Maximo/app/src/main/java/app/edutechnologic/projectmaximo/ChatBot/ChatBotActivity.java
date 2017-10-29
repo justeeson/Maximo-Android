@@ -1,6 +1,7 @@
 package app.edutechnologic.projectmaximo.ChatBot;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -71,6 +72,7 @@ implements ChatTextEntryFragment.OnMessageSendListener {
         });
         */
         ChatBotConversationHistory.fetchHistory();
+        this.scrollToMostRecentMessage();
     }
 
     /**
@@ -83,8 +85,16 @@ implements ChatTextEntryFragment.OnMessageSendListener {
         // Place a message in chat history UI.
         boolean sendMessage = message.getMessage() != null
                 && !message.getMessage().isEmpty();
-        final String messageAsString = message.getMessage();
         if (sendMessage) {
+            final String messageAsString = message.getMessage();
+
+            // Add the message to the conversation history
+                ContentValues values = new ContentValues();
+                values.put(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_USERTYPE, "user");
+                values.put(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_MESSAGE, messageAsString);
+                values.put(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_TIMESTAMP, System.currentTimeMillis());
+                chatDbWriteable.insert(ChatBotHistoryContract.ChatBotHistoryEntry.TABLE_NAME, null, values);
+
             // Add message to convo history
             LinearLayout convoHistory = findViewById(R.id.chat_message_history);
             ChatMessageView view = new ChatMessageView(this, message);
@@ -113,6 +123,13 @@ implements ChatTextEntryFragment.OnMessageSendListener {
                     ChatBotHandler.textToSpeech(response);
                 }
             });
+
+            // Add the response to conversation history
+            values = new ContentValues();
+            values.put(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_USERTYPE, "bot");
+            values.put(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_MESSAGE, response);
+            values.put(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_TIMESTAMP, System.currentTimeMillis());
+            chatDbWriteable.insert(ChatBotHistoryContract.ChatBotHistoryEntry.TABLE_NAME, null, values);
 
             responseView.makeResponse();
             convoHistory.addView(responseView);

@@ -28,8 +28,6 @@ import app.edutechnologic.projectmaximo.R;
  * View which represents a chat layout.
  */
 public class ChatMessageView extends ConstraintLayout {
-    private String messageAsString;
-    private long dateInMilliseconds;
     private String date;
 
     public ChatMessageView(Context context) {
@@ -45,32 +43,18 @@ public class ChatMessageView extends ConstraintLayout {
      */
     public ChatMessageView(Context context, @NotNull ChatMessage message) {
         super(context);
-        Date now = new Date();
-        this.messageAsString = message.getMessage();
-        dateInMilliseconds = System.currentTimeMillis();
-
         initView();
+
         if (message.getIsResponse()) {
-            // Add the message to the conversation history
-            ContentValues values = new ContentValues();
-            values.put(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_USERTYPE, "bot");
-            values.put(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_MESSAGE, messageAsString);
-            values.put(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_TIMESTAMP, dateInMilliseconds);
-            ChatBotActivity.chatDbWriteable.insert(ChatBotHistoryContract.ChatBotHistoryEntry.TABLE_NAME, null, values);
             makeResponse();
         }
         else{
-            // Add the message to the conversation history
-            ContentValues values = new ContentValues();
-            values.put(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_USERTYPE, "user");
-            values.put(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_MESSAGE, messageAsString);
-            values.put(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_TIMESTAMP, dateInMilliseconds);
-            ChatBotActivity.chatDbWriteable.insert(ChatBotHistoryContract.ChatBotHistoryEntry.TABLE_NAME, null, values);
+            makeRequest();
         }
 
+        Date timestamp = new Date(message.getTime());
         SimpleDateFormat dateFormatter = new SimpleDateFormat("E, y-M-d h:ma");
-        date = dateFormatter.format(now);
-
+        date = dateFormatter.format(timestamp);
 
         String chatMessage = message.getMessage();
 
@@ -133,8 +117,7 @@ public class ChatMessageView extends ConstraintLayout {
      * @param alignment the passed alignment value
      */
     private void setHorizontalAlignment(int alignment) {
-        // TODO: Remove this line. Used for testing...
-        // FIXME: This method does not appear to do anything.
+
         alignment = ConstraintSet.LEFT;
 
         int id = R.id.chat_message_text;
