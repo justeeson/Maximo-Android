@@ -19,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="app.edutechnologic.projectmaximo.Maximo"
+            android:name=".Maximo"
             android:configChanges="orientation"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
@@ -29,10 +29,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="app.edutechnologic.projectmaximo.ChatBot.ChatBotActivity"
-            android:exported="true"></activity>
-        <activity android:name="app.edutechnologic.projectmaximo.MediaDashboardActivity"
-            android:exported="true"></activity>
+        <activity
+            android:name=".ChatBot.ChatBotActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MediaDashboardActivity"
+            android:exported="true" />
+        <activity android:name=".WorkOrdersActivity"></activity>
     </application>
 
 </manifest>

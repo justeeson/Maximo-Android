@@ -98,6 +98,29 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/work_orders_nav"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:src="@drawable/ic_broken" />
+
+                <Button
+                    android:id="@+id/work_orders_nav_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/navbar_textview_height"
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/transparent"
+                    android:contentDescription="Work Orders"
+                    android:text="Work Orders"
+                    android:textColor="@color/realwear_gray" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/dashboard_nav"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
