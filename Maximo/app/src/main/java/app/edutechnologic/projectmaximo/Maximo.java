@@ -21,7 +21,6 @@ import app.edutechnologic.projectmaximo.ChatBot.ChatBotHandler;
 
 public class Maximo extends AppCompatActivity {
     public static String userIdentity = "";
-    public static ArrayList<WorkItem>  workitem_list;
     public static ArrayList<String> sensorGaugeNames;
     public static ArrayList<Integer> sensorGaugeOpStatuses;
     public static ArrayList<Integer> sensorGaugeTotalVals;
@@ -47,12 +46,11 @@ public class Maximo extends AppCompatActivity {
 
         FeedReaderDbHelper mDbHelper = new FeedReaderDbHelper(getApplicationContext());
         SensorGaugeReaderDbHelper sDbHelper = new SensorGaugeReaderDbHelper(getApplicationContext());
-        WorkItemsDbHelper wDbHelper = new WorkItemsDbHelper(getApplicationContext());
+
 
         // Gets the data repository in write mode
         SQLiteDatabase dbWriteable = mDbHelper.getWritableDatabase();
         SQLiteDatabase sdbWriteable = sDbHelper.getWritableDatabase();
-        SQLiteDatabase wdbWriteable = wDbHelper.getWritableDatabase();
 
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
@@ -85,32 +83,12 @@ public class Maximo extends AppCompatActivity {
 
         newRowId = sdbWriteable.insert(SensorGaugeReaderContract.FeedEntry.TABLE_NAME, null, values);
 
-        //delete all items in workitem table
-        wdbWriteable.delete(WorkItemsContract.WorkItemsEntry.TABLE_NAME, null, null);
-        // Work Items 1
-        values = new ContentValues();
-        values.put(WorkItemsContract.WorkItemsEntry.COLUMN_NAME_ITEM, "item1");
-        newRowId = wdbWriteable.insert(WorkItemsContract.WorkItemsEntry.TABLE_NAME, null, values);
-
-        values = new ContentValues();
-        values.put(WorkItemsContract.WorkItemsEntry.COLUMN_NAME_ITEM, "item2");
-        newRowId = wdbWriteable.insert(WorkItemsContract.WorkItemsEntry.TABLE_NAME, null, values);
-
-        values = new ContentValues();
-        values.put(WorkItemsContract.WorkItemsEntry.COLUMN_NAME_ITEM, "item3");
-        newRowId = wdbWriteable.insert(WorkItemsContract.WorkItemsEntry.TABLE_NAME, null, values);
-
-        values = new ContentValues();
-        values.put(WorkItemsContract.WorkItemsEntry.COLUMN_NAME_ITEM, "item4");
-        newRowId = wdbWriteable.insert(WorkItemsContract.WorkItemsEntry.TABLE_NAME, null, values);
-
-
         /*
          * Get Readable versions of databases
          * */
         SQLiteDatabase dbReadable = mDbHelper.getReadableDatabase();
         SQLiteDatabase sdbReadable = sDbHelper.getReadableDatabase();
-        SQLiteDatabase wdbReadable = wDbHelper.getReadableDatabase();
+
 
         /*
          * Define a projection that specifies which columns from the database

@@ -28,6 +28,9 @@ public class WorkOrdersActivity extends AppCompatActivity {
         WorkOrderDbHelper DbHelper = new WorkOrderDbHelper(getApplicationContext());
         SQLiteDatabase dbWriteable = DbHelper.getWritableDatabase();
 
+        // delete all items in workitem table
+        // dbWriteable.delete(WorkOrderContract.WorkOrderEntry.TABLE_NAME, null, null);
+
         //Create a few work order entries
 
         //First Entry values
