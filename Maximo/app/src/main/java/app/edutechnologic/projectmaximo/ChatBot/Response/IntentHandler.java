@@ -13,7 +13,8 @@ public class IntentHandler {
 
     // Process intent handling capabilities
     public static String handleIntent(MessageResponse response) {
-        throw new NotImplementedException();
+        return "";
+        //throw new NotImplementedException();
     }
 
     // This would allow the pogram to execute an action provider through setting.
