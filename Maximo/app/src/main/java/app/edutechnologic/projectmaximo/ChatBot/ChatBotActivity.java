@@ -1,6 +1,7 @@
 package app.edutechnologic.projectmaximo.ChatBot;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +27,8 @@ implements ChatTextEntryFragment.OnMessageSendListener {
     private android.support.v7.widget.AppCompatImageButton micButton;
     private Boolean recordingStatus = false;
     public static EditText messageBox;
+    public static ChatBotHistoryDbHelper chatDbHelper;
+    public static SQLiteDatabase chatDbWriteable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,13 +36,13 @@ implements ChatTextEntryFragment.OnMessageSendListener {
         setContentView(R.layout.activity_chat_bot);
         MaximoUtility.initialize();
         ChatBotHandler.initialize();
-        /*
+
         //Set up the database for chat bot message history
-        ChatBotHistoryDbHelper chatDbHelper = new ChatBotHistoryDbHelper(getApplicationContext());
+        chatDbHelper = new ChatBotHistoryDbHelper(getApplicationContext());
 
         // Gets the data repository in write mode
-        SQLiteDatabase chatdbWriteable = chatDbHelper.getWritableDatabase();
-*/
+        chatDbWriteable = chatDbHelper.getWritableDatabase();
+
         //bottom navbar menu button functionality
         final Button mediaButton = findViewById(R.id.dashboard_nav_btn);
         mediaButton.setOnClickListener(new View.OnClickListener() {
@@ -49,6 +52,12 @@ implements ChatTextEntryFragment.OnMessageSendListener {
         });
         final Button homeButton = findViewById(R.id.home_nav_btn);
         homeButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                BottomMenuBar.menuClick(v);
+            }
+        });
+        final Button workOrdersButton = findViewById(R.id.work_orders_nav_btn);
+        workOrdersButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 BottomMenuBar.menuClick(v);
             }
@@ -68,6 +77,8 @@ implements ChatTextEntryFragment.OnMessageSendListener {
             }
         });
         */
+        ChatBotConversationHistory.fetchHistory();
+        this.scrollToMostRecentMessage();
     }
 
     /**
@@ -80,8 +91,16 @@ implements ChatTextEntryFragment.OnMessageSendListener {
         // Place a message in chat history UI.
         boolean sendMessage = message.getMessage() != null
                 && !message.getMessage().isEmpty();
-        final String messageAsString = message.getMessage();
         if (sendMessage) {
+            final String messageAsString = message.getMessage();
+
+            // Add the message to the conversation history
+                ContentValues values = new ContentValues();
+                values.put(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_USERTYPE, "user");
+                values.put(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_MESSAGE, messageAsString);
+                values.put(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_TIMESTAMP, System.currentTimeMillis());
+                chatDbWriteable.insert(ChatBotHistoryContract.ChatBotHistoryEntry.TABLE_NAME, null, values);
+
             // Add message to convo history
             LinearLayout convoHistory = findViewById(R.id.chat_message_history);
             ChatMessageView view = new ChatMessageView(this, message);
@@ -110,6 +129,13 @@ implements ChatTextEntryFragment.OnMessageSendListener {
                     ChatBotHandler.textToSpeech(response);
                 }
             });
+
+            // Add the response to conversation history
+            values = new ContentValues();
+            values.put(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_USERTYPE, "bot");
+            values.put(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_MESSAGE, response);
+            values.put(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_TIMESTAMP, System.currentTimeMillis());
+            chatDbWriteable.insert(ChatBotHistoryContract.ChatBotHistoryEntry.TABLE_NAME, null, values);
 
             responseView.makeResponse();
             convoHistory.addView(responseView);

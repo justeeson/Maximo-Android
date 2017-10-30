@@ -33,6 +33,12 @@ public class MediaDashboardActivity extends AppCompatActivity {
                 BottomMenuBar.menuClick(v);
             }
         });
+        final Button workOrdersButton = findViewById(R.id.work_orders_nav_btn);
+        workOrdersButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                BottomMenuBar.menuClick(v);
+            }
+        });
 
         populateMediaAssetsList();
     }

@@ -8,7 +8,7 @@ import app.edutechnologic.projectmaximo.ChatBot.ChatBotHistoryContract;
 
 public class ChatBotHistoryDbHelper extends SQLiteOpenHelper {
     // If you change the database schema, you must increment the database version.
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 3;
     public static final String DATABASE_NAME = "ChatBotHistory.db";
 
     public ChatBotHistoryDbHelper(Context context) {
@@ -53,9 +53,9 @@ public class ChatBotHistoryDbHelper extends SQLiteOpenHelper {
     public static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + ChatBotHistoryContract.ChatBotHistoryEntry.TABLE_NAME + " (" +
                     ChatBotHistoryContract.ChatBotHistoryEntry._ID + " INTEGER PRIMARY KEY," +
-                    ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_USERTYPE + " INTEGER," +
+                    ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_USERTYPE + " TEXT," +
                     ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_MESSAGE + " TEXT," +
-                    ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_TIMESTAMP + " TEXT)";
+                    ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_TIMESTAMP + " INTEGER)";
 
     // This string is used to delete the columns in the database
     public static final String SQL_DELETE_ENTRIES =

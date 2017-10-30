@@ -25,6 +25,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import app.edutechnologic.projectmaximo.ChatBot.Response.IntentHandler;
 import app.edutechnologic.projectmaximo.Maximo;
 import app.edutechnologic.projectmaximo.MaximoUtility;
 import app.edutechnologic.projectmaximo.R;
@@ -52,6 +53,7 @@ public class ChatBotHandler{
     private static Map<String, String> headers = new HashMap<String, String>();
     private static MicrophoneHelper microphoneHelper;
     private static EditText inputBox;
+
 
     /**
      * This function initializes the necessary variables
@@ -122,7 +124,9 @@ public class ChatBotHandler{
                     ArrayList responseList = (ArrayList) response.getOutput().get("text");
                     if (null != responseList && responseList.size() > 0) {
                         replyFromWatson = ((String) responseList.get(0));
+                        //String response = IntentHandler.handleIntent(response);
                         responseFromWatson.setWatsonMessage(replyFromWatson);
+
                     }
 
                 } catch (Exception e) {
