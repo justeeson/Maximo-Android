@@ -122,7 +122,7 @@ public class ChatBotHandler{
                     ArrayList responseList = (ArrayList) response.getOutput().get("text");
                     if (null != responseList && responseList.size() > 0) {
                         replyFromWatson = ((String) responseList.get(0));
-                        String response = IntentHandler.handleIntent(response);
+                        //String response = IntentHandler.handleIntent(response);
                         responseFromWatson.setWatsonMessage(replyFromWatson);
 
                     }
