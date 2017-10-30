@@ -118,15 +118,13 @@ public class ChatBotHandler{
 
                     System.out.println(response);
 
-                    // TODO: HandleAction(response)
-
                     // Obtain response from Watson API
                     ArrayList responseList = (ArrayList) response.getOutput().get("text");
                     if (null != responseList && responseList.size() > 0) {
                         replyFromWatson = ((String) responseList.get(0));
-                        //String response = IntentHandler.handleIntent(response);
-                        responseFromWatson.setWatsonMessage(replyFromWatson);
-
+                        String localResponse = IntentHandler.handleIntent(response);
+                        // FIXME: This is gross. Call a method to add something to chat.
+                        responseFromWatson.setWatsonMessage(replyFromWatson + "\n" + localResponse);
                     }
 
                 } catch (Exception e) {
