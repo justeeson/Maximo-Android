@@ -9,16 +9,16 @@
     <LinearLayout
         android:id="@+id/swipe_left"
         android:layout_width="wrap_content"
-        android:layout_height="80dp"
+        android:layout_height="70dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:background="@color/realwear_purple"
+        android:background="@color/evergreen"
         android:clickable="true"
         android:orientation="vertical">
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="35dp"
             android:src="@drawable/ic_swipe_left" />
 
         <Button
@@ -34,16 +34,16 @@
     <LinearLayout
         android:id="@+id/swipe_right"
         android:layout_width="wrap_content"
-        android:layout_height="80dp"
+        android:layout_height="70dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:background="@color/realwear_purple"
+        android:background="@color/evergreen"
         android:clickable="true"
         android:orientation="vertical">
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="35dp"
             android:src="@drawable/ic_swipe_right" />
 
         <Button
@@ -59,18 +59,18 @@
     <HorizontalScrollView
         android:id="@+id/navbar_horizontal_scroll_view"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="70dp"
         android:layout_toLeftOf="@id/swipe_right"
         android:layout_toRightOf="@id/swipe_left"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:background="@color/realwear_purple">
+        android:background="@color/evergreen">
 
         <LinearLayout
             android:id="@+id/navbar_scroll_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/realwear_purple"
+            android:background="@color/evergreen"
             android:paddingBottom="@dimen/navbar_button_margin"
             android:paddingTop="@dimen/navbar_button_margin">
 
@@ -83,7 +83,7 @@
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="35dp"
                     android:src="@drawable/ic_home" />
 
                 <Button
@@ -98,6 +98,29 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/work_orders_nav"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:src="@drawable/ic_broken" />
+
+                <Button
+                    android:id="@+id/work_orders_nav_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/navbar_textview_height"
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/transparent"
+                    android:contentDescription="Work Orders"
+                    android:text="Work Orders"
+                    android:textColor="@color/realwear_gray" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/dashboard_nav"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -106,7 +129,7 @@
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="35dp"
                     android:src="@drawable/ic_media_assets" />
 
                 <Button
@@ -128,7 +151,7 @@
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="35dp"
                     android:src="@drawable/ic_chat" />
 
                 <Button

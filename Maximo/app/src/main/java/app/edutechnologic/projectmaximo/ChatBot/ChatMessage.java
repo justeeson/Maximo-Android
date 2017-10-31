@@ -1,5 +1,7 @@
 package app.edutechnologic.projectmaximo.ChatBot;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 /**
@@ -17,6 +19,11 @@ class ChatMessage {
         this.time = new GregorianCalendar().getTimeInMillis();
     }
 
+    /**
+     * Sets the text of the message.
+     * @param message      The message to be passed on to Watson API
+     * @param timeInMillis Holds the current time in milliseconds
+     */
     public ChatMessage(String message, long timeInMillis) {
         this.message = message;
         this.time = timeInMillis;

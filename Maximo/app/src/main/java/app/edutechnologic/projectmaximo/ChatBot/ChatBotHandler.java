@@ -18,10 +18,14 @@ import com.ibm.watson.developer_cloud.speech_to_text.v1.websocket.RecognizeCallb
 import com.ibm.watson.developer_cloud.text_to_speech.v1.TextToSpeech;
 import com.ibm.watson.developer_cloud.text_to_speech.v1.model.Voice;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import app.edutechnologic.projectmaximo.ChatBot.Response.IntentHandler;
 import app.edutechnologic.projectmaximo.Maximo;
 import app.edutechnologic.projectmaximo.MaximoUtility;
 import app.edutechnologic.projectmaximo.R;
@@ -50,6 +54,7 @@ public class ChatBotHandler{
     private static MicrophoneHelper microphoneHelper;
     private static EditText inputBox;
 
+
     /**
      * This function initializes the necessary variables
      */
@@ -66,7 +71,7 @@ public class ChatBotHandler{
         service.setUsernameAndPassword(username, password);
         contextMap = new HashMap<>();
         responseFromWatson = new WatsonMessage();
-
+/*
         try{
             microphoneHelper = new MicrophoneHelper(ChatBotActivity.appActivity);
         } catch(Exception e){
@@ -83,7 +88,7 @@ public class ChatBotHandler{
         };
 
         modelThread.start();
-
+*/
         textToSpeechService = new TextToSpeech();
         textToSpeechService.setUsernameAndPassword(TTS_username, TTS_password);
         headers.put("X-Watson-Learning-Opt-Out", "true");
@@ -117,7 +122,9 @@ public class ChatBotHandler{
                     ArrayList responseList = (ArrayList) response.getOutput().get("text");
                     if (null != responseList && responseList.size() > 0) {
                         replyFromWatson = ((String) responseList.get(0));
+                        //String response = IntentHandler.handleIntent(response);
                         responseFromWatson.setWatsonMessage(replyFromWatson);
+
                     }
 
                 } catch (Exception e) {

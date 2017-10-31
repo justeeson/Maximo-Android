@@ -1,23 +1,24 @@
-package app.edutechnologic.projectmaximo;
+package app.edutechnologic.projectmaximo.ChatBot;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import app.edutechnologic.projectmaximo.ChatBot.ChatBotHistoryContract;
 
-public class SensorGaugeReaderDbHelper extends SQLiteOpenHelper {
+public class ChatBotHistoryDbHelper extends SQLiteOpenHelper {
     // If you change the database schema, you must increment the database version.
-    public static final int DATABASE_VERSION = 2;
-    public static final String DATABASE_NAME = "SensorGaugeReader.db";
+    public static final int DATABASE_VERSION = 3;
+    public static final String DATABASE_NAME = "ChatBotHistory.db";
 
-    public SensorGaugeReaderDbHelper(Context context) {
+    public ChatBotHistoryDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     /**
-     * This function creates the necessary database
+     * This function creates the SQLite database
      *
-     * @param db         the SQLiteDatabase to be created
+     * @param db the SQLiteDatabase to be created
      */
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_ENTRIES);
@@ -38,7 +39,7 @@ public class SensorGaugeReaderDbHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * This function upgrades the database to an older version number
+     * This function downgrades the database to an older version number
      *
      * @param db         the SQLiteDatabase to be created
      * @param oldVersion the version number of the old database
@@ -48,17 +49,15 @@ public class SensorGaugeReaderDbHelper extends SQLiteOpenHelper {
         onUpgrade(db, oldVersion, newVersion);
     }
 
-    // This String specifies the SQL command to generate the necessary table
+    // This string is used to create the columns in the database
     public static final String SQL_CREATE_ENTRIES =
-            "CREATE TABLE " + SensorGaugeReaderContract.FeedEntry.TABLE_NAME + " (" +
-                    SensorGaugeReaderContract.FeedEntry._ID + " INTEGER PRIMARY KEY," +
-                    SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORID + " INTEGER UNIQUE," +
-                    SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORNAME + " TEXT UNIQUE," +
-                    SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORSTATUS + " INTEGER," +
-                    SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORTOTALVALUE + " INTEGER," +
-                    SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORACTUALVALUE + " INTEGER)";
+            "CREATE TABLE " + ChatBotHistoryContract.ChatBotHistoryEntry.TABLE_NAME + " (" +
+                    ChatBotHistoryContract.ChatBotHistoryEntry._ID + " INTEGER PRIMARY KEY," +
+                    ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_USERTYPE + " TEXT," +
+                    ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_MESSAGE + " TEXT," +
+                    ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_TIMESTAMP + " INTEGER)";
 
-    // This String specifies the SQL command to delete the table
+    // This string is used to delete the columns in the database
     public static final String SQL_DELETE_ENTRIES =
-            "DROP TABLE IF EXISTS " + SensorGaugeReaderContract.FeedEntry.TABLE_NAME;
+            "DROP TABLE IF EXISTS " + ChatBotHistoryContract.ChatBotHistoryEntry.TABLE_NAME;
 }
