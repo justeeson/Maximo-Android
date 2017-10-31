@@ -83,6 +83,7 @@ public class WorkOrdersActivity extends AppCompatActivity {
                 WorkOrderContract.WorkOrderEntry.COLUMN_NAME_STATUS
         };
 
+        /*
         //Define cursor (getting all columns)
         Cursor cursor = dbReadable.rawQuery("select * from "+WorkOrderContract.WorkOrderEntry.TABLE_NAME, null);
 
@@ -94,10 +95,9 @@ public class WorkOrdersActivity extends AppCompatActivity {
         workOrderReportedDates = new ArrayList<> ();
         workOrderStatuses = new ArrayList<> ();
         while(cursor.moveToNext()) {
-            /*
-            Add in work order number, description, asset number, location, reported date, and
-            status to the appropriate array list.
-             */
+
+            //Add in work order number, description, asset number, location, reported date, and
+            //status to the appropriate array list.
             Integer number = cursor.getInt(
                     cursor.getColumnIndexOrThrow(WorkOrderContract.WorkOrderEntry.COLUMN_NAME_NUMBER));
             workOrderNumbers.add(number);
@@ -118,6 +118,7 @@ public class WorkOrdersActivity extends AppCompatActivity {
             workOrderStatuses.add(status);
         }
         cursor.close();
+        */
 
         //bottom navbar menu button functionality
         final Button mediaButton = findViewById(R.id.dashboard_nav_btn);

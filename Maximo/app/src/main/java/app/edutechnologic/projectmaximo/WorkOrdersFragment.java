@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,25 +43,32 @@ public class WorkOrdersFragment extends Fragment {
         TextView[] textView = new TextView[6];
         for (int i = 0; i < work_order_number.size(); i++) {
             tableRow[i] = new TableRow(getActivity());
+            tableRow[i].setBackgroundResource(R.drawable.border);
 
             // set text for columns
             textView[0] = new TextView(getActivity());
             textView[0].setText(work_order_number.get(i));
+            textView[0].setGravity(Gravity.CENTER);
 
             textView[1] = new TextView(getActivity());
             textView[1].setText(work_order_descriptions.get(i));
+            textView[1].setGravity(Gravity.CENTER);
 
             textView[2] = new TextView(getActivity());
             textView[2].setText(work_order_assetnumbers.get(i));
+            textView[2].setGravity(Gravity.CENTER);
 
             textView[3] = new TextView(getActivity());
             textView[3].setText(work_order_locations.get(i));
+            textView[3].setGravity(Gravity.CENTER);
 
             textView[4] = new TextView(getActivity());
             textView[4].setText(work_order_reporteddates.get(i));
+            textView[4].setGravity(Gravity.CENTER);
 
             textView[5] = new TextView(getActivity());
             textView[5].setText(work_order_statuses.get(i));
+            textView[5].setGravity(Gravity.CENTER);
 
             // add columns in the current row
             for (int j = 0; j < 6; j++) {
