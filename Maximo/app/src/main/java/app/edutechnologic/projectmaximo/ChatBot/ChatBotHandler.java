@@ -71,12 +71,9 @@ public class ChatBotHandler{
         service.setUsernameAndPassword(username, password);
         contextMap = new HashMap<>();
         responseFromWatson = new WatsonMessage();
-/*
-        try{
-            microphoneHelper = new MicrophoneHelper(ChatBotActivity.appActivity);
-        } catch(Exception e){
-            e.printStackTrace();
-        }
+
+        microphoneHelper = new MicrophoneHelper(ChatBotActivity.appActivity);
+
 
         speechToTextService = new SpeechToText();
         speechToTextService.setUsernameAndPassword(STT_username,  STT_password);
@@ -88,7 +85,7 @@ public class ChatBotHandler{
         };
 
         modelThread.start();
-*/
+
         textToSpeechService = new TextToSpeech();
         textToSpeechService.setUsernameAndPassword(TTS_username, TTS_password);
         headers.put("X-Watson-Learning-Opt-Out", "true");
@@ -212,7 +209,9 @@ public class ChatBotHandler{
             recoTokens = new SpeakerLabelsDiarization.RecoTokens();
             if(speechResults.getResults() != null && !speechResults.getResults().isEmpty()) {
                 String text = speechResults.getResults().get(0).getAlternatives().get(0).getTranscript();
-                //This is where you would get the result of the speech-to-text function
+                if(text != null) {
+                    ChatBotActivity.updateMessageBox(text);
+                }
             }
         }
 

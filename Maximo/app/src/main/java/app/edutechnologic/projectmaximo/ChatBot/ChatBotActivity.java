@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.Toast;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -29,11 +32,14 @@ implements ChatTextEntryFragment.OnMessageSendListener {
     public static EditText messageBox;
     public static ChatBotHistoryDbHelper chatDbHelper;
     public static SQLiteDatabase chatDbWriteable;
+    public static Handler UIHandler = new Handler(Looper.getMainLooper());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_bot);
+        appActivity = this;
+        appContext = getApplicationContext();
         MaximoUtility.initialize();
         ChatBotHandler.initialize();
 
@@ -63,10 +69,8 @@ implements ChatTextEntryFragment.OnMessageSendListener {
             }
         });
 
-        appActivity = this;
-        appContext = getApplicationContext();
         messageBox = (EditText) this.findViewById(R.id.messageBox);
-        /*
+
         micButton = (android.support.v7.widget.AppCompatImageButton) this.findViewById(R.id.btn_record);
         micButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +80,7 @@ implements ChatTextEntryFragment.OnMessageSendListener {
                     recordingStatus = !recordingStatus;
             }
         });
-        */
+
         ChatBotConversationHistory.fetchHistory();
         this.scrollToMostRecentMessage();
     }
@@ -167,6 +171,16 @@ implements ChatTextEntryFragment.OnMessageSendListener {
             @Override
             public void run() {
                 scrollView.fullScroll(View.FOCUS_DOWN);
+            }
+        });
+    }
+
+    public static void updateMessageBox(String text){
+        final String messageText = text;
+        UIHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                messageBox.setText(messageText);
             }
         });
     }
