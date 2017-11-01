@@ -42,8 +42,6 @@ public class Maximo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         //Initialize chat bot variables
-        MaximoUtility.initialize();
-        ChatBotHandler.initialize();
 
         FeedReaderDbHelper mDbHelper = new FeedReaderDbHelper(getApplicationContext());
         SensorGaugeReaderDbHelper sDbHelper = new SensorGaugeReaderDbHelper(getApplicationContext());
