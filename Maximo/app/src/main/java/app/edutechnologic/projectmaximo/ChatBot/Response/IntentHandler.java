@@ -1,8 +1,15 @@
 package app.edutechnologic.projectmaximo.ChatBot.Response;
 
+import com.ibm.watson.developer_cloud.conversation.v1.model.Intent;
 import com.ibm.watson.developer_cloud.conversation.v1.model.MessageResponse;
 
 import org.apache.commons.lang3.NotImplementedException;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import app.edutechnologic.projectmaximo.Maximo;
+import app.edutechnologic.projectmaximo.WorkItem;
 
 /**
  * Class for generating response to a user's intent.
@@ -15,12 +22,20 @@ public class IntentHandler {
 
     // Process intent handling capabilities
     public static String handleIntent(MessageResponse response) {
-        if (response.getIntents().contains("FetchWorkItems")) {
-            return "Work item1: ... // TODO: implement this";
+        for (Intent intent : response.getIntents()) {
+            if (intent.getIntent().equals("FetchWorkOrders")) {
+                ArrayList<WorkItem> workItems = Maximo.workitem_list;
+                if (workItems != null) return "You have " + workItems.size() + " work orders.";
+                return "You have 0 work items" ;
+            }
         }
         // If is work items
             // Fetch from the DB and return the work items.
-        return response.getText().get(0);
+        List<Intent> intents = response.getIntents();
+        if (intents.size() > 0) {
+            return intents.get(0).getIntent();
+        }
+        return "Called handleIntent";
         //throw new NotImplementedException();
     }
 
