@@ -50,12 +50,6 @@ implements ChatTextEntryFragment.OnMessageSendListener {
         chatDbWriteable = chatDbHelper.getWritableDatabase();
 
         //bottom navbar menu button functionality
-        final Button mediaButton = findViewById(R.id.dashboard_nav_btn);
-        mediaButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                BottomMenuBar.menuClick(v);
-            }
-        });
         final Button homeButton = findViewById(R.id.home_nav_btn);
         homeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
