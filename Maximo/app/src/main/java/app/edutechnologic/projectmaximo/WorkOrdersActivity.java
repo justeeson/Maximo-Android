@@ -121,12 +121,6 @@ public class WorkOrdersActivity extends AppCompatActivity {
         */
 
         //bottom navbar menu button functionality
-        final Button mediaButton = findViewById(R.id.dashboard_nav_btn);
-        mediaButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                BottomMenuBar.menuClick(v);
-            }
-        });
         final Button chatButton = findViewById(R.id.chat_nav_btn);
         chatButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
