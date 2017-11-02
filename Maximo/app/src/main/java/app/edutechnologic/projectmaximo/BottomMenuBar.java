@@ -22,12 +22,11 @@ public class BottomMenuBar{
             case R.id.home_nav_btn: // Home
                 v.getContext().startActivity(new Intent(v.getContext(), Maximo.class));
                 break;
-            case R.id.dashboard_nav_btn: // Media
-                v.getContext().startActivity(new Intent(v.getContext(), MediaDashboardActivity.class));
-                break;
             case R.id.chat_nav_btn: // Chat
                 v.getContext().startActivity(new Intent(v.getContext(), ChatBotActivity.class));
                 break;
+            case R.id.work_orders_nav_btn: //Work Orders
+                v.getContext().startActivity(new Intent(v.getContext(), WorkOrdersActivity.class));
             default:
                 break;
         }

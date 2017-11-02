@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableLayout
+        android:id="@+id/workOrdersTable"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/border2"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/workOrdersHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Work Orders"
+                android:textSize="25sp"
+                android:gravity="center"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:textColor="@color/forest"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/workOrderNumber"
+                android:background="@drawable/border2"
+                android:layout_weight="1"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:text="Work Order"
+                android:gravity="center"
+                android:textColor="@color/forest"/>
+
+            <TextView
+                android:id="@+id/workOrderDescription"
+                android:background="@drawable/border2"
+                android:layout_weight="1"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:text="Description"
+                android:gravity="center"
+                android:textColor="@color/forest"/>
+
+            <TextView
+                android:id="@+id/workOrderAssetNumber"
+                android:background="@drawable/border2"
+                android:layout_weight="1"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:text="Asset"
+                android:gravity="center"
+                android:textColor="@color/forest"/>
+
+            <TextView
+                android:id="@+id/workOrderLocation"
+                android:background="@drawable/border2"
+                android:layout_weight="1"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:text="Location"
+                android:gravity="center"
+                android:textColor="@color/forest"/>
+
+            <TextView
+                android:id="@+id/workOrderReportedDate"
+                android:background="@drawable/border2"
+                android:layout_weight="1"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:text="Reported Date"
+                android:gravity="center"
+                android:textColor="@color/forest"/>
+
+            <TextView
+                android:id="@+id/workOrderStatus"
+                android:background="@drawable/border2"
+                android:layout_weight="1"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:text="Status"
+                android:gravity="center"
+                android:textColor="@color/forest"/>
+        </TableRow>
+
+    </TableLayout>
+</LinearLayout>

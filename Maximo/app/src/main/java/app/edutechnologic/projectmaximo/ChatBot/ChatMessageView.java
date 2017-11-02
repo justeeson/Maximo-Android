@@ -1,20 +1,35 @@
 package app.edutechnologic.projectmaximo.ChatBot;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.support.v4.content.ContextCompat;
+import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.style.RelativeSizeSpan;
+import android.text.style.SubscriptSpan;
+import android.text.style.SuperscriptSpan;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import app.edutechnologic.projectmaximo.FeedReaderContract;
 import app.edutechnologic.projectmaximo.R;
 
 /**
  * View which represents a chat layout.
  */
 public class ChatMessageView extends ConstraintLayout {
+    private String date;
+
     public ChatMessageView(Context context) {
         super(context);
         initView();
@@ -29,10 +44,26 @@ public class ChatMessageView extends ConstraintLayout {
     public ChatMessageView(Context context, @NotNull ChatMessage message) {
         super(context);
         initView();
+
         if (message.getIsResponse()) {
             makeResponse();
         }
-        setText(message.getMessage());
+        else{
+            makeRequest();
+        }
+
+        Date timestamp = new Date(message.getTime());
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("E, y-M-d h:ma");
+        date = dateFormatter.format(timestamp);
+
+        String chatMessage = message.getMessage();
+
+        String finalMessage = date + "\t" + chatMessage;
+
+        SpannableStringBuilder cs = new SpannableStringBuilder(finalMessage);
+        cs.setSpan(new SubscriptSpan(), 0, date.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        cs.setSpan(new RelativeSizeSpan(0.50f), 0, date.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        setText(cs);
     }
 
     /**
@@ -44,6 +75,7 @@ public class ChatMessageView extends ConstraintLayout {
 
     /**
      * Adjusts the styling of this chat message to be a request to the chat bot.
+     * Also adds the conversation to the history.
      */
     public void makeRequest() {
         setColor(R.color.colorChatRequest);
@@ -61,11 +93,11 @@ public class ChatMessageView extends ConstraintLayout {
     /**
      * Sets the text of the TextView object
      *
-     * @param message string to insert into the TextView
+     * @param spannableString SpannableString to insert into the TextView
      */
-    private void setText(String message) {
+    private void setText(SpannableStringBuilder spannableString) {
         TextView text = this.findViewById(R.id.chat_message_text);
-        text.setText(message);
+        text.setText(spannableString);
     }
 
     /**
@@ -85,8 +117,7 @@ public class ChatMessageView extends ConstraintLayout {
      * @param alignment the passed alignment value
      */
     private void setHorizontalAlignment(int alignment) {
-        // TODO: Remove this line. Used for testing...
-        // FIXME: This method does not appear to do anything.
+
         alignment = ConstraintSet.LEFT;
 
         int id = R.id.chat_message_text;

@@ -19,9 +19,9 @@ public class BulletinBoardFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        /**
-         * Set the text in the first row of the bulletin board. Temporarily hard-coded in until
-         * we get access to Maximo and are able to display announcements.
+        /*
+          Set the text in the first row of the bulletin board. Temporarily hard-coded in until
+          we get access to Maximo and are able to display announcements.
          */
         View view = inflater.inflate(R.layout.fragment_bulletin_board, container, false);
         TextView textView = view.findViewById(R.id.RowOne);
