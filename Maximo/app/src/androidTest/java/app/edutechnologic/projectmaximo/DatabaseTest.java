@@ -30,7 +30,7 @@ public class DatabaseTest {
         Context appContext = InstrumentationRegistry.getTargetContext();
         FeedReaderDbHelper mDbHelper = new FeedReaderDbHelper(appContext);
         SensorGaugeReaderDbHelper sDbHelper = new SensorGaugeReaderDbHelper(appContext);
-        WorkItemsDbHelper wDbHelper = new WorkItemsDbHelper(appContext);
+        WorkOrderDbHelper wDbHelper = new WorkOrderDbHelper(appContext);
         assertNotNull(mDbHelper);
         assertNotNull(sDbHelper);
         assertNotNull(wDbHelper);
