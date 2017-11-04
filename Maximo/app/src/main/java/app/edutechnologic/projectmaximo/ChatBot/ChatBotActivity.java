@@ -72,6 +72,9 @@ implements ChatTextEntryFragment.OnMessageSendListener {
             {
                     ChatBotHandler.speechToText(recordingStatus, messageBox);
                     recordingStatus = !recordingStatus;
+                    if(recordingStatus){
+                        getUserMessageAndTimeStamp();
+                    }
             }
         });
 
@@ -141,10 +144,19 @@ implements ChatTextEntryFragment.OnMessageSendListener {
     }
 
     /**
-     * This function handles bot response when send button is pressed
+     * This function is invoked when the send button is pressed. It calls another function
+     * that handles the logic for retrieving the user message and sending it to Watson.
      * @param view the view that invoked this function on being pressed
      */
     public void onSendButtonPressed(View view) {
+        getUserMessageAndTimeStamp();
+    }
+
+    /**
+     * This function extracts the user's message and timestamp and then calls another function
+     * that handles the final logic for interacting with the Watson API.
+     */
+    public void getUserMessageAndTimeStamp(){
         // Get the message from the EditText
         EditText messageBox = findViewById(R.id.messageBox);
         String message = messageBox.getText().toString();
