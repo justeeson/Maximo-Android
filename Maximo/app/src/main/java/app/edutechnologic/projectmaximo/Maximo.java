@@ -58,8 +58,8 @@ public class Maximo extends AppCompatActivity {
         values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_FIRSTNAME, "Mike");
         values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_LASTNAME, "Rowsoft");
 
-        // Insert the new row, returning the primary key value of the new row
-        long newRowId = dbWriteable.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, values);
+        // Insert the new row
+        dbWriteable.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, values);
 
         //Sensor Gauge Sensor 1
         values = new ContentValues();
@@ -69,7 +69,7 @@ public class Maximo extends AppCompatActivity {
         values.put(SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORTOTALVALUE, "500");
         values.put(SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORACTUALVALUE, "435");
 
-        newRowId = sdbWriteable.insert(SensorGaugeReaderContract.FeedEntry.TABLE_NAME, null, values);
+        sdbWriteable.insert(SensorGaugeReaderContract.FeedEntry.TABLE_NAME, null, values);
 
 
         //Sensor Gauge Sensor 2
@@ -80,7 +80,7 @@ public class Maximo extends AppCompatActivity {
         values.put(SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORTOTALVALUE, "700");
         values.put(SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORACTUALVALUE, "0");
 
-        newRowId = sdbWriteable.insert(SensorGaugeReaderContract.FeedEntry.TABLE_NAME, null, values);
+        sdbWriteable.insert(SensorGaugeReaderContract.FeedEntry.TABLE_NAME, null, values);
 
         /*
          * Get Readable versions of databases
@@ -132,7 +132,7 @@ public class Maximo extends AppCompatActivity {
         );
 
         // Read in the rows with the user cursor
-        List<String> itemIds = new ArrayList<String>();
+        List<String> itemIds = new ArrayList<>();
         while (cursor.moveToNext()) {
             String itemId = cursor.getString(
                     cursor.getColumnIndexOrThrow(FeedReaderContract.FeedEntry.COLUMN_NAME_FIRSTNAME));

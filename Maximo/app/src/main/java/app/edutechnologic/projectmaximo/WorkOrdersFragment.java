@@ -23,18 +23,18 @@ import java.util.ArrayList;
 public class WorkOrdersFragment extends Fragment {
 
     TableLayout tableLayout;
-    ArrayList<String> work_order_number = new ArrayList<String>();
-    ArrayList<String> work_order_descriptions = new ArrayList<String>();
-    ArrayList<String> work_order_assetnumbers = new ArrayList<String>();
-    ArrayList<String> work_order_locations = new ArrayList<String>();
-    ArrayList<String> work_order_reporteddates = new ArrayList<String>();
-    ArrayList<String> work_order_statuses = new ArrayList<String>();
+    ArrayList<String> work_order_number = new ArrayList<>();
+    ArrayList<String> work_order_descriptions = new ArrayList<>();
+    ArrayList<String> work_order_assetnumbers = new ArrayList<>();
+    ArrayList<String> work_order_locations = new ArrayList<>();
+    ArrayList<String> work_order_reporteddates = new ArrayList<>();
+    ArrayList<String> work_order_statuses = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_work_orders_table, container, false);
-        tableLayout = (TableLayout) view.findViewById(R.id.workOrdersTable);
+        tableLayout = view.findViewById(R.id.workOrdersTable);
 
         readData();
 //        work_order_number.add("number1");
@@ -93,10 +93,8 @@ public class WorkOrdersFragment extends Fragment {
         WorkOrderDbHelper wDbHelper = new WorkOrderDbHelper(getActivity());
         SQLiteDatabase wdbReadable = wDbHelper.getReadableDatabase();
 
-        /**
-         * read work orders
-         *
-         * */
+        // read work orders
+
         // Cursor cursor = wdbReadable.rawQuery("select " + WorkOrderContract.WorkOrderEntry.COLUMN_NAME_NUMBER + "from " + WorkOrderContract.WorkOrderEntry.TABLE_NAME, null);
         Cursor cursor = wdbReadable.rawQuery("select * from " + WorkOrderContract.WorkOrderEntry.TABLE_NAME, null);
 

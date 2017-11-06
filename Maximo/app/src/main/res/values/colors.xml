@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorChatRequest">#BFDEFF</color>
     <color name="colorChatResponse">#EAE5FF</color>
-    <color name="bg_bubble_self">#62caa6</color>
-    <color name="bg_bubble_watbot">#ecf0f1</color>
-    <color name="realwear_purple">#6426bb</color>
+    <color name="bg_bubble_self" tools:ignore="UnusedResources">#62caa6</color>
+    <color name="bg_bubble_watbot" tools:ignore="UnusedResources">#ecf0f1</color>
+    <color name="realwear_purple" tools:ignore="UnusedResources">#6426bb</color>
     <color name="realwear_gray">#d6d6d6</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="forest">#04202c</color>
@@ -15,7 +15,7 @@
     <color name="pine">#5b7065</color>
     <color name="fog">#c9d1c8</color>
     <color name="off_white">#f5f5f5</color>
-    <color name="light_grey">#e6ecf0</color>#71c5cf
-    <color name="light_blue">#71c5cf</color>
+    <color name="light_grey" tools:ignore="UnusedResources">#e6ecf0</color>#71c5cf
+    <color name="light_blue" tools:ignore="UnusedResources">#71c5cf</color>
 
 </resources>

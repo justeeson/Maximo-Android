@@ -30,7 +30,7 @@ public class ChatBotConversationHistory{
         Cursor cursor = chatDbReadable.rawQuery("select * from " + ChatBotHistoryContract.ChatBotHistoryEntry.TABLE_NAME + " order by " +
                 ChatBotHistoryContract.ChatBotHistoryEntry._ID + " asc",null);
 
-        itemIds = new ArrayList<ChatMessage>();
+        itemIds = new ArrayList<>();
         while (cursor.moveToNext()) {
 
             ChatMessage message = new ChatMessage(null);
