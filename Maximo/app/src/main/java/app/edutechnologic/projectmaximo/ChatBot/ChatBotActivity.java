@@ -24,7 +24,7 @@ import app.edutechnologic.projectmaximo.MaximoUtility;
 import app.edutechnologic.projectmaximo.R;
 
 public class ChatBotActivity extends AppCompatActivity
-implements ChatTextEntryFragment.OnMessageSendListener {
+        implements ChatTextEntryFragment.OnMessageSendListener {
     public static Activity appActivity;
     public static Context appContext;
     private android.support.v7.widget.AppCompatImageButton micButton;
@@ -68,13 +68,12 @@ implements ChatTextEntryFragment.OnMessageSendListener {
         micButton = (android.support.v7.widget.AppCompatImageButton) this.findViewById(R.id.btn_record);
         micButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                    ChatBotHandler.speechToText(recordingStatus, messageBox);
-                    recordingStatus = !recordingStatus;
-                    if(recordingStatus){
-                        getUserMessageAndTimeStamp();
-                    }
+            public void onClick(View v) {
+                ChatBotHandler.speechToText(recordingStatus, messageBox);
+                recordingStatus = !recordingStatus;
+                if (recordingStatus) {
+                    getUserMessageAndTimeStamp();
+                }
             }
         });
 
@@ -84,6 +83,7 @@ implements ChatTextEntryFragment.OnMessageSendListener {
 
     /**
      * Handles adding the message to the message history, and sending
+     *
      * @param message The text of the message being added to the chat history.
      */
     @Override
@@ -96,11 +96,11 @@ implements ChatTextEntryFragment.OnMessageSendListener {
             final String messageAsString = message.getMessage();
 
             // Add the message to the conversation history
-                ContentValues values = new ContentValues();
-                values.put(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_USERTYPE, "user");
-                values.put(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_MESSAGE, messageAsString);
-                values.put(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_TIMESTAMP, System.currentTimeMillis());
-                chatDbWriteable.insert(ChatBotHistoryContract.ChatBotHistoryEntry.TABLE_NAME, null, values);
+            ContentValues values = new ContentValues();
+            values.put(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_USERTYPE, "user");
+            values.put(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_MESSAGE, messageAsString);
+            values.put(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_TIMESTAMP, System.currentTimeMillis());
+            chatDbWriteable.insert(ChatBotHistoryContract.ChatBotHistoryEntry.TABLE_NAME, null, values);
 
             // Add message to convo history
             LinearLayout convoHistory = findViewById(R.id.chat_message_history);
@@ -109,8 +109,7 @@ implements ChatTextEntryFragment.OnMessageSendListener {
             view.setClickable(true);
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v)
-                {
+                public void onClick(View v) {
                     ChatBotHandler.textToSpeech(messageAsString);
                 }
             });
@@ -125,8 +124,7 @@ implements ChatTextEntryFragment.OnMessageSendListener {
             responseView.setClickable(true);
             responseView.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v)
-                {
+                public void onClick(View v) {
                     ChatBotHandler.textToSpeech(response);
                 }
             });
@@ -146,6 +144,7 @@ implements ChatTextEntryFragment.OnMessageSendListener {
     /**
      * This function is invoked when the send button is pressed. It calls another function
      * that handles the logic for retrieving the user message and sending it to Watson.
+     *
      * @param view the view that invoked this function on being pressed
      */
     public void onSendButtonPressed(View view) {
@@ -156,7 +155,7 @@ implements ChatTextEntryFragment.OnMessageSendListener {
      * This function extracts the user's message and timestamp and then calls another function
      * that handles the final logic for interacting with the Watson API.
      */
-    public void getUserMessageAndTimeStamp(){
+    public void getUserMessageAndTimeStamp() {
         // Get the message from the EditText
         EditText messageBox = findViewById(R.id.messageBox);
         String message = messageBox.getText().toString();
@@ -181,7 +180,7 @@ implements ChatTextEntryFragment.OnMessageSendListener {
         });
     }
 
-    public static void updateMessageBox(String text){
+    public static void updateMessageBox(String text) {
         final String messageText = text;
         UIHandler.post(new Runnable() {
             @Override
