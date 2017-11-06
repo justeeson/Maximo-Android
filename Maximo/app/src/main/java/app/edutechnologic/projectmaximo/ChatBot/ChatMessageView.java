@@ -40,8 +40,7 @@ public class ChatMessageView extends ConstraintLayout {
 
         if (message.getIsResponse()) {
             makeResponse();
-        }
-        else{
+        } else {
             makeRequest();
         }
 

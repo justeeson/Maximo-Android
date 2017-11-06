@@ -8,13 +8,12 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-import app.edutechnologic.projectmaximo.ChatBot.ChatBotHistoryContract;
 import app.edutechnologic.projectmaximo.R;
 
-class ChatBotConversationHistory{
+class ChatBotConversationHistory {
 
 
-    public static void fetchHistory(){
+    public static void fetchHistory() {
         List<ChatMessage> itemIds;
         SQLiteDatabase chatDbReadable = ChatBotActivity.chatDbHelper.getReadableDatabase();
 
@@ -28,7 +27,7 @@ class ChatBotConversationHistory{
         };
 
         Cursor cursor = chatDbReadable.rawQuery("select * from " + ChatBotHistoryContract.ChatBotHistoryEntry.TABLE_NAME + " order by " +
-                ChatBotHistoryContract.ChatBotHistoryEntry._ID + " asc",null);
+                ChatBotHistoryContract.ChatBotHistoryEntry._ID + " asc", null);
 
         itemIds = new ArrayList<>();
         while (cursor.moveToNext()) {
@@ -40,10 +39,9 @@ class ChatBotConversationHistory{
 
             String messageType = cursor.getString(
                     cursor.getColumnIndexOrThrow(ChatBotHistoryContract.ChatBotHistoryEntry.COLUMN_NAME_USERTYPE));
-            if(messageType.equals("bot")){
+            if (messageType.equals("bot")) {
                 message.setIsResponse(true);
-            }
-            else if(messageType.equals("user")){
+            } else if (messageType.equals("user")) {
                 message.setIsResponse(false);
             }
 
@@ -54,7 +52,7 @@ class ChatBotConversationHistory{
         }
         cursor.close();
 
-        for(ChatMessage message : itemIds){
+        for (ChatMessage message : itemIds) {
             final String messageAsString = message.getMessage();
             LinearLayout convoHistory = ChatBotActivity.appActivity.findViewById(R.id.chat_message_history);
             ChatMessageView view = new ChatMessageView(ChatBotActivity.appActivity, message);
@@ -62,8 +60,7 @@ class ChatBotConversationHistory{
             view.setClickable(true);
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v)
-                {
+                public void onClick(View v) {
                     ChatBotHandler.textToSpeech(messageAsString);
                 }
             });

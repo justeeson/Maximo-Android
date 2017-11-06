@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 
 import app.edutechnologic.projectmaximo.ChatBot.ChatBotHandler;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
 
 @RunWith(AndroidJUnit4.class)
 public class ChatTest {

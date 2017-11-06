@@ -21,7 +21,7 @@ public class IntentHandler {
                 // FIXME: This is now broken.
 //                ArrayList<WorkItem> workItems = Maximo.workitem_list;
 //                if (workItems != null) return "You have " + workItems.size() + " work orders.";
-                return "You have 0 work items" ;
+                return "You have 0 work items";
             }
         }
         // If is work items

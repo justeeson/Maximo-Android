@@ -5,7 +5,8 @@ import android.provider.BaseColumns;
 final class SensorGaugeReaderContract {
     // To prevent someone from accidentally instantiating the contract class,
     // make the constructor private.
-    private SensorGaugeReaderContract() {}
+    private SensorGaugeReaderContract() {
+    }
 
     /* Inner class that defines the table contents */
     public static class FeedEntry implements BaseColumns {

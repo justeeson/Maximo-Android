@@ -17,7 +17,7 @@ class SensorGaugeReaderDbHelper extends SQLiteOpenHelper {
     /**
      * This function creates the necessary database
      *
-     * @param db         the SQLiteDatabase to be created
+     * @param db the SQLiteDatabase to be created
      */
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_ENTRIES);

@@ -27,11 +27,11 @@ import app.edutechnologic.projectmaximo.MaximoUtility;
 import app.edutechnologic.projectmaximo.SpeakerLabelsDiarization;
 
 
-public class ChatBotHandler{
+public class ChatBotHandler {
 
     private static ConversationService service;
     private static String workspaceId;
-    private static Map<String,Object> contextMap;
+    private static Map<String, Object> contextMap;
     private static StreamPlayer streamPlayer;
     private static WatsonMessage responseFromWatson;
     private static SpeechToText speechToTextService;
@@ -46,7 +46,7 @@ public class ChatBotHandler{
     /**
      * This function initializes the necessary variables
      */
-    public static void initialize(){
+    public static void initialize() {
         MaximoUtility utilityClass = new MaximoUtility();
         String username = utilityClass.getConversationUsername();
         String password = utilityClass.getConversationPassword();
@@ -64,10 +64,10 @@ public class ChatBotHandler{
         microphoneHelper = new MicrophoneHelper(ChatBotActivity.appActivity);
 
         speechToTextService = new SpeechToText();
-        speechToTextService.setUsernameAndPassword(STT_username,  STT_password);
+        speechToTextService.setUsernameAndPassword(STT_username, STT_password);
         speechToTextService.setDefaultHeaders(headers);
-        Thread modelThread = new Thread(){
-            public void run(){
+        Thread modelThread = new Thread() {
+            public void run() {
                 SpeechModel model = speechToTextService.getModel("en-US_BroadbandModel").execute();
             }
         };
@@ -81,14 +81,15 @@ public class ChatBotHandler{
 
     /**
      * This function sends a string to the Watson API to get a text response
+     *
      * @param messageToWatson the string message that is being passed to Watson
-     * @return                string response from Watson API
+     * @return string response from Watson API
      */
-    public static String sendMessage(String messageToWatson){
+    public static String sendMessage(String messageToWatson) {
         final String messagedToBePassed = messageToWatson;
         responseFromWatson.setWatsonMessage("Sorry, the watson service is unavailable right now.");
-        Thread networkThread = new Thread(){
-            public void run(){
+        Thread networkThread = new Thread() {
+            public void run() {
                 try {
                     String replyFromWatson;
                     // Build and send a message to the Watson API
@@ -121,9 +122,7 @@ public class ChatBotHandler{
         networkThread.start();
         try {
             networkThread.join();
-        }
-        catch(InterruptedException e)
-        {
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
@@ -132,13 +131,15 @@ public class ChatBotHandler{
 
     /**
      * This function sends a string to the Watson API to get a voice response
+     *
      * @param messageToWatson the string message that is being passed to Watson
      */
-    public static void textToSpeech(String messageToWatson){
+    public static void textToSpeech(String messageToWatson) {
         final String message = messageToWatson;
         // Run the stream player on a separate thread to prevent resource locking
         new Thread(new Runnable() {
-            @Override public void run() {
+            @Override
+            public void run() {
                 try {
                     streamPlayer = new StreamPlayer();
                     streamPlayer.playStream(textToSpeechService.synthesize(message, Voice.EN_LISA).execute());
@@ -150,14 +151,14 @@ public class ChatBotHandler{
     }
 
     // Main logic for speech to text
-    public static void speechToText(Boolean status, EditText messageBox)
-    {
+    public static void speechToText(Boolean status, EditText messageBox) {
         Boolean listening = status;
         inputBox = messageBox;
-        if(!listening) {
+        if (!listening) {
             capture = microphoneHelper.getInputStream(true);
             new Thread(new Runnable() {
-                @Override public void run() {
+                @Override
+                public void run() {
                     try {
                         speechToTextService.recognizeUsingWebSocket(capture, getRecognizeOptions(), new MicrophoneRecognizeDelegate());
                     } catch (Exception e) {
@@ -165,11 +166,11 @@ public class ChatBotHandler{
                     }
                 }
             }).start();
-            Toast.makeText(ChatBotActivity.appContext,"Listening....Click to Stop", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ChatBotActivity.appContext, "Listening....Click to Stop", Toast.LENGTH_SHORT).show();
         } else {
             try {
                 microphoneHelper.closeInputStream();
-                Toast.makeText(ChatBotActivity.appContext,"Stopped Listening....Click to Start", Toast.LENGTH_LONG).show();
+                Toast.makeText(ChatBotActivity.appContext, "Stopped Listening....Click to Start", Toast.LENGTH_LONG).show();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -192,23 +193,26 @@ public class ChatBotHandler{
         @Override
         public void onTranscription(SpeechResults speechResults) {
             recoTokens = new SpeakerLabelsDiarization.RecoTokens();
-            if(speechResults.getResults() != null && !speechResults.getResults().isEmpty()) {
+            if (speechResults.getResults() != null && !speechResults.getResults().isEmpty()) {
                 String text = speechResults.getResults().get(0).getAlternatives().get(0).getTranscript();
-                if(text != null) {
+                if (text != null) {
                     ChatBotActivity.updateMessageBox(text);
                 }
             }
         }
 
-        @Override public void onConnected() {
+        @Override
+        public void onConnected() {
 
         }
 
-        @Override public void onError(Exception e) {
+        @Override
+        public void onError(Exception e) {
             e.printStackTrace();
         }
 
-        @Override public void onDisconnected() {
+        @Override
+        public void onDisconnected() {
 
         }
 
@@ -227,7 +231,7 @@ public class ChatBotHandler{
 
         }
     }
-    }
+}
 
 
 

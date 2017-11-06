@@ -12,7 +12,8 @@ final class WorkOrderContract {
     To prevent someone from accidentally instantiating the contract class, make the
     constructor private.
      */
-    private WorkOrderContract() {}
+    private WorkOrderContract() {
+    }
 
     //Inner class that defines the table contents
     public static class WorkOrderEntry implements BaseColumns {

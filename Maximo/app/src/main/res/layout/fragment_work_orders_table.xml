@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TableLayout
@@ -25,7 +26,7 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
-                android:textColor="@color/forest"/>
+                android:textColor="@color/forest" />
         </TableRow>
 
         <TableRow
@@ -40,7 +41,7 @@
                 android:layout_height="match_parent"
                 android:text="@string/work_order"
                 android:gravity="center"
-                android:textColor="@color/forest"/>
+                android:textColor="@color/forest" />
 
             <TextView
                 android:id="@+id/workOrderDescription"
@@ -50,7 +51,7 @@
                 android:layout_height="match_parent"
                 android:text="@string/description"
                 android:gravity="center"
-                android:textColor="@color/forest"/>
+                android:textColor="@color/forest" />
 
             <TextView
                 android:id="@+id/workOrderAssetNumber"
@@ -60,7 +61,7 @@
                 android:layout_height="match_parent"
                 android:text="@string/asset"
                 android:gravity="center"
-                android:textColor="@color/forest"/>
+                android:textColor="@color/forest" />
 
             <TextView
                 android:id="@+id/workOrderLocation"
@@ -70,7 +71,7 @@
                 android:layout_height="match_parent"
                 android:text="@string/location"
                 android:gravity="center"
-                android:textColor="@color/forest"/>
+                android:textColor="@color/forest" />
 
             <TextView
                 android:id="@+id/workOrderReportedDate"
@@ -80,7 +81,7 @@
                 android:layout_height="match_parent"
                 android:text="@string/reported_date"
                 android:gravity="center"
-                android:textColor="@color/forest"/>
+                android:textColor="@color/forest" />
 
             <TextView
                 android:id="@+id/workOrderStatus"
@@ -90,7 +91,7 @@
                 android:layout_height="match_parent"
                 android:text="@string/status"
                 android:gravity="center"
-                android:textColor="@color/forest"/>
+                android:textColor="@color/forest" />
         </TableRow>
 
     </TableLayout>

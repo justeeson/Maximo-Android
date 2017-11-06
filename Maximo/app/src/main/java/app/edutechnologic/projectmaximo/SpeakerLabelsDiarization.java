@@ -70,8 +70,8 @@ public class SpeakerLabelsDiarization {
 
         /**
          * Instantiates a new utterance
-         *  @param speaker    the speaker
          *
+         * @param speaker the speaker
          */
         public Utterance(int speaker) {
             this.speaker = speaker;
@@ -116,7 +116,7 @@ public class SpeakerLabelsDiarization {
         }
 
         /**
-         *  Add the timestamp of the record token
+         * Add the timestamp of the record token
          *
          * @param speechTimestamp the speech timestamp
          */
@@ -180,9 +180,9 @@ public class SpeakerLabelsDiarization {
         private void cleanFinal() {
             Set<Map.Entry<Double, RecoToken>> set = recoTokenMap.entrySet();
             for (Map.Entry<Double, RecoToken> e : set) {
-                    if (e.getValue().spLabelIsFinal) {
-                        recoTokenMap.remove(e.getKey());
-                    }
+                if (e.getValue().spLabelIsFinal) {
+                    recoTokenMap.remove(e.getKey());
+                }
             }
         }
 

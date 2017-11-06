@@ -44,7 +44,7 @@ public class MediaDashboardActivity extends AppCompatActivity {
     /**
      * This function populates the list with the required media assets
      */
-    private void populateMediaAssetsList(){
+    private void populateMediaAssetsList() {
         // get files' names from asset directory
         // if the file is empty, an alert message would display
         ListView media_assets_list;

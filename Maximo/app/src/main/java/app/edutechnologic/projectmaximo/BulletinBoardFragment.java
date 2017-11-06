@@ -7,8 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import app.edutechnologic.projectmaximo.R;
-
 /**
  * Created by Alex on 9/24/2017.
  * Fragment used for displaying the user's company-wide bulletin board.

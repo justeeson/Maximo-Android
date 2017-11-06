@@ -4,10 +4,10 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -62,7 +62,7 @@ public class ChatBotActivity extends AppCompatActivity
 
         messageBox = this.findViewById(R.id.messageBox);
 
-        micButton =  this.findViewById(R.id.btn_record);
+        micButton = this.findViewById(R.id.btn_record);
         micButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

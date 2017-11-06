@@ -13,7 +13,8 @@ import org.junit.runner.RunWith;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 @RunWith(AndroidJUnit4.class)
 public class DatabaseTest {
@@ -55,7 +56,7 @@ public class DatabaseTest {
 
         // Filter results WHERE "title" = 'My Title'
         String selection = FeedReaderContract.FeedEntry.COLUMN_NAME_FIRSTNAME + " = ?";
-        String[] selectionArgs = { "Mike" };
+        String[] selectionArgs = {"Mike"};
 
         // How you want the results sorted in the resulting Cursor
         String sortOrder =

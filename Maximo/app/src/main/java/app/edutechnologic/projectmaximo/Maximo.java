@@ -42,7 +42,6 @@ public class Maximo extends AppCompatActivity {
         SensorGaugeReaderDbHelper sDbHelper = new SensorGaugeReaderDbHelper(getApplicationContext());
 
 
-
         // Gets the data repository in write mode
         SQLiteDatabase dbWriteable = mDbHelper.getWritableDatabase();
         SQLiteDatabase sdbWriteable = sDbHelper.getWritableDatabase();
@@ -104,7 +103,7 @@ public class Maximo extends AppCompatActivity {
           */
         //Look for users with first name = Mike
         String selection = FeedReaderContract.FeedEntry.COLUMN_NAME_FIRSTNAME + " = ?";
-        String[] selectionArgs = { "Mike" };
+        String[] selectionArgs = {"Mike"};
 
         // How you want the results sorted in the resulting user cursor
         String sortOrder =
@@ -132,14 +131,14 @@ public class Maximo extends AppCompatActivity {
         userIdentity = " " + itemIds.get(0);
 
         //sensor gauge cursor
-        Cursor  sensorGaugeCursor = sdbReadable.rawQuery("select * from "+SensorGaugeReaderContract.FeedEntry.TABLE_NAME, null);
+        Cursor sensorGaugeCursor = sdbReadable.rawQuery("select * from " + SensorGaugeReaderContract.FeedEntry.TABLE_NAME, null);
 
         // Read in the rows with the sensor gauge cursor
-        sensorGaugeNames = new ArrayList<> ();
-        sensorGaugeOpStatuses = new ArrayList<> ();
-        sensorGaugeTotalVals = new ArrayList<> ();
-        sensorGaugeActualVals = new ArrayList<> ();
-        while(sensorGaugeCursor.moveToNext()) {
+        sensorGaugeNames = new ArrayList<>();
+        sensorGaugeOpStatuses = new ArrayList<>();
+        sensorGaugeTotalVals = new ArrayList<>();
+        sensorGaugeActualVals = new ArrayList<>();
+        while (sensorGaugeCursor.moveToNext()) {
             //Add in sensor names, operational status, total value, and actual values to
             //appropriate list
             String sensorGaugeName = sensorGaugeCursor.getString(

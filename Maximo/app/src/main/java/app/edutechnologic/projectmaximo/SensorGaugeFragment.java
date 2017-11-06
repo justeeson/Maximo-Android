@@ -31,7 +31,7 @@ public class SensorGaugeFragment extends Fragment {
             animate the sensor gauge (sensor gauge value is between 0-100). In this case we are
             showing the values for sensor 1 (index 0).
          */
-        int sensorValuePercentage = (Maximo.sensorGaugeActualVals.get(0)*100)/Maximo.sensorGaugeTotalVals.get(0);
+        int sensorValuePercentage = (Maximo.sensorGaugeActualVals.get(0) * 100) / Maximo.sensorGaugeTotalVals.get(0);
         gauge.setValue(sensorValuePercentage);
 
         //Display the name and actual value for the sensor
