@@ -39,6 +39,9 @@
         <activity android:name=".WorkOrdersActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity android:name=".WorkOrderTasksActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>
