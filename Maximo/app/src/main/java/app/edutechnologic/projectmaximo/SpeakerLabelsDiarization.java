@@ -16,8 +16,8 @@ import java.util.concurrent.CountDownLatch;
 
 public class SpeakerLabelsDiarization {
     public static class RecoToken {
-        private Double startTime;
-        private Double endTime;
+        private final Double startTime;
+        private final Double endTime;
         private Integer speaker;
         private String word;
         private Boolean spLabelIsFinal;
@@ -65,24 +65,23 @@ public class SpeakerLabelsDiarization {
 
 
     public static class Utterance {
-        private Integer speaker;
+        private final Integer speaker;
         private String transcript = "";
 
         /**
          * Instantiates a new utterance
+         *  @param speaker    the speaker
          *
-         * @param speaker    the speaker
-         * @param transcript the transcript
          */
-        public Utterance(int speaker, String transcript) {
+        public Utterance(int speaker) {
             this.speaker = speaker;
-            this.transcript = transcript;
+            this.transcript = "";
         }
     }
 
     public static class RecoTokens {
 
-        private Map<Double, RecoToken> recoTokenMap;
+        private final Map<Double, RecoToken> recoTokenMap;
 
         /**
          * Instantiates a new reco tokens
@@ -163,12 +162,12 @@ public class SpeakerLabelsDiarization {
 
         public void report() {
             List<Utterance> uttterances = new ArrayList<>();
-            Utterance currentUtterance = new Utterance(0, "");
+            Utterance currentUtterance = new Utterance(0);
 
             for (RecoToken rt : recoTokenMap.values()) {
                 if (!currentUtterance.speaker.equals(rt.speaker)) {
                     uttterances.add(currentUtterance);
-                    currentUtterance = new Utterance(rt.speaker, "");
+                    currentUtterance = new Utterance(rt.speaker);
                 }
                 currentUtterance.transcript = (new StringBuffer()).append(currentUtterance.transcript).append(rt.word).append(" ").toString();
             }

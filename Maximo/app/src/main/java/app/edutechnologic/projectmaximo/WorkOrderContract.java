@@ -7,7 +7,7 @@ import android.provider.BaseColumns;
  * Contract for the work orders database table.
  */
 
-public final class WorkOrderContract {
+final class WorkOrderContract {
     /*
     To prevent someone from accidentally instantiating the contract class, make the
     constructor private.

@@ -1,34 +1,27 @@
 package app.edutechnologic.projectmaximo.ChatBot;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.support.v4.content.ContextCompat;
-import android.text.Html;
 import android.text.Spannable;
-import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.SubscriptSpan;
-import android.text.style.SuperscriptSpan;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import app.edutechnologic.projectmaximo.FeedReaderContract;
 import app.edutechnologic.projectmaximo.R;
 
 /**
  * View which represents a chat layout.
  */
 public class ChatMessageView extends ConstraintLayout {
-    private String date;
 
     public ChatMessageView(Context context) {
         super(context);
@@ -54,7 +47,7 @@ public class ChatMessageView extends ConstraintLayout {
 
         Date timestamp = new Date(message.getTime());
         SimpleDateFormat dateFormatter = new SimpleDateFormat("E, y-M-d h:ma");
-        date = dateFormatter.format(timestamp);
+        String date = dateFormatter.format(timestamp);
 
         String chatMessage = message.getMessage();
 
@@ -77,9 +70,9 @@ public class ChatMessageView extends ConstraintLayout {
      * Adjusts the styling of this chat message to be a request to the chat bot.
      * Also adds the conversation to the history.
      */
-    public void makeRequest() {
+    private void makeRequest() {
         setColor(R.color.colorChatRequest);
-        setHorizontalAlignment(ConstraintSet.RIGHT);
+        setHorizontalAlignment();
     }
 
     /**
@@ -87,7 +80,7 @@ public class ChatMessageView extends ConstraintLayout {
      */
     public void makeResponse() {
         setColor(R.color.colorChatResponse);
-        setHorizontalAlignment(ConstraintSet.LEFT);
+        setHorizontalAlignment();
     }
 
     /**
@@ -113,12 +106,10 @@ public class ChatMessageView extends ConstraintLayout {
 
     /**
      * Sets the alignment of the chat view
-     *
-     * @param alignment the passed alignment value
      */
-    private void setHorizontalAlignment(int alignment) {
+    private void setHorizontalAlignment() {
 
-        alignment = ConstraintSet.LEFT;
+        int alignment = ConstraintSet.LEFT;
 
         int id = R.id.chat_message_text;
 

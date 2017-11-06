@@ -1,24 +1,17 @@
 package app.edutechnologic.projectmaximo;
 
-import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.Bundle;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
-import android.view.View;
-import android.widget.Button;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
-
-import app.edutechnologic.projectmaximo.ChatBot.ChatBotHandler;
 
 import static org.junit.Assert.*;
 

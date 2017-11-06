@@ -9,13 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.edutechnologic.projectmaximo.ChatBot.ChatBotHistoryContract;
-import app.edutechnologic.projectmaximo.FeedReaderContract;
 import app.edutechnologic.projectmaximo.R;
 
-public class ChatBotConversationHistory{
-    private static List<ChatMessage> itemIds;
+class ChatBotConversationHistory{
+
 
     public static void fetchHistory(){
+        List<ChatMessage> itemIds;
         SQLiteDatabase chatDbReadable = ChatBotActivity.chatDbHelper.getReadableDatabase();
 
         // Define a projection that specifies which columns from the database

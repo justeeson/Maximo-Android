@@ -2,7 +2,7 @@ package app.edutechnologic.projectmaximo;
 
 import android.provider.BaseColumns;
 
-public final class SensorGaugeReaderContract {
+final class SensorGaugeReaderContract {
     // To prevent someone from accidentally instantiating the contract class,
     // make the constructor private.
     private SensorGaugeReaderContract() {}

@@ -11,11 +11,7 @@ import android.widget.ListView;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static java.lang.System.in;
-
 public class MediaDashboardActivity extends AppCompatActivity {
-
-    private ListView media_assets_list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,13 +44,13 @@ public class MediaDashboardActivity extends AppCompatActivity {
     /**
      * This function populates the list with the required media assets
      */
-    public void populateMediaAssetsList(){
+    private void populateMediaAssetsList(){
         // get files' names from asset directory
         // if the file is empty, an alert message would display
+        ListView media_assets_list;
         String[] list, final_media_assets = {"No available media asset!"};
         ArrayList<String> media_assets = new ArrayList<>();
         @SuppressWarnings("MismatchedQueryAndUpdateOfCollection") ArrayList<String> filetype = new ArrayList<>();
-        ArrayList<String> size = new ArrayList<>();
         try {
             AssetManager assetManager = getAssets();
             list = assetManager.list("");
@@ -63,7 +59,6 @@ public class MediaDashboardActivity extends AppCompatActivity {
                 for (String item : list) {
                     if (!item.equals("images") && !item.equals("sounds") && !item.equals("webkit")) {
                         //put filename in {media_assets}
-                        String file = item;
                         media_assets.add(item.substring(0, item.indexOf('.')));
                         //put filetype in {filetype}
                         filetype.add(item.substring(item.indexOf('.') + 1, item.length()));

@@ -18,31 +18,19 @@ import com.ibm.watson.developer_cloud.speech_to_text.v1.websocket.RecognizeCallb
 import com.ibm.watson.developer_cloud.text_to_speech.v1.TextToSpeech;
 import com.ibm.watson.developer_cloud.text_to_speech.v1.model.Voice;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import app.edutechnologic.projectmaximo.ChatBot.Response.IntentHandler;
-import app.edutechnologic.projectmaximo.Maximo;
 import app.edutechnologic.projectmaximo.MaximoUtility;
-import app.edutechnologic.projectmaximo.R;
 import app.edutechnologic.projectmaximo.SpeakerLabelsDiarization;
 
 
 public class ChatBotHandler{
 
     private static ConversationService service;
-    private static String username;
-    private static String password;
-    private static String TTS_username;
-    private static String TTS_password;
-    private static String STT_username;
-    private static String STT_password;
     private static String workspaceId;
-    private static boolean listening = false;
     private static Map<String,Object> contextMap;
     private static StreamPlayer streamPlayer;
     private static WatsonMessage responseFromWatson;
@@ -60,15 +48,15 @@ public class ChatBotHandler{
      */
     public static void initialize(){
         MaximoUtility utilityClass = new MaximoUtility();
-        username = utilityClass.getConversationUsername();
-        password = utilityClass.getConversationPassword();
-        TTS_username = utilityClass.getTTSUsername();
-        TTS_password = utilityClass.getTTSPassword();
-        STT_username = utilityClass.getSTTUsername();
-        STT_password = utilityClass.getSTTPassword();
-        workspaceId = utilityClass.getWorkspaceID();
+        String username = utilityClass.getConversationUsername();
+        String password = utilityClass.getConversationPassword();
+        String TTS_username = utilityClass.getTTSUsername();
+        String TTS_password = utilityClass.getTTSPassword();
+        String STT_username = utilityClass.getSTTUsername();
+        String STT_password = utilityClass.getSTTPassword();
+        String workspaceId = utilityClass.getWorkspaceID();
 
-        service = new ConversationService(ConversationService.VERSION_DATE_2017_02_03);
+        ConversationService service = new ConversationService(ConversationService.VERSION_DATE_2017_02_03);
         service.setUsernameAndPassword(username, password);
         contextMap = new HashMap<>();
         responseFromWatson = new WatsonMessage();
@@ -164,9 +152,9 @@ public class ChatBotHandler{
     // Main logic for speech to text
     public static void speechToText(Boolean status, EditText messageBox)
     {
+        Boolean listening = status;
         inputBox = messageBox;
-        listening = status;
-        if(listening != true) {
+        if(!listening) {
             capture = microphoneHelper.getInputStream(true);
             new Thread(new Runnable() {
                 @Override public void run() {
@@ -177,17 +165,14 @@ public class ChatBotHandler{
                     }
                 }
             }).start();
-            listening = true;
             Toast.makeText(ChatBotActivity.appContext,"Listening....Click to Stop", Toast.LENGTH_SHORT).show();
         } else {
             try {
                 microphoneHelper.closeInputStream();
-                listening = false;
                 Toast.makeText(ChatBotActivity.appContext,"Stopped Listening....Click to Start", Toast.LENGTH_LONG).show();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
     }
 

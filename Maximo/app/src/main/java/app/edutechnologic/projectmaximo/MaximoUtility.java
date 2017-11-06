@@ -1,16 +1,14 @@
 package app.edutechnologic.projectmaximo;
 
 
-import android.app.Activity;
-
 public class MaximoUtility{
-    private String conversation_username;
-    private String conversation_password;
-    private String TTS_username;
-    private String TTS_password;
-    private String STT_username;
-    private String STT_password;
-    private String workspace_id;
+    private final String conversation_username;
+    private final String conversation_password;
+    private final String TTS_username;
+    private final String TTS_password;
+    private final String STT_username;
+    private final String STT_password;
+    private final String workspace_id;
 
     public MaximoUtility(){
         conversation_username = "3072f50f-4f30-424d-83a4-1a3cd970a4af";

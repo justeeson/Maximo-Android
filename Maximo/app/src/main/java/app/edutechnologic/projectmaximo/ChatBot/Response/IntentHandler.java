@@ -3,10 +3,7 @@ package app.edutechnologic.projectmaximo.ChatBot.Response;
 import com.ibm.watson.developer_cloud.conversation.v1.model.Intent;
 import com.ibm.watson.developer_cloud.conversation.v1.model.MessageResponse;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import app.edutechnologic.projectmaximo.Maximo;
 
 /**
  * Class for generating response to a user's intent.
@@ -40,12 +37,5 @@ public class IntentHandler {
     // This would allow the pogram to execute an action provider through setting.
     // SetActionProviderr
 
-    public static ActionPovider getActionProvider() {
-        return actionProvider;
-    }
-
-    public static void setActionProvider(ActionPovider actionProvider) {
-        IntentHandler.actionProvider = actionProvider;
-    }
 }
 

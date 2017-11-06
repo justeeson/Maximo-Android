@@ -1,9 +1,11 @@
 package app.edutechnologic.projectmaximo;
 
+import android.annotation.TargetApi;
 import android.app.Fragment;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -20,16 +22,18 @@ import java.util.ArrayList;
  * Fragment used for displaying the work orders table.
  */
 
+@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class WorkOrdersFragment extends Fragment {
 
-    TableLayout tableLayout;
-    ArrayList<String> work_order_number = new ArrayList<>();
-    ArrayList<String> work_order_descriptions = new ArrayList<>();
-    ArrayList<String> work_order_assetnumbers = new ArrayList<>();
-    ArrayList<String> work_order_locations = new ArrayList<>();
-    ArrayList<String> work_order_reporteddates = new ArrayList<>();
-    ArrayList<String> work_order_statuses = new ArrayList<>();
+    private TableLayout tableLayout;
+    private final ArrayList<String> work_order_number = new ArrayList<>();
+    private final ArrayList<String> work_order_descriptions = new ArrayList<>();
+    private final ArrayList<String> work_order_assetnumbers = new ArrayList<>();
+    private final ArrayList<String> work_order_locations = new ArrayList<>();
+    private final ArrayList<String> work_order_reporteddates = new ArrayList<>();
+    private final ArrayList<String> work_order_statuses = new ArrayList<>();
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -89,7 +93,8 @@ public class WorkOrdersFragment extends Fragment {
         return view;
     }
 
-    public void readData() {
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    private void readData() {
         WorkOrderDbHelper wDbHelper = new WorkOrderDbHelper(getActivity());
         SQLiteDatabase wdbReadable = wDbHelper.getReadableDatabase();
 

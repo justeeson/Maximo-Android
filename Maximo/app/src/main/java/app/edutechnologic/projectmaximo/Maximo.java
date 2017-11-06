@@ -2,8 +2,6 @@ package app.edutechnologic.projectmaximo;
 
 
 import android.content.ContentValues;
-import android.content.Context;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -16,8 +14,6 @@ import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import app.edutechnologic.projectmaximo.ChatBot.ChatBotHandler;
 
 public class Maximo extends AppCompatActivity {
     public static String userIdentity = "";
@@ -93,6 +89,7 @@ public class Maximo extends AppCompatActivity {
          * Define a projection that specifies which columns from the database
          * you will actually use after this query.
          */
+
         //User table
         String[] projection = {
                 FeedReaderContract.FeedEntry._ID,
@@ -100,15 +97,6 @@ public class Maximo extends AppCompatActivity {
                 FeedReaderContract.FeedEntry.COLUMN_NAME_USERNAME,
                 FeedReaderContract.FeedEntry.COLUMN_NAME_FIRSTNAME,
                 FeedReaderContract.FeedEntry.COLUMN_NAME_LASTNAME
-        };
-        //Sensor Gauge table
-        String[] sensorGaugeProjection = {
-                SensorGaugeReaderContract.FeedEntry._ID,
-                SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORID,
-                SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORNAME,
-                SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORSTATUS,
-                SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORTOTALVALUE,
-                SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORACTUALVALUE
         };
 
         /*

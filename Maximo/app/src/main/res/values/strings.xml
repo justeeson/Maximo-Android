@@ -1,26 +1,28 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="app_name">ProjectMaximo</string>
     <string name="action_settings">Settings</string>
     <string name="introduction">Good %1$s%2$s!</string>
     <string name="edit_message">Enter a message</string>
     <string name="button_send">Send</string>
-    <string name="bot_query_hint" tools:ignore="UnusedResources">Enter query here...</string>
-    <string name="edit_text_hint" tools:ignore="UnusedResources">Enter your query here...</string>
     <string name="inbox_header">Inbox</string>
     <string name="bulletin_board_header">Bulletin Board</string>
     <string name="empty_inbox">There currently are no messages for %1$s.</string>
     <string name="empty_bulletin_board">There are currently no messages on the bulletin board.</string>
-    <string name="what_s_on_your_mind" tools:ignore="UnusedResources">Enter your query</string>
     <string name="val">%1$d\nRPM</string>
-    <string name="empty_string" tools:ignore="UnusedResources">%1$s</string>
     <string name="hello_blank_fragment">Hello, blank fragment.</string>
-    <string name="sensor" tools:ignore="UnusedResources">"Sensor"</string>
-    <string name="status" tools:ignore="UnusedResources">"Status"</string>
     <string name="swipe_left">Swipe Left</string>
     <string name="swipe_right">Swipe Right</string>
     <string name="go_home">Go Home</string>
     <string name="home">Home</string>
     <string name="work_orders">Work Orders</string>
+    <string name="work_order">Work Order</string>
     <string name="chatbot">Chatbot</string>
     <string name="chat">Chat</string>
+    <string name="media_assets">Media Assets</string>
+    <string name="description">Description</string>
+    <string name="asset">Asset</string>
+    <string name="location">Location</string>
+    <string name="reported_date">Reported Date</string>
+    <string name="status">Status</string>
+    <string name="textview">TextView</string>
 </resources>

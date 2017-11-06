@@ -13,26 +13,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
-import android.widget.Toast;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.GregorianCalendar;
 
 import app.edutechnologic.projectmaximo.BottomMenuBar;
-import app.edutechnologic.projectmaximo.MaximoUtility;
 import app.edutechnologic.projectmaximo.R;
 
 public class ChatBotActivity extends AppCompatActivity
         implements ChatTextEntryFragment.OnMessageSendListener {
     public static Activity appActivity;
     public static Context appContext;
-    private android.support.v7.widget.AppCompatImageButton micButton;
     private Boolean recordingStatus = false;
-    public static EditText messageBox;
+    private static EditText messageBox;
     public static ChatBotHistoryDbHelper chatDbHelper;
-    public static SQLiteDatabase chatDbWriteable;
-    public static Handler UIHandler = new Handler(Looper.getMainLooper());
+    private static SQLiteDatabase chatDbWriteable;
+    private static final Handler UIHandler = new Handler(Looper.getMainLooper());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +37,8 @@ public class ChatBotActivity extends AppCompatActivity
         setContentView(R.layout.activity_chat_bot);
         appActivity = this;
         appContext = getApplicationContext();
-        ChatBotHandler.initialize();
+
+        android.support.v7.widget.AppCompatImageButton micButton;
 
         //Set up the database for chat bot message history
         chatDbHelper = new ChatBotHistoryDbHelper(getApplicationContext());
@@ -70,12 +68,12 @@ public class ChatBotActivity extends AppCompatActivity
             public void onClick(View v) {
                 ChatBotHandler.speechToText(recordingStatus, messageBox);
                 recordingStatus = !recordingStatus;
-                if (recordingStatus) {
+                if (!recordingStatus) {
                     getUserMessageAndTimeStamp();
                 }
             }
         });
-
+        ChatBotHandler.initialize();
         ChatBotConversationHistory.fetchHistory();
         this.scrollToMostRecentMessage();
     }
@@ -154,7 +152,7 @@ public class ChatBotActivity extends AppCompatActivity
      * This function extracts the user's message and timestamp and then calls another function
      * that handles the final logic for interacting with the Watson API.
      */
-    public void getUserMessageAndTimeStamp() {
+    private void getUserMessageAndTimeStamp() {
         // Get the message from the EditText
         EditText messageBox = findViewById(R.id.messageBox);
         String message = messageBox.getText().toString();

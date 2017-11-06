@@ -18,7 +18,7 @@
                 android:id="@+id/workOrdersHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Work Orders"
+                android:text="@string/work_orders"
                 android:textSize="25sp"
                 android:gravity="center"
                 android:layout_marginBottom="4dp"
@@ -38,7 +38,7 @@
                 android:layout_weight="1"
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
-                android:text="Work Order"
+                android:text="@string/work_order"
                 android:gravity="center"
                 android:textColor="@color/forest"/>
 
@@ -48,7 +48,7 @@
                 android:layout_weight="1"
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
-                android:text="Description"
+                android:text="@string/description"
                 android:gravity="center"
                 android:textColor="@color/forest"/>
 
@@ -58,7 +58,7 @@
                 android:layout_weight="1"
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
-                android:text="Asset"
+                android:text="@string/asset"
                 android:gravity="center"
                 android:textColor="@color/forest"/>
 
@@ -68,7 +68,7 @@
                 android:layout_weight="1"
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
-                android:text="Location"
+                android:text="@string/location"
                 android:gravity="center"
                 android:textColor="@color/forest"/>
 
@@ -78,7 +78,7 @@
                 android:layout_weight="1"
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
-                android:text="Reported Date"
+                android:text="@string/reported_date"
                 android:gravity="center"
                 android:textColor="@color/forest"/>
 
@@ -88,7 +88,7 @@
                 android:layout_weight="1"
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
-                android:text="Status"
+                android:text="@string/status"
                 android:gravity="center"
                 android:textColor="@color/forest"/>
         </TableRow>
