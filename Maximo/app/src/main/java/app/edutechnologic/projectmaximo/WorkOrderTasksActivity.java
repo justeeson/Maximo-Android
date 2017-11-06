@@ -1,11 +1,13 @@
 package app.edutechnologic.projectmaximo;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 /**
  * Created by Alex on 11/5/2017.
@@ -18,6 +20,13 @@ public class WorkOrderTasksActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_work_order_tasks);
+
+        // Get the Intent that started this activity and extract the string
+        Intent intent = getIntent();
+        String workOrderNumber = intent.getStringExtra("num");
+        //Set the text at the top of the page
+        TextView header = findViewById(R.id.workOrderTasksHeader);
+        header.setText(getString(R.string.work_order_number, workOrderNumber));
 
         // Gets the data repository in write mode
         WorkOrderTaskDbHelper DbHelper = new WorkOrderTaskDbHelper(getApplicationContext());
@@ -70,6 +79,9 @@ public class WorkOrderTasksActivity extends AppCompatActivity {
         final Button backButton = findViewById(R.id.back_btn);
         backButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                //return to the work orders dashboard
+                Intent intent = new Intent(v.getContext(), WorkOrdersActivity.class);
+                startActivity(intent);
             }
         });
 
