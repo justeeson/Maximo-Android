@@ -40,7 +40,6 @@ implements ChatTextEntryFragment.OnMessageSendListener {
         setContentView(R.layout.activity_chat_bot);
         appActivity = this;
         appContext = getApplicationContext();
-        MaximoUtility.initialize();
         ChatBotHandler.initialize();
 
         //Set up the database for chat bot message history
@@ -63,9 +62,9 @@ implements ChatTextEntryFragment.OnMessageSendListener {
             }
         });
 
-        messageBox = (EditText) this.findViewById(R.id.messageBox);
+        messageBox = this.findViewById(R.id.messageBox);
 
-        micButton = (android.support.v7.widget.AppCompatImageButton) this.findViewById(R.id.btn_record);
+        micButton =  this.findViewById(R.id.btn_record);
         micButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)

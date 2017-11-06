@@ -16,11 +16,8 @@ public class InboxFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        /**
-         * Set the text in the first row of the inbox. Temporarily hard-coded in until
-         * we get access to Maximo and are able to display messages.
-         */
+        // Set the text in the first row of the inbox. Temporarily hard-coded in until
+        // we get access to Maximo and are able to display messages.
         View view = inflater.inflate(R.layout.fragment_inbox, container, false);
         TextView textView = view.findViewById(R.id.RowOne);
         textView.setText(getString(R.string.empty_inbox, Maximo.userIdentity));

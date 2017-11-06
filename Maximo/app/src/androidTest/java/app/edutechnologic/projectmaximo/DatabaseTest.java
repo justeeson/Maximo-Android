@@ -79,7 +79,7 @@ public class DatabaseTest {
         );
 
         // Read in the rows with the cursor
-        List<String> itemIds = new ArrayList<String>();
+        List<String> itemIds = new ArrayList<>();
         while (cursor.moveToNext()) {
             String itemId = cursor.getString(
                     cursor.getColumnIndexOrThrow(FeedReaderContract.FeedEntry.COLUMN_NAME_FIRSTNAME));

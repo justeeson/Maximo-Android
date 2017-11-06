@@ -29,7 +29,6 @@ public class ChatTest {
 
     @Test
     public void sendMessageTest() throws Exception {
-        MaximoUtility.initialize();
         ChatBotHandler.initialize();
         assertNotNull(ChatBotHandler.sendMessage("Hello"));
     }

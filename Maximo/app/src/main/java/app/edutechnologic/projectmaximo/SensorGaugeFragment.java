@@ -19,9 +19,7 @@ public class SensorGaugeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        /**
-         * Set the value for the sensor gauge.
-         */
+        // Set the value for the sensor gauge.
         View view = inflater.inflate(R.layout.fragment_sensor_gauge, container, false);
         //find views that will be updated (find by ID set in XML doc)
         CustomGauge gauge = view.findViewById(R.id.gauge);

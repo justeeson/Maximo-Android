@@ -74,7 +74,7 @@ public class SpeakerLabelsDiarization {
          * @param speaker    the speaker
          * @param transcript the transcript
          */
-        public Utterance(final Integer speaker, final String transcript) {
+        public Utterance(int speaker, String transcript) {
             this.speaker = speaker;
             this.transcript = transcript;
         }
@@ -88,7 +88,7 @@ public class SpeakerLabelsDiarization {
          * Instantiates a new reco tokens
          */
         public RecoTokens() {
-            recoTokenMap = new LinkedHashMap<Double, RecoToken>();
+            recoTokenMap = new LinkedHashMap<>();
         }
 
         /**
@@ -153,7 +153,7 @@ public class SpeakerLabelsDiarization {
         }
 
         private void markTokensBeforeAsFinal(Double from) {
-            Map<Double, RecoToken> recoTokenMap = new LinkedHashMap<>();
+            @SuppressWarnings("MismatchedQueryAndUpdateOfCollection") Map<Double, RecoToken> recoTokenMap = new LinkedHashMap<>();
 
             for (RecoToken rt : recoTokenMap.values()) {
                 if (rt.startTime <= from)
@@ -162,15 +162,15 @@ public class SpeakerLabelsDiarization {
         }
 
         public void report() {
-            List<Utterance> uttterances = new ArrayList<Utterance>();
+            List<Utterance> uttterances = new ArrayList<>();
             Utterance currentUtterance = new Utterance(0, "");
 
             for (RecoToken rt : recoTokenMap.values()) {
-                if (currentUtterance.speaker != rt.speaker) {
+                if (!currentUtterance.speaker.equals(rt.speaker)) {
                     uttterances.add(currentUtterance);
                     currentUtterance = new Utterance(rt.speaker, "");
                 }
-                currentUtterance.transcript = currentUtterance.transcript + rt.word + " ";
+                currentUtterance.transcript = (new StringBuffer()).append(currentUtterance.transcript).append(rt.word).append(" ").toString();
             }
             uttterances.add(currentUtterance);
 

@@ -50,7 +50,7 @@ public class ChatBotHandler{
     private static MicrophoneInputStream capture;
     private static TextToSpeech textToSpeechService;
     private static SpeakerLabelsDiarization.RecoTokens recoTokens;
-    private static Map<String, String> headers = new HashMap<String, String>();
+    private static Map<String, String> headers = new HashMap<>();
     private static MicrophoneHelper microphoneHelper;
     private static EditText inputBox;
 
@@ -59,13 +59,14 @@ public class ChatBotHandler{
      * This function initializes the necessary variables
      */
     public static void initialize(){
-        username = MaximoUtility.conversation_username;
-        password = MaximoUtility.conversation_password;
-        TTS_username = MaximoUtility.TTS_username;
-        TTS_password = MaximoUtility.TTS_password;
-        STT_username = MaximoUtility.STT_username;
-        STT_password = MaximoUtility.STT_password;
-        workspaceId = MaximoUtility.workspace_id;
+        MaximoUtility utilityClass = new MaximoUtility();
+        username = utilityClass.getConversationUsername();
+        password = utilityClass.getConversationPassword();
+        TTS_username = utilityClass.getTTSUsername();
+        TTS_password = utilityClass.getTTSPassword();
+        STT_username = utilityClass.getSTTUsername();
+        STT_password = utilityClass.getSTTPassword();
+        workspaceId = utilityClass.getWorkspaceID();
 
         service = new ConversationService(ConversationService.VERSION_DATE_2017_02_03);
         service.setUsernameAndPassword(username, password);
@@ -73,7 +74,6 @@ public class ChatBotHandler{
         responseFromWatson = new WatsonMessage();
 
         microphoneHelper = new MicrophoneHelper(ChatBotActivity.appActivity);
-
 
         speechToTextService = new SpeechToText();
         speechToTextService.setUsernameAndPassword(STT_username,  STT_password);
@@ -102,7 +102,7 @@ public class ChatBotHandler{
         Thread networkThread = new Thread(){
             public void run(){
                 try {
-                    String replyFromWatson = "";
+                    String replyFromWatson;
                     // Build and send a message to the Watson API
                     MessageRequest newMessage = new MessageRequest.Builder()
                             .inputText(messagedToBePassed)
