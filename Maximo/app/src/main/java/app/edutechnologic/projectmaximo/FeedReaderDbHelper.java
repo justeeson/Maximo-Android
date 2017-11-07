@@ -5,10 +5,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 
-public class FeedReaderDbHelper extends SQLiteOpenHelper {
+class FeedReaderDbHelper extends SQLiteOpenHelper {
     // If you change the database schema, you must increment the database version.
-    public static final int DATABASE_VERSION = 4;
-    public static final String DATABASE_NAME = "FeedReader.db";
+    private static final int DATABASE_VERSION = 4;
+    private static final String DATABASE_NAME = "FeedReader.db";
 
     public FeedReaderDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -49,7 +49,7 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
     }
 
     // This string is used to create the columns in the database
-    public static final String SQL_CREATE_ENTRIES =
+    private static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + FeedReaderContract.FeedEntry.TABLE_NAME + " (" +
                     FeedReaderContract.FeedEntry._ID + " INTEGER PRIMARY KEY," +
                     FeedReaderContract.FeedEntry.COLUMN_NAME_USERID + " INTEGER UNIQUE," +
@@ -58,6 +58,6 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
                     FeedReaderContract.FeedEntry.COLUMN_NAME_LASTNAME + " TEXT)";
 
     // This string is used to delete the columns in the database
-    public static final String SQL_DELETE_ENTRIES =
+    private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + FeedReaderContract.FeedEntry.TABLE_NAME;
 }

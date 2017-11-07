@@ -1,10 +1,12 @@
 package app.edutechnologic.projectmaximo;
 
+import android.annotation.TargetApi;
 import android.app.Fragment;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
@@ -24,21 +26,23 @@ import java.util.ArrayList;
  * Fragment used for displaying the work orders table.
  */
 
+@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class WorkOrdersFragment extends Fragment {
 
-    TableLayout tableLayout;
-    ArrayList<String> work_order_number = new ArrayList<String>();
-    ArrayList<String> work_order_descriptions = new ArrayList<String>();
-    ArrayList<String> work_order_assetnumbers = new ArrayList<String>();
-    ArrayList<String> work_order_locations = new ArrayList<String>();
-    ArrayList<String> work_order_reporteddates = new ArrayList<String>();
-    ArrayList<String> work_order_statuses = new ArrayList<String>();
+    private TableLayout tableLayout;
+    private final ArrayList<String> work_order_number = new ArrayList<>();
+    private final ArrayList<String> work_order_descriptions = new ArrayList<>();
+    private final ArrayList<String> work_order_assetnumbers = new ArrayList<>();
+    private final ArrayList<String> work_order_locations = new ArrayList<>();
+    private final ArrayList<String> work_order_reporteddates = new ArrayList<>();
+    private final ArrayList<String> work_order_statuses = new ArrayList<>();
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_work_orders_table, container, false);
-        tableLayout = (TableLayout) view.findViewById(R.id.workOrdersTable);
+        tableLayout = view.findViewById(R.id.workOrdersTable);
 
         readData();
 
@@ -111,10 +115,8 @@ public class WorkOrdersFragment extends Fragment {
         WorkOrderDbHelper wDbHelper = new WorkOrderDbHelper(getActivity());
         SQLiteDatabase wdbReadable = wDbHelper.getReadableDatabase();
 
-        /**
-         * read work orders
-         *
-         * */
+        // read work orders
+
         // Cursor cursor = wdbReadable.rawQuery("select " + WorkOrderContract.WorkOrderEntry.COLUMN_NAME_NUMBER + "from " + WorkOrderContract.WorkOrderEntry.TABLE_NAME, null);
         Cursor cursor = wdbReadable.rawQuery("select * from " + WorkOrderContract.WorkOrderEntry.TABLE_NAME, null);
 

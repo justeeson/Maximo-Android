@@ -2,8 +2,6 @@ package app.edutechnologic.projectmaximo;
 
 
 import android.content.ContentValues;
-import android.content.Context;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -16,8 +14,6 @@ import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import app.edutechnologic.projectmaximo.ChatBot.ChatBotHandler;
 
 public class Maximo extends AppCompatActivity {
     public static String userIdentity = "";
@@ -46,7 +42,6 @@ public class Maximo extends AppCompatActivity {
         SensorGaugeReaderDbHelper sDbHelper = new SensorGaugeReaderDbHelper(getApplicationContext());
 
 
-
         // Gets the data repository in write mode
         SQLiteDatabase dbWriteable = mDbHelper.getWritableDatabase();
         SQLiteDatabase sdbWriteable = sDbHelper.getWritableDatabase();
@@ -58,8 +53,8 @@ public class Maximo extends AppCompatActivity {
         values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_FIRSTNAME, "Mike");
         values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_LASTNAME, "Rowsoft");
 
-        // Insert the new row, returning the primary key value of the new row
-        long newRowId = dbWriteable.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, values);
+        // Insert the new row
+        dbWriteable.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, values);
 
         //Sensor Gauge Sensor 1
         values = new ContentValues();
@@ -69,7 +64,7 @@ public class Maximo extends AppCompatActivity {
         values.put(SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORTOTALVALUE, "500");
         values.put(SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORACTUALVALUE, "435");
 
-        newRowId = sdbWriteable.insert(SensorGaugeReaderContract.FeedEntry.TABLE_NAME, null, values);
+        sdbWriteable.insert(SensorGaugeReaderContract.FeedEntry.TABLE_NAME, null, values);
 
 
         //Sensor Gauge Sensor 2
@@ -80,7 +75,7 @@ public class Maximo extends AppCompatActivity {
         values.put(SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORTOTALVALUE, "700");
         values.put(SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORACTUALVALUE, "0");
 
-        newRowId = sdbWriteable.insert(SensorGaugeReaderContract.FeedEntry.TABLE_NAME, null, values);
+        sdbWriteable.insert(SensorGaugeReaderContract.FeedEntry.TABLE_NAME, null, values);
 
         /*
          * Get Readable versions of databases
@@ -93,6 +88,7 @@ public class Maximo extends AppCompatActivity {
          * Define a projection that specifies which columns from the database
          * you will actually use after this query.
          */
+
         //User table
         String[] projection = {
                 FeedReaderContract.FeedEntry._ID,
@@ -101,22 +97,13 @@ public class Maximo extends AppCompatActivity {
                 FeedReaderContract.FeedEntry.COLUMN_NAME_FIRSTNAME,
                 FeedReaderContract.FeedEntry.COLUMN_NAME_LASTNAME
         };
-        //Sensor Gauge table
-        String[] sensorGaugeProjection = {
-                SensorGaugeReaderContract.FeedEntry._ID,
-                SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORID,
-                SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORNAME,
-                SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORSTATUS,
-                SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORTOTALVALUE,
-                SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORACTUALVALUE
-        };
 
         /*
          Filter results WHERE "title" = 'My Title'
           */
         //Look for users with first name = Mike
         String selection = FeedReaderContract.FeedEntry.COLUMN_NAME_FIRSTNAME + " = ?";
-        String[] selectionArgs = { "Mike" };
+        String[] selectionArgs = {"Mike"};
 
         // How you want the results sorted in the resulting user cursor
         String sortOrder =
@@ -132,7 +119,7 @@ public class Maximo extends AppCompatActivity {
         );
 
         // Read in the rows with the user cursor
-        List<String> itemIds = new ArrayList<String>();
+        List<String> itemIds = new ArrayList<>();
         while (cursor.moveToNext()) {
             String itemId = cursor.getString(
                     cursor.getColumnIndexOrThrow(FeedReaderContract.FeedEntry.COLUMN_NAME_FIRSTNAME));
@@ -144,14 +131,14 @@ public class Maximo extends AppCompatActivity {
         userIdentity = " " + itemIds.get(0);
 
         //sensor gauge cursor
-        Cursor  sensorGaugeCursor = sdbReadable.rawQuery("select * from "+SensorGaugeReaderContract.FeedEntry.TABLE_NAME, null);
+        Cursor sensorGaugeCursor = sdbReadable.rawQuery("select * from " + SensorGaugeReaderContract.FeedEntry.TABLE_NAME, null);
 
         // Read in the rows with the sensor gauge cursor
-        sensorGaugeNames = new ArrayList<> ();
-        sensorGaugeOpStatuses = new ArrayList<> ();
-        sensorGaugeTotalVals = new ArrayList<> ();
-        sensorGaugeActualVals = new ArrayList<> ();
-        while(sensorGaugeCursor.moveToNext()) {
+        sensorGaugeNames = new ArrayList<>();
+        sensorGaugeOpStatuses = new ArrayList<>();
+        sensorGaugeTotalVals = new ArrayList<>();
+        sensorGaugeActualVals = new ArrayList<>();
+        while (sensorGaugeCursor.moveToNext()) {
             //Add in sensor names, operational status, total value, and actual values to
             //appropriate list
             String sensorGaugeName = sensorGaugeCursor.getString(

@@ -2,10 +2,11 @@ package app.edutechnologic.projectmaximo.ChatBot;
 
 import android.provider.BaseColumns;
 
-public final class ChatBotHistoryContract {
+final class ChatBotHistoryContract {
     // To prevent someone from accidentally instantiating the contract class,
     // make the constructor private.
-    private ChatBotHistoryContract() {}
+    private ChatBotHistoryContract() {
+    }
 
     /* Inner class that defines the table contents */
     public static class ChatBotHistoryEntry implements BaseColumns {

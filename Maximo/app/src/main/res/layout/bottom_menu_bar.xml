@@ -4,7 +4,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/transparent" >
+    android:background="@color/transparent">
 
     <LinearLayout
         android:id="@+id/swipe_left"
@@ -14,6 +14,7 @@
         android:layout_alignParentStart="true"
         android:background="@color/evergreen"
         android:clickable="true"
+        android:focusable="true"
         android:orientation="vertical">
 
         <Button
@@ -23,7 +24,7 @@
             android:layout_gravity="center_vertical"
             android:background="@color/transparent"
             android:drawableTop="@drawable/ic_swipe_left"
-            android:text="Swipe Left"
+            android:text="@string/swipe_left"
             android:textColor="@color/realwear_gray" />
     </LinearLayout>
 
@@ -35,6 +36,7 @@
         android:layout_alignParentEnd="true"
         android:background="@color/evergreen"
         android:clickable="true"
+        android:focusable="true"
         android:orientation="vertical">
 
         <Button
@@ -44,7 +46,7 @@
             android:layout_gravity="center_vertical"
             android:background="@color/transparent"
             android:drawableTop="@drawable/ic_swipe_right"
-            android:text="Swipe Right"
+            android:text="@string/swipe_right"
             android:textColor="@color/realwear_gray" />
     </LinearLayout>
 
@@ -71,6 +73,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:clickable="true"
+                android:focusable="true"
                 android:orientation="vertical">
 
                 <Button
@@ -80,8 +83,8 @@
                     android:layout_gravity="center_vertical"
                     android:background="@color/transparent"
                     android:drawableTop="@drawable/ic_home"
-                    android:contentDescription="Go Home"
-                    android:text="Home"
+                    android:contentDescription="@string/go_home"
+                    android:text="@string/home"
                     android:textColor="@color/realwear_gray" />
             </LinearLayout>
 
@@ -90,6 +93,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:clickable="true"
+                android:focusable="true"
                 android:orientation="vertical">
 
                 <Button
@@ -99,8 +103,8 @@
                     android:layout_gravity="center_vertical"
                     android:background="@color/transparent"
                     android:drawableTop="@drawable/ic_broken"
-                    android:contentDescription="Work Orders"
-                    android:text="Work Orders"
+                    android:contentDescription="@string/work_orders"
+                    android:text="@string/work_orders"
                     android:textColor="@color/realwear_gray" />
             </LinearLayout>
 
@@ -109,6 +113,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:clickable="true"
+                android:focusable="true"
                 android:orientation="vertical">
 
                 <Button
@@ -118,8 +123,8 @@
                     android:layout_gravity="center_vertical"
                     android:background="@color/transparent"
                     android:drawableTop="@drawable/ic_chat"
-                    android:contentDescription="Chatbot"
-                    android:text="Chat"
+                    android:contentDescription="@string/chatbot"
+                    android:text="@string/chat"
                     android:textColor="@color/realwear_gray" />
             </LinearLayout>
 

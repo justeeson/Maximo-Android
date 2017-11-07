@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TableLayout
@@ -18,14 +19,14 @@
                 android:id="@+id/workOrdersHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Work Orders"
+                android:text="@string/work_orders"
                 android:textSize="25sp"
                 android:gravity="center"
                 android:layout_marginBottom="4dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
-                android:textColor="@color/forest"/>
+                android:textColor="@color/forest" />
         </TableRow>
 
         <TableRow
@@ -38,9 +39,9 @@
                 android:layout_weight="1"
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
-                android:text="Work Order"
+                android:text="@string/work_order"
                 android:gravity="center"
-                android:textColor="@color/forest"/>
+                android:textColor="@color/forest" />
 
             <TextView
                 android:id="@+id/workOrderDescription"
@@ -48,9 +49,9 @@
                 android:layout_weight="1"
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
-                android:text="Description"
+                android:text="@string/description"
                 android:gravity="center"
-                android:textColor="@color/forest"/>
+                android:textColor="@color/forest" />
 
             <TextView
                 android:id="@+id/workOrderAssetNumber"
@@ -58,9 +59,9 @@
                 android:layout_weight="1"
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
-                android:text="Asset"
+                android:text="@string/asset"
                 android:gravity="center"
-                android:textColor="@color/forest"/>
+                android:textColor="@color/forest" />
 
             <TextView
                 android:id="@+id/workOrderLocation"
@@ -68,9 +69,9 @@
                 android:layout_weight="1"
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
-                android:text="Location"
+                android:text="@string/location"
                 android:gravity="center"
-                android:textColor="@color/forest"/>
+                android:textColor="@color/forest" />
 
             <TextView
                 android:id="@+id/workOrderReportedDate"
@@ -78,9 +79,9 @@
                 android:layout_weight="1"
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
-                android:text="Reported Date"
+                android:text="@string/reported_date"
                 android:gravity="center"
-                android:textColor="@color/forest"/>
+                android:textColor="@color/forest" />
 
             <TextView
                 android:id="@+id/workOrderStatus"
@@ -88,9 +89,9 @@
                 android:layout_weight="1"
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
-                android:text="Status"
+                android:text="@string/status"
                 android:gravity="center"
-                android:textColor="@color/forest"/>
+                android:textColor="@color/forest" />
         </TableRow>
 
     </TableLayout>
