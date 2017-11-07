@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 class WorkOrderDbHelper extends SQLiteOpenHelper {
     // If you change the database schema, you must increment the database version.
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 3;
     private static final String DATABASE_NAME = "WorkOrder.db";
 
     public WorkOrderDbHelper(Context context) {
