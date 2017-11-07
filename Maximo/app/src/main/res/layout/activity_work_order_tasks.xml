@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/topInfo"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:layout_weight="1">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <!-- Display the work order currently being viewed -->
         <TextView
@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="28dp"
+            android:textSize="28sp"
             android:textColor="#000000"
             android:layout_weight="8" />
 
@@ -29,11 +29,54 @@
 
     </LinearLayout>
 
+    <!-- Table for displaying work order tasks -->
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/taskTable"
+        android:layout_below="@+id/topInfo">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/taskNumber"
+                android:background="@drawable/border2"
+                android:layout_weight="1"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:text="Task"
+                android:gravity="center"
+                android:textColor="@color/forest"/>
+
+            <TextView
+                android:id="@+id/taskSummary"
+                android:background="@drawable/border2"
+                android:layout_weight="1"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:text="Summary"
+                android:gravity="center"
+                android:textColor="@color/forest"/>
+
+            <TextView
+                android:id="@+id/taskStatus"
+                android:background="@drawable/border2"
+                android:layout_weight="1"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:text="Status"
+                android:gravity="center"
+                android:textColor="@color/forest"/>
+        </TableRow>
+
+    </TableLayout>
+
     <!-- Bottom navbar -->
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1">
+        android:layout_height="wrap_content">
         <include layout="@layout/bottom_menu_bar"/>
     </RelativeLayout>
-</LinearLayout>
+</RelativeLayout>

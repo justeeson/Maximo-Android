@@ -37,8 +37,11 @@
             android:name=".MediaDashboardActivity"
             android:exported="true" />
         <activity
-            android:name=".WorkOrdersActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        android:name=".WorkOrdersActivity"
+        android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".WorkOrderTasksActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

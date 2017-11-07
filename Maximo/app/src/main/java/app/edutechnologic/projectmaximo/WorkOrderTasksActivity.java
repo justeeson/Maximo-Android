@@ -2,12 +2,19 @@ package app.edutechnologic.projectmaximo;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 /**
  * Created by Alex on 11/5/2017.
@@ -16,10 +23,18 @@ import android.widget.TextView;
 
 public class WorkOrderTasksActivity extends AppCompatActivity {
 
+    //Array Lists for work order task information
+    private TableLayout tableLayout;
+    private final ArrayList<String> task_numbers = new ArrayList<>();
+    private final ArrayList<String> task_summaries = new ArrayList<>();
+    private final ArrayList<String> task_statuses = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_work_order_tasks);
+
+        tableLayout = findViewById(R.id.taskTable);
 
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
@@ -74,6 +89,59 @@ public class WorkOrderTasksActivity extends AppCompatActivity {
                 WorkOrderContract.WorkOrderEntry.COLUMN_NAME_REPORTEDDATE,
                 WorkOrderContract.WorkOrderEntry.COLUMN_NAME_STATUS
         };
+
+        //readable version of the database
+        SQLiteDatabase dbReadable = DbHelper.getReadableDatabase();
+
+        // read tasks for the selected work order
+         Cursor cursor = dbReadable.rawQuery("select * from " + WorkOrderTaskContract.WorkOrderTaskEntry.TABLE_NAME + " where " + WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_WO_NUMBER + " = " + workOrderNumber, null);
+
+        while (cursor.moveToNext()) {
+            String task_number = cursor.getString(
+                    cursor.getColumnIndexOrThrow(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_NUMBER));
+            task_numbers.add(task_number);
+
+            String task_summary = cursor.getString(
+                    cursor.getColumnIndexOrThrow(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_SUMMARY));
+            task_summaries.add(task_summary);
+
+            String task_status = cursor.getString(
+                    cursor.getColumnIndexOrThrow(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_STATUS));
+            task_statuses.add(task_status);
+        }
+        cursor.close();
+
+        //add table rows for each work order task
+        TableRow[] tableRow = new TableRow[task_numbers.size()];
+        TextView[] textView = new TextView[3];
+        for (int i = 0; i < task_numbers.size(); i++) {
+            tableRow[i] = new TableRow(this);
+            tableRow[i].setBackgroundResource(R.drawable.border2);
+
+            // set text for columns
+            textView[0] = new TextView(this);
+            textView[0].setText(task_numbers.get(i));
+            textView[0].setGravity(Gravity.CENTER);
+            textView[0].setTextColor(Color.BLACK);
+
+            textView[1] = new TextView(this);
+            textView[1].setText(task_summaries.get(i));
+            textView[1].setGravity(Gravity.CENTER);
+            textView[1].setTextColor(Color.BLACK);
+
+            textView[2] = new TextView(this);
+            textView[2].setText(task_statuses.get(i));
+            textView[2].setGravity(Gravity.CENTER);
+            textView[2].setTextColor(Color.BLACK);
+
+            // add columns in the current row
+            for (int j = 0; j < 3; j++) {
+                tableRow[i].addView(textView[j], new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f));
+            }
+
+            // add current in the table
+            tableLayout.addView(tableRow[i]);
+        }
 
         //back button functionality
         final Button backButton = findViewById(R.id.back_btn);

@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class WorkOrderTaskDbHelper extends SQLiteOpenHelper {
     // If you change the database schema, you must increment the database version.
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 4;
     public static final String DATABASE_NAME = "WorkOrderTask.db";
 
     public WorkOrderTaskDbHelper(Context context) {
@@ -57,7 +57,7 @@ public class WorkOrderTaskDbHelper extends SQLiteOpenHelper {
             "CREATE TABLE " + WorkOrderTaskContract.WorkOrderTaskEntry.TABLE_NAME + " (" +
                     WorkOrderTaskContract.WorkOrderTaskEntry._ID + " INTEGER PRIMARY KEY," +
                     WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_WO_NUMBER + " INTEGER," +
-                    WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_NUMBER + " INTEGER," +
+                    WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_NUMBER + " INTEGER UNIQUE," +
                     WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_SUMMARY + " TEXT," +
                     WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_STATUS + " TEXT)";
 
