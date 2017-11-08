@@ -45,7 +45,7 @@ public class ChatMessageView extends ConstraintLayout {
         }
 
         Date timestamp = new Date(message.getTime());
-        SimpleDateFormat dateFormatter = new SimpleDateFormat("E, y-M-d h:ma");
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("h:ma");
         String date = dateFormatter.format(timestamp);
 
         String chatMessage = message.getMessage();
