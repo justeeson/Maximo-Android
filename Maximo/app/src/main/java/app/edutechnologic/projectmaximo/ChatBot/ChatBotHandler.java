@@ -3,6 +3,7 @@ package app.edutechnologic.projectmaximo.ChatBot;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.CountDownTimer;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -44,6 +45,7 @@ public class ChatBotHandler {
     private static Map<String, String> headers = new HashMap<>();
     private static MicrophoneHelper microphoneHelper;
     private static EditText inputBox;
+    private static Boolean listening;
 
 
     /**
@@ -162,7 +164,7 @@ public class ChatBotHandler {
     // Main logic for speech to text
     public static void speechToText(Boolean status, EditText messageBox) {
         if(checkInternetConnection()) {
-            Boolean listening = status;
+            listening = status;
             inputBox = messageBox;
             if (!listening) {
                 capture = microphoneHelper.getInputStream(true);
@@ -170,7 +172,22 @@ public class ChatBotHandler {
                     @Override
                     public void run() {
                         try {
+                            // Start a timer that lets the mic remain active for 5 seconds before shutting down
+                            /*
+                            final CountDownTimer micTimer = new CountDownTimer(5000, 1000) {
+                                public void onTick(long millisUntilFinished) {
+
+                                }
+
+                                public void onFinish() {
+                                    endMicListener();
+                                    Toast.makeText(ChatBotActivity.getAppContext(), "Done", Toast.LENGTH_LONG).show();
+                                }
+                            };
+                            micTimer.start();
+                            */
                             speechToTextService.recognizeUsingWebSocket(capture, getRecognizeOptions(), new MicrophoneRecognizeDelegate());
+                           // micTimer.cancel();
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -180,7 +197,7 @@ public class ChatBotHandler {
             } else {
                 try {
                     microphoneHelper.closeInputStream();
-                    Toast.makeText(ChatBotActivity.getAppContext(), "Stopped Listening....Click to Start", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ChatBotActivity.getAppContext(), "Stopped Listening....Click to Start", Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -266,6 +283,10 @@ public class ChatBotHandler {
             return false;
         }
 
+    }
+
+    private static void endMicListener(){
+        listening = true;
     }
 }
 
