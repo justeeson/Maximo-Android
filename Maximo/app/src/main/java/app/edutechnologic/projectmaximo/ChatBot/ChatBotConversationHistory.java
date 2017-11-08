@@ -54,8 +54,8 @@ class ChatBotConversationHistory {
 
         for (ChatMessage message : itemIds) {
             final String messageAsString = message.getMessage();
-            LinearLayout convoHistory = ChatBotActivity.appActivity.findViewById(R.id.chat_message_history);
-            ChatMessageView view = new ChatMessageView(ChatBotActivity.appActivity, message);
+            LinearLayout convoHistory = ChatBotActivity.getActivity().findViewById(R.id.chat_message_history);
+            ChatMessageView view = new ChatMessageView(ChatBotActivity.getActivity(), message);
 
             view.setClickable(true);
             view.setOnClickListener(new View.OnClickListener() {

@@ -1,5 +1,8 @@
 package app.edutechnologic.projectmaximo.ChatBot;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -47,36 +50,38 @@ public class ChatBotHandler {
      * This function initializes the necessary variables
      */
     public static void initialize() {
-        MaximoUtility utilityClass = new MaximoUtility();
-        String username = utilityClass.getConversationUsername();
-        String password = utilityClass.getConversationPassword();
-        String TTS_username = utilityClass.getTTSUsername();
-        String TTS_password = utilityClass.getTTSPassword();
-        String STT_username = utilityClass.getSTTUsername();
-        String STT_password = utilityClass.getSTTPassword();
-        String workspaceId = utilityClass.getWorkspaceID();
+        if(checkInternetConnection()) {
+            MaximoUtility utilityClass = new MaximoUtility();
+            String username = utilityClass.getConversationUsername();
+            String password = utilityClass.getConversationPassword();
+            String TTS_username = utilityClass.getTTSUsername();
+            String TTS_password = utilityClass.getTTSPassword();
+            String STT_username = utilityClass.getSTTUsername();
+            String STT_password = utilityClass.getSTTPassword();
+            String workspaceId = utilityClass.getWorkspaceID();
 
-        ConversationService service = new ConversationService(ConversationService.VERSION_DATE_2017_02_03);
-        service.setUsernameAndPassword(username, password);
-        contextMap = new HashMap<>();
-        responseFromWatson = new WatsonMessage();
+            ConversationService service = new ConversationService(ConversationService.VERSION_DATE_2017_02_03);
+            service.setUsernameAndPassword(username, password);
+            contextMap = new HashMap<>();
+            responseFromWatson = new WatsonMessage();
 
-        microphoneHelper = new MicrophoneHelper(ChatBotActivity.appActivity);
+            microphoneHelper = new MicrophoneHelper(ChatBotActivity.getActivity());
 
-        speechToTextService = new SpeechToText();
-        speechToTextService.setUsernameAndPassword(STT_username, STT_password);
-        speechToTextService.setDefaultHeaders(headers);
-        Thread modelThread = new Thread() {
-            public void run() {
-                SpeechModel model = speechToTextService.getModel("en-US_BroadbandModel").execute();
-            }
-        };
+            speechToTextService = new SpeechToText();
+            speechToTextService.setUsernameAndPassword(STT_username, STT_password);
+            speechToTextService.setDefaultHeaders(headers);
+            Thread modelThread = new Thread() {
+                public void run() {
+                    SpeechModel model = speechToTextService.getModel("en-US_BroadbandModel").execute();
+                }
+            };
 
-        modelThread.start();
+            modelThread.start();
 
-        textToSpeechService = new TextToSpeech();
-        textToSpeechService.setUsernameAndPassword(TTS_username, TTS_password);
-        headers.put("X-Watson-Learning-Opt-Out", "true");
+            textToSpeechService = new TextToSpeech();
+            textToSpeechService.setUsernameAndPassword(TTS_username, TTS_password);
+            headers.put("X-Watson-Learning-Opt-Out", "true");
+        }
     }
 
     /**
@@ -86,46 +91,48 @@ public class ChatBotHandler {
      * @return string response from Watson API
      */
     public static String sendMessage(String messageToWatson) {
-        final String messagedToBePassed = messageToWatson;
-        responseFromWatson.setWatsonMessage("Sorry, the watson service is unavailable right now.");
-        Thread networkThread = new Thread() {
-            public void run() {
-                try {
-                    String replyFromWatson;
-                    // Build and send a message to the Watson API
-                    MessageRequest newMessage = new MessageRequest.Builder()
-                            .inputText(messagedToBePassed)
-                            .context(contextMap)
-                            .build();
+        responseFromWatson.setWatsonMessage("");
+        if (checkInternetConnection()) {
+            final String messagedToBePassed = messageToWatson;
+            responseFromWatson.setWatsonMessage("Sorry, the watson service is unavailable right now.");
+            Thread networkThread = new Thread() {
+                public void run() {
+                    try {
+                        String replyFromWatson;
+                        // Build and send a message to the Watson API
+                        MessageRequest newMessage = new MessageRequest.Builder()
+                                .inputText(messagedToBePassed)
+                                .context(contextMap)
+                                .build();
 
-                    MessageResponse response = service
-                            .message(workspaceId, newMessage)
-                            .execute();
+                        MessageResponse response = service
+                                .message(workspaceId, newMessage)
+                                .execute();
 
-                    System.out.println(response);
+                        System.out.println(response);
 
-                    // Obtain response from Watson API
-                    ArrayList responseList = (ArrayList) response.getOutput().get("text");
-                    if (null != responseList && responseList.size() > 0) {
-                        replyFromWatson = ((String) responseList.get(0));
-                        String localResponse = IntentHandler.handleIntent(response);
-                        // FIXME: This is gross. Call a method to add something to chat.
-                        responseFromWatson.setWatsonMessage(replyFromWatson + "\n" + localResponse);
+                        // Obtain response from Watson API
+                        ArrayList responseList = (ArrayList) response.getOutput().get("text");
+                        if (null != responseList && responseList.size() > 0) {
+                            replyFromWatson = ((String) responseList.get(0));
+                            String localResponse = IntentHandler.handleIntent(response);
+                            // FIXME: This is gross. Call a method to add something to chat.
+                            responseFromWatson.setWatsonMessage(replyFromWatson + "\n" + localResponse);
+                        }
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
-
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
+            };
+
+            networkThread.start();
+            try {
+                networkThread.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-        };
-
-        networkThread.start();
-        try {
-            networkThread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
-
         return responseFromWatson.getMessageAsString();
     }
 
@@ -135,44 +142,48 @@ public class ChatBotHandler {
      * @param messageToWatson the string message that is being passed to Watson
      */
     public static void textToSpeech(String messageToWatson) {
-        final String message = messageToWatson;
-        // Run the stream player on a separate thread to prevent resource locking
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    streamPlayer = new StreamPlayer();
-                    streamPlayer.playStream(textToSpeechService.synthesize(message, Voice.EN_LISA).execute());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-    }
-
-    // Main logic for speech to text
-    public static void speechToText(Boolean status, EditText messageBox) {
-        Boolean listening = status;
-        inputBox = messageBox;
-        if (!listening) {
-            capture = microphoneHelper.getInputStream(true);
+        if(checkInternetConnection()) {
+            final String message = messageToWatson;
+            // Run the stream player on a separate thread to prevent resource locking
             new Thread(new Runnable() {
                 @Override
                 public void run() {
                     try {
-                        speechToTextService.recognizeUsingWebSocket(capture, getRecognizeOptions(), new MicrophoneRecognizeDelegate());
+                        streamPlayer = new StreamPlayer();
+                        streamPlayer.playStream(textToSpeechService.synthesize(message, Voice.EN_LISA).execute());
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
             }).start();
-            Toast.makeText(ChatBotActivity.appContext, "Listening....Click to Stop", Toast.LENGTH_SHORT).show();
-        } else {
-            try {
-                microphoneHelper.closeInputStream();
-                Toast.makeText(ChatBotActivity.appContext, "Stopped Listening....Click to Start", Toast.LENGTH_LONG).show();
-            } catch (Exception e) {
-                e.printStackTrace();
+        }
+    }
+
+    // Main logic for speech to text
+    public static void speechToText(Boolean status, EditText messageBox) {
+        if(checkInternetConnection()) {
+            Boolean listening = status;
+            inputBox = messageBox;
+            if (!listening) {
+                capture = microphoneHelper.getInputStream(true);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            speechToTextService.recognizeUsingWebSocket(capture, getRecognizeOptions(), new MicrophoneRecognizeDelegate());
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+                Toast.makeText(ChatBotActivity.getAppContext(), "Listening....Click to Stop", Toast.LENGTH_SHORT).show();
+            } else {
+                try {
+                    microphoneHelper.closeInputStream();
+                    Toast.makeText(ChatBotActivity.getAppContext(), "Stopped Listening....Click to Start", Toast.LENGTH_LONG).show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -230,6 +241,31 @@ public class ChatBotHandler {
         public void onTranscriptionComplete() {
 
         }
+    }
+
+    /**
+     * This function checks if the device is connected to the internet.
+     *
+     * @return Boolean value depending on whether internet connection was found or not.
+     */
+    public static boolean checkInternetConnection() {
+        // get Connectivity Manager object to check connection
+        ConnectivityManager cm =
+                (ConnectivityManager)ChatBotActivity.getAppContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null &&
+                activeNetwork.isConnectedOrConnecting();
+
+        // Check for network connections
+        if (isConnected){
+            return true;
+        }
+        else {
+            Toast.makeText(ChatBotActivity.getAppContext(), " No Internet Connection available ", Toast.LENGTH_LONG).show();
+            return false;
+        }
+
     }
 }
 
