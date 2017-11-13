@@ -84,43 +84,6 @@ public class WorkOrdersActivity extends AppCompatActivity {
                 WorkOrderContract.WorkOrderEntry.COLUMN_NAME_STATUS
         };
 
-        /*
-        //Define cursor (getting all columns)
-        Cursor cursor = dbReadable.rawQuery("select * from "+WorkOrderContract.WorkOrderEntry.TABLE_NAME, null);
-
-        //Populate Array Lists with entries using the cursor
-        workOrderNumbers = new ArrayList<> ();
-        workOrderDescriptions = new ArrayList<> ();
-        workOrderAssetNumbers = new ArrayList<> ();
-        workOrderLocations = new ArrayList<> ();
-        workOrderReportedDates = new ArrayList<> ();
-        workOrderStatuses = new ArrayList<> ();
-        while(cursor.moveToNext()) {
-
-            //Add in work order number, description, asset number, location, reported date, and
-            //status to the appropriate array list.
-            Integer number = cursor.getInt(
-                    cursor.getColumnIndexOrThrow(WorkOrderContract.WorkOrderEntry.COLUMN_NAME_NUMBER));
-            workOrderNumbers.add(number);
-            String description = cursor.getString(
-                    cursor.getColumnIndexOrThrow(WorkOrderContract.WorkOrderEntry.COLUMN_NAME_DESCRIPTION));
-            workOrderDescriptions.add(description);
-            Integer assetNumber = cursor.getInt(
-                    cursor.getColumnIndexOrThrow(WorkOrderContract.WorkOrderEntry.COLUMN_NAME_ASSETNUMBER));
-            workOrderAssetNumbers.add(assetNumber);
-            String location = cursor.getString(
-                    cursor.getColumnIndexOrThrow(WorkOrderContract.WorkOrderEntry.COLUMN_NAME_LOCATION));
-            workOrderLocations.add(location);
-            String reportedDate = cursor.getString(
-                    cursor.getColumnIndexOrThrow(WorkOrderContract.WorkOrderEntry.COLUMN_NAME_REPORTEDDATE));
-            workOrderReportedDates.add(reportedDate);
-            String status = cursor.getString(
-                    cursor.getColumnIndexOrThrow(WorkOrderContract.WorkOrderEntry.COLUMN_NAME_STATUS));
-            workOrderStatuses.add(status);
-        }
-        cursor.close();
-        */
-
         //bottom navbar menu button functionality
         final Button chatButton = findViewById(R.id.chat_nav_btn);
         chatButton.setOnClickListener(new View.OnClickListener() {

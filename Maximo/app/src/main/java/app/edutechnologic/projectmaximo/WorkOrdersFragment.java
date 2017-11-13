@@ -2,6 +2,7 @@ package app.edutechnologic.projectmaximo;
 
 import android.annotation.TargetApi;
 import android.app.Fragment;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -9,14 +10,17 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -29,6 +33,7 @@ import java.util.ArrayList;
 public class WorkOrdersFragment extends Fragment {
 
     private TableLayout tableLayout;
+    private final ArrayList<String> work_order_ID = new ArrayList<>();
     private final ArrayList<String> work_order_number = new ArrayList<>();
     private final ArrayList<String> work_order_descriptions = new ArrayList<>();
     private final ArrayList<String> work_order_assetnumbers = new ArrayList<>();
@@ -45,9 +50,10 @@ public class WorkOrdersFragment extends Fragment {
 
         readData();
 
+
         final TableRow[] tableRow = new TableRow[work_order_number.size()];
         final TextView[] textView = new TextView[6];
-        for ( int i = 0; i < work_order_number.size(); i++) {
+        for (int i = 0; i < work_order_number.size(); i++) {
             tableRow[i] = new TableRow(getActivity());
             tableRow[i].setBackgroundResource(R.drawable.border2);
             final int m = i;
@@ -71,7 +77,28 @@ public class WorkOrdersFragment extends Fragment {
             // click to change descriptions
             textView[1].setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    switchToEditText(v);
+                    final EditText editText = switchToEditText(v);
+                    editText.setOnEditorActionListener(
+                            new EditText.OnEditorActionListener() {
+                                @Override
+                                public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                                    if (actionId == EditorInfo.IME_ACTION_SEARCH ||
+                                            actionId == EditorInfo.IME_ACTION_DONE ||
+                                            event.getAction() == KeyEvent.ACTION_DOWN &&
+                                                    event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+                                        if (!event.isShiftPressed()) {
+                                            // the user is done typing.
+                                            updateData(work_order_ID.get(m), WorkOrderContract.WorkOrderEntry.COLUMN_NAME_DESCRIPTION ,editText.getText().toString() );
+                                            switchToTextView(v);
+
+                                            Toast.makeText(getActivity(), editText.getText().toString(),
+                                                    Toast.LENGTH_SHORT).show();
+                                            return true; // consume.
+                                        }
+                                    }
+                                    return false; // pass on to other listeners.
+                                }
+                            });
 
                 }
             });
@@ -86,7 +113,28 @@ public class WorkOrdersFragment extends Fragment {
             // click to change asset
             textView[2].setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    switchToEditText(v);
+                    final EditText editText = switchToEditText(v);
+                    editText.setOnEditorActionListener(
+                            new EditText.OnEditorActionListener() {
+                                @Override
+                                public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                                    if (actionId == EditorInfo.IME_ACTION_SEARCH ||
+                                            actionId == EditorInfo.IME_ACTION_DONE ||
+                                            event.getAction() == KeyEvent.ACTION_DOWN &&
+                                                    event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+                                        if (!event.isShiftPressed()) {
+                                            // the user is done typing.
+                                            updateData(work_order_ID.get(m), WorkOrderContract.WorkOrderEntry.COLUMN_NAME_ASSETNUMBER ,editText.getText().toString() );
+
+                                            switchToTextView(v);
+                                            Toast.makeText(getActivity(), editText.getText().toString(),
+                                                    Toast.LENGTH_SHORT).show();
+                                            return true; // consume.
+                                        }
+                                    }
+                                    return false; // pass on to other listeners.
+                                }
+                            });
                 }
             });
 
@@ -100,12 +148,31 @@ public class WorkOrdersFragment extends Fragment {
             // click to change location
             textView[3].setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    switchToEditText(v);
+                    final EditText editText = switchToEditText(v);
+                    editText.setOnEditorActionListener(
+                            new EditText.OnEditorActionListener() {
+                                @Override
+                                public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                                    if (actionId == EditorInfo.IME_ACTION_SEARCH ||
+                                            actionId == EditorInfo.IME_ACTION_DONE ||
+                                            event.getAction() == KeyEvent.ACTION_DOWN &&
+                                                    event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+                                        if (!event.isShiftPressed()) {
+                                            // the user is done typing.
+                                            updateData(work_order_ID.get(m), WorkOrderContract.WorkOrderEntry.COLUMN_NAME_LOCATION ,editText.getText().toString() );
+                                            switchToTextView(v);
+                                            Toast.makeText(getActivity(), "Finish typing",
+                                                    Toast.LENGTH_SHORT).show();
+                                            return true; // consume.
+                                        }
+                                    }
+                                    return false; // pass on to other listeners.
+                                }
+                            });
                 }
             });
             // add this column to the current row
             tableRow[m].addView(textView[3], new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f));
-
 
 
             textView[4] = new TextView(getActivity());
@@ -115,12 +182,31 @@ public class WorkOrdersFragment extends Fragment {
             // click to change reported date
             textView[4].setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    switchToEditText(v);
+                    final EditText editText = switchToEditText(v);
+                    editText.setOnEditorActionListener(
+                            new EditText.OnEditorActionListener() {
+                                @Override
+                                public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                                    if (actionId == EditorInfo.IME_ACTION_SEARCH ||
+                                            actionId == EditorInfo.IME_ACTION_DONE ||
+                                            event.getAction() == KeyEvent.ACTION_DOWN &&
+                                                    event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+                                        if (!event.isShiftPressed()) {
+                                            // the user is done typing.
+                                            updateData(work_order_ID.get(m), WorkOrderContract.WorkOrderEntry.COLUMN_NAME_REPORTEDDATE ,editText.getText().toString() );
+                                            switchToTextView(v);
+                                            Toast.makeText(getActivity(), "Finish typing",
+                                                    Toast.LENGTH_SHORT).show();
+                                            return true; // consume.
+                                        }
+                                    }
+                                    return false; // pass on to other listeners.
+                                }
+                            });
                 }
             });
             // add this column to the current row
             tableRow[m].addView(textView[4], new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f));
-
 
 
             textView[5] = new TextView(getActivity());
@@ -130,17 +216,32 @@ public class WorkOrdersFragment extends Fragment {
             // click to change status
             textView[5].setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    switchToEditText(v);
+                    final EditText editText = switchToEditText(v);
+                    editText.setOnEditorActionListener(
+                            new EditText.OnEditorActionListener() {
+                                @Override
+                                public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                                    if (actionId == EditorInfo.IME_ACTION_SEARCH ||
+                                            actionId == EditorInfo.IME_ACTION_DONE ||
+                                            event.getAction() == KeyEvent.ACTION_DOWN &&
+                                                    event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+                                        if (!event.isShiftPressed()) {
+                                            // the user is done typing.
+                                            updateData(work_order_ID.get(m), WorkOrderContract.WorkOrderEntry.COLUMN_NAME_STATUS ,editText.getText().toString() );
+                                            switchToTextView(v);
+                                            Toast.makeText(getActivity(), "Finish typing",
+                                                    Toast.LENGTH_SHORT).show();
+                                            return true; // consume.
+                                        }
+                                    }
+                                    return false; // pass on to other listeners.
+                                }
+                            });
                 }
             });
             // add this column to the current row
             tableRow[m].addView(textView[5], new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f));
 
-
-            // add columns in the current row
-//            for (int j = 0; j < 6; j++) {
-//                tableRow[i].addView(textView[j], new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f));
-//            }
 
             // add current in the table
             tableLayout.addView(tableRow[i]);
@@ -149,15 +250,16 @@ public class WorkOrdersFragment extends Fragment {
         // save button
         TableRow tableRowForBtn = new TableRow(getActivity());
         Button saveWorkOrdersBtn = new Button(getActivity());
-        saveWorkOrdersBtn.setText("Save");
-        saveWorkOrdersBtn.setId(R.id.SaveWorkOrders);
+        saveWorkOrdersBtn.setText("Refresh");
+        saveWorkOrdersBtn.setId(R.id.RefreshWorkOrders);
 
         tableRowForBtn.addView(saveWorkOrdersBtn, new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f));
         tableLayout.addView(tableRowForBtn);
 
         saveWorkOrdersBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // refresh current page
+                // refresh this page
+
             }
         });
 
@@ -165,19 +267,19 @@ public class WorkOrdersFragment extends Fragment {
     }
 
     public ViewGroup getParent(View view) {
-        return (ViewGroup)view.getParent();
+        return (ViewGroup) view.getParent();
     }
 
     public void removeView(View view) {
         ViewGroup parent = getParent(view);
-        if(parent != null) {
-            parent.removeView(view);;
+        if (parent != null) {
+            parent.removeView(view);
         }
     }
 
     public void replaceView(View currentView, View newView) {
         ViewGroup parent = getParent(currentView);
-        if(parent == null) {
+        if (parent == null) {
             return;
         }
         final int index = parent.indexOfChild(currentView);
@@ -188,10 +290,10 @@ public class WorkOrdersFragment extends Fragment {
 
     /**
      * switch the current textview to an edit text
-     * */
-    public void switchToEditText(View view){
+     */
+    public EditText switchToEditText(View view) {
         // setup for new edit text
-        TextView textView = (TextView)view;
+        TextView textView = (TextView) view;
         String content = textView.getText().toString();
         //textView.setVisibility(View.GONE);
         EditText editText = new EditText(getActivity());
@@ -199,10 +301,25 @@ public class WorkOrdersFragment extends Fragment {
 
         // replace view
         replaceView(textView, editText);
-
+        return editText;
 
     }
-    /** Called when the user clicks a work order number to view its tasks */
+
+    public TextView switchToTextView(View view){
+        EditText editText = (EditText)view;
+        String content = editText.getText().toString();
+        TextView textView = new TextView((getActivity()));
+        textView.setText(content);
+        textView.setGravity(Gravity.CENTER);
+        textView.setTextColor(Color.BLACK);
+       // textView.setWidth(100);
+        replaceView(editText, textView);
+
+        return textView;
+    }
+    /**
+     * Called when the user clicks a work order number to view its tasks
+     */
     public void viewTasks(View view) {
         //create intent to go to the work order task page and pass in the work order number
         Intent intent = new Intent(view.getContext(), WorkOrderTasksActivity.class);
@@ -221,8 +338,11 @@ public class WorkOrdersFragment extends Fragment {
         // Cursor cursor = wdbReadable.rawQuery("select " + WorkOrderContract.WorkOrderEntry.COLUMN_NAME_NUMBER + "from " + WorkOrderContract.WorkOrderEntry.TABLE_NAME, null);
         Cursor cursor = wdbReadable.rawQuery("select * from " + WorkOrderContract.WorkOrderEntry.TABLE_NAME, null);
 
-        //work_order_number = new ArrayList<String> ();
         while (cursor.moveToNext()) {
+            String item_ID = cursor.getString(
+                    cursor.getColumnIndexOrThrow(WorkOrderContract.WorkOrderEntry._ID));
+            work_order_ID.add(item_ID);
+
             String item_number = cursor.getString(
                     cursor.getColumnIndexOrThrow(WorkOrderContract.WorkOrderEntry.COLUMN_NAME_NUMBER));
             work_order_number.add(item_number);
@@ -250,5 +370,17 @@ public class WorkOrdersFragment extends Fragment {
         }
 
         cursor.close();
+    }
+
+    public void updateData(String ID, String columnName, String newValue){
+        WorkOrderDbHelper wDbHelper = new WorkOrderDbHelper(getActivity());
+        SQLiteDatabase wdbWriteable = wDbHelper.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(columnName, newValue);
+
+        wdbWriteable.update(WorkOrderContract.WorkOrderEntry.TABLE_NAME, contentValues, "_ID = ?", new String[] {ID});
+
+
     }
 }
