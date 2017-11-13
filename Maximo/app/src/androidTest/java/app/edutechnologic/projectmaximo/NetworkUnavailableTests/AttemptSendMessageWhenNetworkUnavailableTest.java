@@ -158,7 +158,7 @@ public class AttemptSendMessageWhenNetworkUnavailableTest {
         appCompatEditText9.perform(closeSoftKeyboard());
 
         ViewInteraction appCompatButton2 = onView(
-                allOf(withId(R.id.sendButton), withText("Send"),
+                allOf(withId(R.id.chat_send_button), withText("Send"),
                         childAtPosition(
                                 allOf(withId(R.id.chat_message_entry),
                                         childAtPosition(

@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
+import android.widget.Button;
+import android.widget.TextView;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -40,9 +42,18 @@ public class ChatBotNetworkUnavailableTest {
     @Test
     public void sendMessageTest() {
         ChatBotActivity chatBotActivity = mActivityTestRule.getActivity();
-
+        chatBotActivity = mActivityTestRule.launchActivity(new Intent());
         Assert.assertNotNull(chatBotActivity);
 
         // Make sure we can send a message without crashing.
+        // Find text box and enter text
+        TextView messageEntryBox = chatBotActivity.findViewById(R.id.chat_message_text);
+        Assert.assertNotNull("Could not find chat_message_text", messageEntryBox);
+        messageEntryBox.setText("Hello");
+
+        // Find send button and click
+        Button sendButton = chatBotActivity.findViewById(R.id.chat_send_button);
+        Assert.assertTrue("Could not find chat_send_button", sendButton.isClickable());
+        sendButton.performClick();
     }
 }

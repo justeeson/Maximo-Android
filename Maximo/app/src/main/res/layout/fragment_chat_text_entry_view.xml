@@ -10,10 +10,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginRight="16dp"
+        android:layout_marginStart="8dp"
         android:ems="10"
         android:hint="@string/edit_message"
         android:inputType="textPersonName"
         app:layout_constraintRight_toLeftOf="@+id/chat_send_button"
+        app:layout_constraintStart_toEndOf="@+id/btn_record"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
