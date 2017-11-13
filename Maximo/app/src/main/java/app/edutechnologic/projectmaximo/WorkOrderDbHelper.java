@@ -9,10 +9,10 @@ import android.database.sqlite.SQLiteOpenHelper;
  * Helper class for the Work Order DB
  */
 
-public class WorkOrderDbHelper extends SQLiteOpenHelper {
+class WorkOrderDbHelper extends SQLiteOpenHelper {
     // If you change the database schema, you must increment the database version.
-    public static final int DATABASE_VERSION = 1;
-    public static final String DATABASE_NAME = "WorkOrder.db";
+    private static final int DATABASE_VERSION = 3;
+    private static final String DATABASE_NAME = "WorkOrder.db";
 
     public WorkOrderDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -53,7 +53,7 @@ public class WorkOrderDbHelper extends SQLiteOpenHelper {
     }
 
     // This string is used to create the columns in the database
-    public static final String SQL_CREATE_ENTRIES =
+    private static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + WorkOrderContract.WorkOrderEntry.TABLE_NAME + " (" +
                     WorkOrderContract.WorkOrderEntry._ID + " INTEGER PRIMARY KEY," +
                     WorkOrderContract.WorkOrderEntry.COLUMN_NAME_NUMBER + " INTEGER UNIQUE," +
@@ -64,6 +64,6 @@ public class WorkOrderDbHelper extends SQLiteOpenHelper {
                     WorkOrderContract.WorkOrderEntry.COLUMN_NAME_STATUS + " TEXT)";
 
     // This string is used to delete the columns in the database
-    public static final String SQL_DELETE_ENTRIES =
+    private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + WorkOrderContract.WorkOrderEntry.TABLE_NAME;
 }

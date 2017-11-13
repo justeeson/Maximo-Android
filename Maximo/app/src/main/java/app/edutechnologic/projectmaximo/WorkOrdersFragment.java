@@ -1,14 +1,20 @@
 package app.edutechnologic.projectmaximo;
 
+import android.annotation.TargetApi;
 import android.app.Fragment;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -20,25 +26,25 @@ import java.util.ArrayList;
  * Fragment used for displaying the work orders table.
  */
 
+@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class WorkOrdersFragment extends Fragment {
 
-    TableLayout tableLayout;
-    ArrayList<String> work_order_number = new ArrayList<String>();
-    ArrayList<String> work_order_descriptions = new ArrayList<String>();
-    ArrayList<String> work_order_assetnumbers = new ArrayList<String>();
-    ArrayList<String> work_order_locations = new ArrayList<String>();
-    ArrayList<String> work_order_reporteddates = new ArrayList<String>();
-    ArrayList<String> work_order_statuses = new ArrayList<String>();
+    private TableLayout tableLayout;
+    private final ArrayList<String> work_order_number = new ArrayList<>();
+    private final ArrayList<String> work_order_descriptions = new ArrayList<>();
+    private final ArrayList<String> work_order_assetnumbers = new ArrayList<>();
+    private final ArrayList<String> work_order_locations = new ArrayList<>();
+    private final ArrayList<String> work_order_reporteddates = new ArrayList<>();
+    private final ArrayList<String> work_order_statuses = new ArrayList<>();
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_work_orders_table, container, false);
-        tableLayout = (TableLayout) view.findViewById(R.id.workOrdersTable);
+        tableLayout = view.findViewById(R.id.workOrdersTable);
 
         readData();
-//        work_order_number.add("number1");
-//        work_order_number.add("number2");
 
         TableRow[] tableRow = new TableRow[work_order_number.size()];
         TextView[] textView = new TextView[6];
@@ -50,7 +56,13 @@ public class WorkOrdersFragment extends Fragment {
             textView[0] = new TextView(getActivity());
             textView[0].setText(work_order_number.get(i));
             textView[0].setGravity(Gravity.CENTER);
-            textView[0].setTextColor(Color.BLACK);
+            textView[0].setTextColor(Color.BLUE);
+            // work order name is clickable
+            textView[0].setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    viewTasks(v);
+                }
+            });
 
             textView[1] = new TextView(getActivity());
             textView[1].setText(work_order_descriptions.get(i));
@@ -89,14 +101,22 @@ public class WorkOrdersFragment extends Fragment {
         return view;
     }
 
+    /** Called when the user clicks a work order number to view its tasks */
+    public void viewTasks(View view) {
+        //create intent to go to the work order task page and pass in the work order number
+        Intent intent = new Intent(view.getContext(), WorkOrderTasksActivity.class);
+        TextView text = (TextView) view;
+        String workOrderNumber = text.getText().toString();
+        intent.putExtra("num", workOrderNumber);
+        startActivity(intent);
+    }
+
     public void readData() {
         WorkOrderDbHelper wDbHelper = new WorkOrderDbHelper(getActivity());
         SQLiteDatabase wdbReadable = wDbHelper.getReadableDatabase();
 
-        /**
-         * read work orders
-         *
-         * */
+        // read work orders
+
         // Cursor cursor = wdbReadable.rawQuery("select " + WorkOrderContract.WorkOrderEntry.COLUMN_NAME_NUMBER + "from " + WorkOrderContract.WorkOrderEntry.TABLE_NAME, null);
         Cursor cursor = wdbReadable.rawQuery("select * from " + WorkOrderContract.WorkOrderEntry.TABLE_NAME, null);
 

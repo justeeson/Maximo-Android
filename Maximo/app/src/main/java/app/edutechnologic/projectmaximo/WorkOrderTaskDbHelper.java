@@ -4,13 +4,17 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+/**
+ * Created by Alex on 11/5/2017.
+ * Helper class for the Work Order Task DB
+ */
 
-class FeedReaderDbHelper extends SQLiteOpenHelper {
+public class WorkOrderTaskDbHelper extends SQLiteOpenHelper {
     // If you change the database schema, you must increment the database version.
-    private static final int DATABASE_VERSION = 4;
-    private static final String DATABASE_NAME = "FeedReader.db";
+    public static final int DATABASE_VERSION = 4;
+    public static final String DATABASE_NAME = "WorkOrderTask.db";
 
-    public FeedReaderDbHelper(Context context) {
+    public WorkOrderTaskDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -49,15 +53,15 @@ class FeedReaderDbHelper extends SQLiteOpenHelper {
     }
 
     // This string is used to create the columns in the database
-    private static final String SQL_CREATE_ENTRIES =
-            "CREATE TABLE " + FeedReaderContract.FeedEntry.TABLE_NAME + " (" +
-                    FeedReaderContract.FeedEntry._ID + " INTEGER PRIMARY KEY," +
-                    FeedReaderContract.FeedEntry.COLUMN_NAME_USERID + " INTEGER UNIQUE," +
-                    FeedReaderContract.FeedEntry.COLUMN_NAME_USERNAME + " TEXT UNIQUE," +
-                    FeedReaderContract.FeedEntry.COLUMN_NAME_FIRSTNAME + " TEXT," +
-                    FeedReaderContract.FeedEntry.COLUMN_NAME_LASTNAME + " TEXT)";
+    public static final String SQL_CREATE_ENTRIES =
+            "CREATE TABLE " + WorkOrderTaskContract.WorkOrderTaskEntry.TABLE_NAME + " (" +
+                    WorkOrderTaskContract.WorkOrderTaskEntry._ID + " INTEGER PRIMARY KEY," +
+                    WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_WO_NUMBER + " INTEGER," +
+                    WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_NUMBER + " INTEGER UNIQUE," +
+                    WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_SUMMARY + " TEXT," +
+                    WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_STATUS + " TEXT)";
 
     // This string is used to delete the columns in the database
-    private static final String SQL_DELETE_ENTRIES =
-            "DROP TABLE IF EXISTS " + FeedReaderContract.FeedEntry.TABLE_NAME;
+    public static final String SQL_DELETE_ENTRIES =
+            "DROP TABLE IF EXISTS " + WorkOrderTaskContract.WorkOrderTaskEntry.TABLE_NAME;
 }

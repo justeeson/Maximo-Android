@@ -10,10 +10,11 @@ import app.edutechnologic.projectmaximo.ChatBot.ChatBotActivity;
  * Bottom navigation bar for each dashboard.
  */
 
-public class BottomMenuBar{
+public class BottomMenuBar {
 
     /**
      * Handles click events for the bottom navigation bar.
+     *
      * @param v the pressed navbar button
      */
     public static void menuClick(View v) {

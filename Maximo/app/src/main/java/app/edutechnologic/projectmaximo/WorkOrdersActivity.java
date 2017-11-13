@@ -1,10 +1,9 @@
 package app.edutechnologic.projectmaximo;
 
 import android.content.ContentValues;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
@@ -52,8 +51,9 @@ public class WorkOrdersActivity extends AppCompatActivity {
         values.put(WorkOrderContract.WorkOrderEntry.COLUMN_NAME_LOCATION, "BPM3100");
         values.put(WorkOrderContract.WorkOrderEntry.COLUMN_NAME_REPORTEDDATE, "10/12/17 9:33 AM");
         values.put(WorkOrderContract.WorkOrderEntry.COLUMN_NAME_STATUS, "APPR");
+
         // Insert the new row, returning the primary key value of the new row
-        newRowId = dbWriteable.insert(WorkOrderContract.WorkOrderEntry.TABLE_NAME, null, values);
+        dbWriteable.insert(WorkOrderContract.WorkOrderEntry.TABLE_NAME, null, values);
 
         //Third Entry values
         values = new ContentValues();
@@ -63,8 +63,9 @@ public class WorkOrdersActivity extends AppCompatActivity {
         values.put(WorkOrderContract.WorkOrderEntry.COLUMN_NAME_LOCATION, "BR430");
         values.put(WorkOrderContract.WorkOrderEntry.COLUMN_NAME_REPORTEDDATE, "10/25/17 4:50 PM");
         values.put(WorkOrderContract.WorkOrderEntry.COLUMN_NAME_STATUS, "APPR");
+
         // Insert the new row, returning the primary key value of the new row
-        newRowId = dbWriteable.insert(WorkOrderContract.WorkOrderEntry.TABLE_NAME, null, values);
+        dbWriteable.insert(WorkOrderContract.WorkOrderEntry.TABLE_NAME, null, values);
 
         //Get readable version of DB
         SQLiteDatabase dbReadable = DbHelper.getReadableDatabase();

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <!-- Create the sensor gauge (from https://github.com/pkleczko/CustomGauge)
@@ -42,8 +43,7 @@
             app:gaugeDividerColor="#ffeb3b"
             app:gaugeDividerStep="10"
             app:gaugeDividerDrawFirst="false"
-            app:gaugeDividerDrawLast="true"
-            />
+            app:gaugeDividerDrawLast="true" />
 
         <TextView
             android:id="@+id/gaugeText"

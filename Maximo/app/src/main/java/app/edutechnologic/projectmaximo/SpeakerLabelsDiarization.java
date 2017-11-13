@@ -16,8 +16,8 @@ import java.util.concurrent.CountDownLatch;
 
 public class SpeakerLabelsDiarization {
     public static class RecoToken {
-        private Double startTime;
-        private Double endTime;
+        private final Double startTime;
+        private final Double endTime;
         private Integer speaker;
         private String word;
         private Boolean spLabelIsFinal;
@@ -65,30 +65,29 @@ public class SpeakerLabelsDiarization {
 
 
     public static class Utterance {
-        private Integer speaker;
+        private final Integer speaker;
         private String transcript = "";
 
         /**
          * Instantiates a new utterance
          *
-         * @param speaker    the speaker
-         * @param transcript the transcript
+         * @param speaker the speaker
          */
-        public Utterance(final Integer speaker, final String transcript) {
+        public Utterance(int speaker) {
             this.speaker = speaker;
-            this.transcript = transcript;
+            this.transcript = "";
         }
     }
 
     public static class RecoTokens {
 
-        private Map<Double, RecoToken> recoTokenMap;
+        private final Map<Double, RecoToken> recoTokenMap;
 
         /**
          * Instantiates a new reco tokens
          */
         public RecoTokens() {
-            recoTokenMap = new LinkedHashMap<Double, RecoToken>();
+            recoTokenMap = new LinkedHashMap<>();
         }
 
         /**
@@ -117,7 +116,7 @@ public class SpeakerLabelsDiarization {
         }
 
         /**
-         *  Add the timestamp of the record token
+         * Add the timestamp of the record token
          *
          * @param speechTimestamp the speech timestamp
          */
@@ -153,7 +152,7 @@ public class SpeakerLabelsDiarization {
         }
 
         private void markTokensBeforeAsFinal(Double from) {
-            Map<Double, RecoToken> recoTokenMap = new LinkedHashMap<>();
+            @SuppressWarnings("MismatchedQueryAndUpdateOfCollection") Map<Double, RecoToken> recoTokenMap = new LinkedHashMap<>();
 
             for (RecoToken rt : recoTokenMap.values()) {
                 if (rt.startTime <= from)
@@ -162,15 +161,15 @@ public class SpeakerLabelsDiarization {
         }
 
         public void report() {
-            List<Utterance> uttterances = new ArrayList<Utterance>();
-            Utterance currentUtterance = new Utterance(0, "");
+            List<Utterance> uttterances = new ArrayList<>();
+            Utterance currentUtterance = new Utterance(0);
 
             for (RecoToken rt : recoTokenMap.values()) {
-                if (currentUtterance.speaker != rt.speaker) {
+                if (!currentUtterance.speaker.equals(rt.speaker)) {
                     uttterances.add(currentUtterance);
-                    currentUtterance = new Utterance(rt.speaker, "");
+                    currentUtterance = new Utterance(rt.speaker);
                 }
-                currentUtterance.transcript = currentUtterance.transcript + rt.word + " ";
+                currentUtterance.transcript = (new StringBuffer()).append(currentUtterance.transcript).append(rt.word).append(" ").toString();
             }
             uttterances.add(currentUtterance);
 
@@ -181,9 +180,9 @@ public class SpeakerLabelsDiarization {
         private void cleanFinal() {
             Set<Map.Entry<Double, RecoToken>> set = recoTokenMap.entrySet();
             for (Map.Entry<Double, RecoToken> e : set) {
-                    if (e.getValue().spLabelIsFinal) {
-                        recoTokenMap.remove(e.getKey());
-                    }
+                if (e.getValue().spLabelIsFinal) {
+                    recoTokenMap.remove(e.getKey());
+                }
             }
         }
 
