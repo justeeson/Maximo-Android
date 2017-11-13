@@ -161,6 +161,7 @@ public class ChatBotHandler {
         }
     }
 
+    // TODO: Hint: logic returns to the onclick listener only after this function finishes execution
     // Main logic for speech to text
     public static void speechToText(Boolean status, EditText messageBox) {
         if(checkInternetConnection()) {
