@@ -1,4 +1,4 @@
-package app.edutechnologic.projectmaximo.ChatBot;
+package app.edutechnologic.projectmaximo.NetworkUnavailableTest;
 
 import android.content.Intent;
 import android.support.test.filters.LargeTest;
@@ -13,6 +13,7 @@ import org.junit.runner.RunWith;
 
 import junit.framework.Assert;
 
+import app.edutechnologic.projectmaximo.ChatBot.ChatBotActivity;
 import app.edutechnologic.projectmaximo.R;
 
 /**
@@ -33,6 +34,7 @@ public class ChatBotNetworkUnavailableTest {
         ChatBotActivity chatBotActivity = mActivityTestRule.getActivity();
         mActivityTestRule.launchActivity(new Intent());
 
+        sleep();
         Assert.assertNotNull(chatBotActivity);
     }
 
@@ -40,9 +42,8 @@ public class ChatBotNetworkUnavailableTest {
      * This test is just to make sure we can attempt to send a message without crashing the app.
      */
     @Test
-    public void sendMessageTest() throws InterruptedException {
+    public void sendMessageTest() {
         ChatBotActivity chatBotActivity = mActivityTestRule.getActivity();
-        chatBotActivity = mActivityTestRule.launchActivity(new Intent());
         Assert.assertNotNull(chatBotActivity);
 
 
@@ -71,7 +72,16 @@ public class ChatBotNetworkUnavailableTest {
         });
 
         // Wait for UI thread to finish.
-        Thread.sleep(250);
+        sleep();
         Assert.assertTrue("Threads not finished", val[0] && val[1]);
+    }
+
+    private void sleep() {
+        try {
+            Thread.sleep(250);
+        } catch (InterruptedException e) {
+            // Failed to sleep for desired time.
+            e.printStackTrace();
+        }
     }
 }
