@@ -13,13 +13,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class WorkOrdersActivity extends AppCompatActivity {
-    //class variables
-    public static ArrayList<Integer> workOrderNumbers;
-    public static ArrayList<String> workOrderDescriptions;
-    public static ArrayList<Integer> workOrderAssetNumbers;
-    public static ArrayList<String> workOrderLocations;
-    public static ArrayList<String> workOrderReportedDates;
-    public static ArrayList<String> workOrderStatuses;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
