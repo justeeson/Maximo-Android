@@ -2,6 +2,7 @@ package app.edutechnologic.projectmaximo.ChatBot;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.wifi.WifiManager;
 import android.support.test.espresso.ViewInteraction;
 import android.support.test.rule.ActivityTestRule;
@@ -10,6 +11,8 @@ import android.test.suitebuilder.annotation.LargeTest;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
+
+import junit.framework.Assert;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
@@ -40,49 +43,12 @@ public class ChatBotActivityUITest {
     public ActivityTestRule<ChatBotActivity> mActivityTestRule = new ActivityTestRule<>(ChatBotActivity.class);
 
     @Test
-    public void chatBotActivityUITest() {
-        ViewInteraction appCompatEditText = onView(
-                allOf(withId(R.id.messageBox),
-                        childAtPosition(
-                                allOf(withId(R.id.chat_message_entry),
-                                        childAtPosition(
-                                                withClassName(is("android.support.constraint.ConstraintLayout")),
-                                                1)),
-                                0),
-                        isDisplayed()));
-        appCompatEditText.perform(replaceText("goodbye"), closeSoftKeyboard());
+    public void openActivityTest() {
+        ChatBotActivity chatBotActivity = mActivityTestRule.getActivity();
+        mActivityTestRule.launchActivity(new Intent());
 
-        ViewInteraction appCompatButton = onView(
-                allOf(withId(R.id.sendButton), withText("Send"),
-                        childAtPosition(
-                                allOf(withId(R.id.chat_message_entry),
-                                        childAtPosition(
-                                                withClassName(is("android.support.constraint.ConstraintLayout")),
-                                                1)),
-                                1),
-                        isDisplayed()));
-        appCompatButton.perform(click());
-
-        ViewInteraction view = onView(
-                allOf(childAtPosition(
-                        childAtPosition(
-                                withId(R.id.chat_message_history),
-                                0),
-                        0),
-                        isDisplayed()));
-        view.check(matches(isDisplayed()));
-
-        ViewInteraction view2 = onView(
-                allOf(childAtPosition(
-                        childAtPosition(
-                                withId(R.id.chat_message_history),
-                                1),
-                        0),
-                        isDisplayed()));
-        view2.check(matches(isDisplayed()));
-
+        Assert.assertNotNull(chatBotActivity);
     }
-
 
     private static Matcher<View> childAtPosition(
             final Matcher<View> parentMatcher, final int position) {

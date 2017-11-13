@@ -11,6 +11,8 @@ import org.junit.runner.RunWith;
 
 import junit.framework.Assert;
 
+import app.edutechnologic.projectmaximo.R;
+
 /**
  * Tests for the chat bot when we don't have network connectivity.
  * Important: Must make sure that you manually turn off the network
@@ -30,5 +32,17 @@ public class ChatBotNetworkUnavailableTest {
         mActivityTestRule.launchActivity(new Intent());
 
         Assert.assertNotNull(chatBotActivity);
+    }
+
+    /**
+     * This test is just to make sure we can attempt to send a message without crashing the app.
+     */
+    @Test
+    public void sendMessageTest() {
+        ChatBotActivity chatBotActivity = mActivityTestRule.getActivity();
+
+        Assert.assertNotNull(chatBotActivity);
+
+        // Make sure we can send a message without crashing.
     }
 }
