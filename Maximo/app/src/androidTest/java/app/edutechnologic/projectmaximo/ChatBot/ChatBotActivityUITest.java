@@ -1,6 +1,8 @@
 package app.edutechnologic.projectmaximo.ChatBot;
 
 
+import android.content.Context;
+import android.net.wifi.WifiManager;
 import android.support.test.espresso.ViewInteraction;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
@@ -80,6 +82,7 @@ public class ChatBotActivityUITest {
         view2.check(matches(isDisplayed()));
 
     }
+
 
     private static Matcher<View> childAtPosition(
             final Matcher<View> parentMatcher, final int position) {
