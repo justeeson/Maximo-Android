@@ -40,20 +40,38 @@ public class ChatBotNetworkUnavailableTest {
      * This test is just to make sure we can attempt to send a message without crashing the app.
      */
     @Test
-    public void sendMessageTest() {
+    public void sendMessageTest() throws InterruptedException {
         ChatBotActivity chatBotActivity = mActivityTestRule.getActivity();
         chatBotActivity = mActivityTestRule.launchActivity(new Intent());
         Assert.assertNotNull(chatBotActivity);
 
+
+        final boolean[] val = {false, false};
         // Make sure we can send a message without crashing.
         // Find text box and enter text
-        TextView messageEntryBox = chatBotActivity.findViewById(R.id.chat_message_text);
-        Assert.assertNotNull("Could not find chat_message_text", messageEntryBox);
-        messageEntryBox.setText("Hello");
+        final TextView messageEntryBox = chatBotActivity.findViewById(R.id.chat_message_entry_box);
+        Assert.assertNotNull("Could not find chat_message_entry_box", messageEntryBox);
+        chatBotActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                messageEntryBox.setText("Hello");
+                val[0] = true;
+            }
+        });
 
         // Find send button and click
-        Button sendButton = chatBotActivity.findViewById(R.id.chat_send_button);
+        final Button sendButton = chatBotActivity.findViewById(R.id.chat_send_button);
         Assert.assertTrue("Could not find chat_send_button", sendButton.isClickable());
-        sendButton.performClick();
+        chatBotActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                sendButton.performClick();
+                val[1] = true;
+            }
+        });
+
+        // Wait for UI thread to finish.
+        Thread.sleep(250);
+        Assert.assertTrue("Threads not finished", val[0] && val[1]);
     }
 }

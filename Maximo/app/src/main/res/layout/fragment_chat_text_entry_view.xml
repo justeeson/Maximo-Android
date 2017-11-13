@@ -6,7 +6,7 @@
     tools:context="app.edutechnologic.projectmaximo.ChatBot.ChatTextEntryFragment">
 
     <EditText
-        android:id="@+id/messageBox"
+        android:id="@+id/chat_message_entry_box"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginRight="16dp"
@@ -15,7 +15,7 @@
         android:hint="@string/edit_message"
         android:inputType="textPersonName"
         app:layout_constraintRight_toLeftOf="@+id/chat_send_button"
-        app:layout_constraintStart_toEndOf="@+id/btn_record"
+        app:layout_constraintStart_toEndOf="@+id/chat_btn_record"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -24,11 +24,11 @@
         android:layout_height="wrap_content"
         android:onClick="onSendButtonPressed"
         android:text="@string/button_send"
-        app:layout_constraintBaseline_toBaselineOf="@+id/messageBox"
+        app:layout_constraintBaseline_toBaselineOf="@+id/chat_message_entry_box"
         app:layout_constraintRight_toRightOf="parent" />
 
     <android.support.v7.widget.AppCompatImageButton
-        android:id="@+id/btn_record"
+        android:id="@+id/chat_btn_record"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginEnd="8dp"
@@ -38,7 +38,7 @@
         android:paddingLeft="5dp"
         android:scaleType="fitCenter"
         android:src="@mipmap/ic_mic"
-        app:layout_constraintEnd_toStartOf="@+id/messageBox"
+        app:layout_constraintEnd_toStartOf="@+id/chat_message_entry_box"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

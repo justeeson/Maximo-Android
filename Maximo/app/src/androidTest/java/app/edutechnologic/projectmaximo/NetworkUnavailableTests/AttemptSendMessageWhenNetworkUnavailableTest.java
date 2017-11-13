@@ -57,7 +57,7 @@ public class AttemptSendMessageWhenNetworkUnavailableTest {
         pressBack();
 
         ViewInteraction appCompatEditText = onView(
-                allOf(withId(R.id.messageBox),
+                allOf(withId(R.id.chat_message_entry_box),
                         childAtPosition(
                                 allOf(withId(R.id.chat_message_entry),
                                         childAtPosition(
@@ -68,7 +68,7 @@ public class AttemptSendMessageWhenNetworkUnavailableTest {
         appCompatEditText.perform(click());
 
         ViewInteraction appCompatEditText2 = onView(
-                allOf(withId(R.id.messageBox),
+                allOf(withId(R.id.chat_message_entry_box),
                         childAtPosition(
                                 allOf(withId(R.id.chat_message_entry),
                                         childAtPosition(
@@ -79,7 +79,7 @@ public class AttemptSendMessageWhenNetworkUnavailableTest {
         appCompatEditText2.perform(click());
 
         ViewInteraction appCompatEditText3 = onView(
-                allOf(withId(R.id.messageBox),
+                allOf(withId(R.id.chat_message_entry_box),
                         childAtPosition(
                                 allOf(withId(R.id.chat_message_entry),
                                         childAtPosition(
@@ -90,7 +90,7 @@ public class AttemptSendMessageWhenNetworkUnavailableTest {
         appCompatEditText3.perform(click());
 
         ViewInteraction appCompatEditText4 = onView(
-                allOf(withId(R.id.messageBox),
+                allOf(withId(R.id.chat_message_entry_box),
                         childAtPosition(
                                 allOf(withId(R.id.chat_message_entry),
                                         childAtPosition(
@@ -101,7 +101,7 @@ public class AttemptSendMessageWhenNetworkUnavailableTest {
         appCompatEditText4.perform(click());
 
         ViewInteraction appCompatEditText5 = onView(
-                allOf(withId(R.id.messageBox),
+                allOf(withId(R.id.chat_message_entry_box),
                         childAtPosition(
                                 allOf(withId(R.id.chat_message_entry),
                                         childAtPosition(
@@ -112,7 +112,7 @@ public class AttemptSendMessageWhenNetworkUnavailableTest {
         appCompatEditText5.perform(click());
 
         ViewInteraction appCompatEditText6 = onView(
-                allOf(withId(R.id.messageBox),
+                allOf(withId(R.id.chat_message_entry_box),
                         childAtPosition(
                                 allOf(withId(R.id.chat_message_entry),
                                         childAtPosition(
@@ -123,7 +123,7 @@ public class AttemptSendMessageWhenNetworkUnavailableTest {
         appCompatEditText6.perform(click());
 
         ViewInteraction appCompatEditText7 = onView(
-                allOf(withId(R.id.messageBox),
+                allOf(withId(R.id.chat_message_entry_box),
                         childAtPosition(
                                 allOf(withId(R.id.chat_message_entry),
                                         childAtPosition(
@@ -136,7 +136,7 @@ public class AttemptSendMessageWhenNetworkUnavailableTest {
         pressBack();
 
         ViewInteraction appCompatEditText8 = onView(
-                allOf(withId(R.id.messageBox), withText("hello, his i,"),
+                allOf(withId(R.id.chat_message_entry_box), withText("hello, his i,"),
                         childAtPosition(
                                 allOf(withId(R.id.chat_message_entry),
                                         childAtPosition(
@@ -147,7 +147,7 @@ public class AttemptSendMessageWhenNetworkUnavailableTest {
         appCompatEditText8.perform(replaceText("hello, his is a message,"));
 
         ViewInteraction appCompatEditText9 = onView(
-                allOf(withId(R.id.messageBox), withText("hello, his is a message,"),
+                allOf(withId(R.id.chat_message_entry_box), withText("hello, his is a message,"),
                         childAtPosition(
                                 allOf(withId(R.id.chat_message_entry),
                                         childAtPosition(
@@ -169,7 +169,7 @@ public class AttemptSendMessageWhenNetworkUnavailableTest {
         appCompatButton2.perform(click());
 
         ViewInteraction editText = onView(
-                allOf(withId(R.id.messageBox), withText("Enter a message"),
+                allOf(withId(R.id.chat_message_entry_box), withText("Enter a message"),
                         childAtPosition(
                                 allOf(withId(R.id.chat_message_entry),
                                         childAtPosition(

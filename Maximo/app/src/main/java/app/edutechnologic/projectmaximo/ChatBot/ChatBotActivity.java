@@ -60,9 +60,9 @@ public class ChatBotActivity extends AppCompatActivity
             }
         });
 
-        messageBox = this.findViewById(R.id.messageBox);
+        messageBox = this.findViewById(R.id.chat_message_entry_box);
 
-        micButton = this.findViewById(R.id.btn_record);
+        micButton = this.findViewById(R.id.chat_btn_record);
         micButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -155,7 +155,7 @@ public class ChatBotActivity extends AppCompatActivity
      */
     private void getUserMessageAndTimeStamp() {
         // Get the message from the EditText
-        EditText messageBox = findViewById(R.id.messageBox);
+        EditText messageBox = findViewById(R.id.chat_message_entry_box);
         String message = messageBox.getText().toString();
         messageBox.setText("");
 
