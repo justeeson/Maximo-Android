@@ -6,40 +6,40 @@
     tools:context="app.edutechnologic.projectmaximo.ChatBot.ChatTextEntryFragment">
 
     <EditText
-        android:id="@+id/messageBox"
+        android:id="@+id/chat_message_entry_box"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="60dp"
         android:layout_marginRight="16dp"
+        android:layout_marginStart="8dp"
         android:ems="10"
         android:hint="@string/edit_message"
         android:inputType="textPersonName"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/sendButton"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="60dp"
-        android:layout_marginEnd="16dp" />
+        app:layout_constraintRight_toLeftOf="@+id/chat_send_button"
+        app:layout_constraintStart_toEndOf="@+id/chat_btn_record"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/sendButton"
+        android:id="@+id/chat_send_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="onSendButtonPressed"
         android:text="@string/button_send"
-        app:layout_constraintBaseline_toBaselineOf="@+id/messageBox"
+        app:layout_constraintBaseline_toBaselineOf="@+id/chat_message_entry_box"
         app:layout_constraintRight_toRightOf="parent" />
 
     <android.support.v7.widget.AppCompatImageButton
-        android:id="@+id/btn_record"
+        android:id="@+id/chat_btn_record"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:background="@null"
         android:elevation="0dp"
         android:paddingLeft="5dp"
         android:scaleType="fitCenter"
         android:src="@mipmap/ic_mic"
-        tools:layout_editor_absoluteY="8dp"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintEnd_toStartOf="@+id/chat_message_entry_box"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
