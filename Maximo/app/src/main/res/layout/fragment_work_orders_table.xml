@@ -25,12 +25,11 @@
         <TextView
             android:id="@+id/woScrollUp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Up"
+            android:layout_height="match_parent"
+            android:text="Page\nUp"
             android:textSize="15sp"
             android:gravity="center"
             android:layout_marginBottom="4dp"
-            android:layout_marginTop="4dp"
             android:layout_marginLeft="4dp"
             android:layout_marginRight="4dp"
             android:textColor="@color/colorPrimary"/>
@@ -38,12 +37,11 @@
         <TextView
             android:id="@+id/woScrollDown"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Down"
+            android:layout_height="match_parent"
+            android:text="Page\nDown"
             android:textSize="15sp"
             android:gravity="center"
             android:layout_marginBottom="4dp"
-            android:layout_marginTop="4dp"
             android:layout_marginLeft="4dp"
             android:layout_marginRight="4dp"
             android:textColor="@color/colorPrimary"/>
