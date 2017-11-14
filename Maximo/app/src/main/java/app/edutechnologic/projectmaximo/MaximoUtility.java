@@ -11,13 +11,13 @@ public class MaximoUtility {
     private final String workspace_id;
 
     public MaximoUtility() {
-        conversation_username = "3072f50f-4f30-424d-83a4-1a3cd970a4af";
-        conversation_password = "flEyamA3drcv";
-        TTS_username = "894dc105-4f3b-406f-bd5e-021a096b6a35";
-        TTS_password = "VLOHR4BWSRLa";
-        STT_username = "c96da939-81fe-4057-a026-4f8465076666";
-        STT_password = "mPnVQaebCMrP";
-        workspace_id = "fcd7dbf9-47c6-4f2e-8384-d358db00a087";
+        conversation_username = "190135b9-77f2-4547-a230-61e457edd715";
+        conversation_password = "8fOXKNKfKx24";
+        TTS_username = "1e66e0ee-2cb3-4c69-adde-069debe5f4be";
+        TTS_password = "JJp2Jl3k64jb";
+        STT_username = "3d0e419f-1196-4e17-a000-bfb9f86ca83b";
+        STT_password = "YWNVcAVrGxzT";
+        workspace_id = "63a97876-099c-4c11-ae5f-fefd2dbc7952";
     }
 
     public String getConversationUsername() {
