@@ -12,15 +12,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!--<TextView-->
-            <!--android:id="@+id/introTextView2"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:textSize="25dp"-->
-            <!--android:text="@string/introduction_pane"-->
-            <!--android:gravity="center"-->
-            <!--android:textColor="#000000"/>-->
-
         <TextView
             android:id="@+id/dashboard_settings_header"
             android:layout_width="wrap_content"
@@ -75,16 +66,6 @@
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="92dp" />
 
-        <CheckBox
-            android:id="@+id/workOrdersCheckbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="19sp"
-            android:padding="10sp"
-            android:layout_marginLeft="15dp"
-            android:text="@string/work_orders"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="92dp" />
 
         <Button
             android:id="@+id/SaveDashboardSettingBtn"

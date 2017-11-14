@@ -2,15 +2,12 @@ package app.edutechnologic.projectmaximo;
 
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.TextView;
-
-import java.util.ArrayList;
 
 public class WorkOrdersActivity extends AppCompatActivity {
 
@@ -22,9 +19,6 @@ public class WorkOrdersActivity extends AppCompatActivity {
         // Gets the data repository in write mode
         WorkOrderDbHelper DbHelper = new WorkOrderDbHelper(getApplicationContext());
         SQLiteDatabase dbWriteable = DbHelper.getWritableDatabase();
-
-        // delete all items in workitem table
-        // dbWriteable.delete(WorkOrderContract.WorkOrderEntry.TABLE_NAME, null, null);
 
         //Create a few work order entries
 
@@ -129,6 +123,12 @@ public class WorkOrdersActivity extends AppCompatActivity {
         });
         final Button homeButton = findViewById(R.id.home_nav_btn);
         homeButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                BottomMenuBar.menuClick(v);
+            }
+        });
+        final Button dashboardSettingsButton = findViewById(R.id.dashboard_settings_btn);
+        dashboardSettingsButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 BottomMenuBar.menuClick(v);
             }

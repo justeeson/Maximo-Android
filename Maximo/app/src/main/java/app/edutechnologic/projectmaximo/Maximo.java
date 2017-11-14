@@ -177,7 +177,6 @@ public class Maximo extends AppCompatActivity {
         ArrayList<String> curr_settings = new ArrayList<String>();
         File file = new File(getFilesDir(), "dashboardSetting.txt");
 
-        // file.delete();
         if(!file.exists()){
             inbox.setVisibility(View.VISIBLE);
             bulletin_board.setVisibility(View.VISIBLE);
