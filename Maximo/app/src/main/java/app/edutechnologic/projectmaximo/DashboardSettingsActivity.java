@@ -31,7 +31,6 @@ public class DashboardSettingsActivity extends AppCompatActivity {
         final CheckBox bulletin_board_checkbox = (CheckBox) findViewById(R.id.bulletinCheckbox);
         final CheckBox gauge_checkbox = (CheckBox) findViewById(R.id.gaugeCheckbox);
         final CheckBox status_window_checkbox = (CheckBox) findViewById(R.id.statusWindowCheckbox);
-        //final CheckBox work_orders_checkbox = (CheckBox) findViewById(R.id.work);
 
         setCheckboxAtStart();
 
@@ -94,19 +93,6 @@ public class DashboardSettingsActivity extends AppCompatActivity {
             }
         });
 
-//        //work_orders check box
-//        work_orders_checkbox.setOnClickListener(new CheckBox.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (((CheckBox) v).isChecked()) {
-//                    changes.add("work_orders");
-//                } else {
-//                    changes.remove("work_orders");
-//
-//                }
-//            }
-//        });
-
 
         // save changes by clicking save btn
         // store the changes in internal storage so it keeps the change next time while running
@@ -131,12 +117,18 @@ public class DashboardSettingsActivity extends AppCompatActivity {
                 BottomMenuBar.menuClick(v);
             }
         });
+        final Button dashboardSettingsButton = findViewById(R.id.dashboard_settings_btn);
+        dashboardSettingsButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                BottomMenuBar.menuClick(v);
+            }
+        });
 
     }
 
     public void setCheckboxAtStart() {
         /**
-         * * Default setting is to display all dashboards
+         * Default setting is to display all dashboards
          * if user has made any change before,
          * follow the change to setup
          */
@@ -144,7 +136,6 @@ public class DashboardSettingsActivity extends AppCompatActivity {
         CheckBox bulletin_checkbox = (CheckBox) findViewById(R.id.bulletinCheckbox);
         CheckBox sensor_gauge_checkbox = (CheckBox) findViewById(R.id.gaugeCheckbox);
         CheckBox status_checkbox = (CheckBox) findViewById(R.id.statusWindowCheckbox);
-        //CheckBox work_item_checkbox = (CheckBox) findViewById(R.id.workItemCheckbox);
         File file = new File(getFilesDir(), "dashboardSetting.txt");
 
         if (!file.exists()) {
@@ -153,7 +144,6 @@ public class DashboardSettingsActivity extends AppCompatActivity {
             previous_settings.add("bulletin_board");
             previous_settings.add("gauge");
             previous_settings.add("status_window");
-            //previous_settings.add("inbox");
 
         } else {
             readFromFile();
@@ -199,13 +189,9 @@ public class DashboardSettingsActivity extends AppCompatActivity {
     public boolean saveToFile() {
         // clear previous settings
         File file = new File(getFilesDir(), "dashboardSetting.txt");
-        file.delete();
-        if(file.exists()){
-            Toast.makeText(this, "File exists already.", Toast.LENGTH_SHORT).show();
-        }else{
-            Toast.makeText(this, "File not exist.", Toast.LENGTH_SHORT).show();
-        }
 
+        Toast.makeText(getApplicationContext(), "Changes saved!",
+                Toast.LENGTH_SHORT).show();
 
         try {
             FileOutputStream fos = openFileOutput("dashboardSetting.txt", Context.MODE_PRIVATE);
@@ -230,12 +216,11 @@ public class DashboardSettingsActivity extends AppCompatActivity {
             InputStreamReader isr = new InputStreamReader(fis);
             BufferedReader br = new BufferedReader(isr);
 
-            String sLine = null;
+            String sLine = "";
             String out = "";
             previous_settings.clear();
             while ((sLine = br.readLine()) != null) {
                 previous_settings.add(sLine);
-                // Toast.makeText(this, sLine, Toast.LENGTH_SHORT).show();
             }
 
         } catch (Exception e) {
