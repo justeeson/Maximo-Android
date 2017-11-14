@@ -73,6 +73,7 @@ public class ChatBotActivity extends AppCompatActivity
                 }
             }
         });
+
         ChatBotHandler.initialize();
         ChatBotConversationHistory.fetchHistory();
         this.scrollToMostRecentMessage();
