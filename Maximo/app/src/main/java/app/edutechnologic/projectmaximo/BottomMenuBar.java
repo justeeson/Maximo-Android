@@ -10,10 +10,11 @@ import app.edutechnologic.projectmaximo.ChatBot.ChatBotActivity;
  * Bottom navigation bar for each dashboard.
  */
 
-public class BottomMenuBar{
+public class BottomMenuBar {
 
     /**
      * Handles click events for the bottom navigation bar.
+     *
      * @param v the pressed navbar button
      */
     public static void menuClick(View v) {
@@ -22,15 +23,14 @@ public class BottomMenuBar{
             case R.id.home_nav_btn: // Home
                 v.getContext().startActivity(new Intent(v.getContext(), Maximo.class));
                 break;
-            case R.id.dashboard_nav_btn: // Media
-                v.getContext().startActivity(new Intent(v.getContext(), MediaDashboardActivity.class));
-                break;
             case R.id.chat_nav_btn: // Chat
                 v.getContext().startActivity(new Intent(v.getContext(), ChatBotActivity.class));
                 break;
             case R.id.dashboard_settings_btn:  // Dashboard Settings
                 v.getContext().startActivity(new Intent(v.getContext(), DashboardSettingsActivity.class));
                 break;
+            case R.id.work_orders_nav_btn: //Work Orders
+                v.getContext().startActivity(new Intent(v.getContext(), WorkOrdersActivity.class));
             default:
                 break;
         }

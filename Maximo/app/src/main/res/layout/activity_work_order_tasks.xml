@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/topInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Display the work order currently being viewed -->
+        <TextView
+            android:id="@+id/workOrderTasksHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="28sp"
+            android:textColor="#000000"
+            android:layout_weight="8" />
+
+        <!-- Back button to return to work orders dashboard -->
+        <Button
+            android:id="@+id/back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="Back" />
+
+        <TextView
+            android:id="@+id/tasksScrollUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Up"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:textColor="@color/colorPrimary"/>
+
+        <TextView
+            android:id="@+id/tasksScrollDown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Down"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:textColor="@color/colorPrimary"/>
+
+    </LinearLayout>
+
+    <!-- Table for displaying work order tasks -->
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/taskTableHeading">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/taskNumber"
+                android:background="@drawable/border2"
+                android:layout_weight="1"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:text="Task"
+                android:gravity="center"
+                android:textColor="@color/forest"/>
+
+            <TextView
+                android:id="@+id/taskSummary"
+                android:background="@drawable/border2"
+                android:layout_weight="1"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:text="Summary"
+                android:gravity="center"
+                android:textColor="@color/forest"/>
+
+            <TextView
+                android:id="@+id/taskStatus"
+                android:background="@drawable/border2"
+                android:layout_weight="1"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:text="Status"
+                android:gravity="center"
+                android:textColor="@color/forest"/>
+        </TableRow>
+
+    </TableLayout>
+
+    <ScrollView
+        android:id="@+id/workOrderTasksScrollView"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:scrollbars="none"
+        android:layout_weight="1">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/taskTable">
+
+        </TableLayout>
+
+    </ScrollView>
+
+    <!-- Bottom navbar -->
+    <LinearLayout
+        android:id="@+id/workOrderTasksNavBar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+        <include layout="@layout/bottom_menu_bar"/>
+    </LinearLayout>
+</LinearLayout>

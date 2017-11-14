@@ -13,8 +13,6 @@ import java.util.ArrayList;
 
 public class MediaDashboardActivity extends AppCompatActivity {
 
-    private ListView media_assets_list;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,8 +31,8 @@ public class MediaDashboardActivity extends AppCompatActivity {
                 BottomMenuBar.menuClick(v);
             }
         });
-        final Button dashboardSettingsButton = findViewById(R.id.dashboard_settings_btn);
-        dashboardSettingsButton.setOnClickListener(new View.OnClickListener() {
+        final Button workOrdersButton = findViewById(R.id.work_orders_nav_btn);
+        workOrdersButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 BottomMenuBar.menuClick(v);
             }
@@ -46,36 +44,35 @@ public class MediaDashboardActivity extends AppCompatActivity {
     /**
      * This function populates the list with the required media assets
      */
-    public void populateMediaAssetsList(){
+    private void populateMediaAssetsList() {
         // get files' names from asset directory
         // if the file is empty, an alert message would display
+        ListView media_assets_list;
         String[] list, final_media_assets = {"No available media asset!"};
-        ArrayList<String> media_assets = new ArrayList<String>();
-        ArrayList<String> filetype = new ArrayList<String>();
-        ArrayList<String> size = new ArrayList<String>();
+        ArrayList<String> media_assets = new ArrayList<>();
+        @SuppressWarnings("MismatchedQueryAndUpdateOfCollection") ArrayList<String> filetype = new ArrayList<>();
         try {
             AssetManager assetManager = getAssets();
             list = assetManager.list("");
             // remove all the built-in files in Android, only show user's own assets
             if (list.length > 0) {
-                for(int i = 0; i < list.length; i++){
-                    if(!list[i].equals("images") && !list[i].equals("sounds") && !list[i].equals("webkit")){
+                for (String item : list) {
+                    if (!item.equals("images") && !item.equals("sounds") && !item.equals("webkit")) {
                         //put filename in {media_assets}
-                        String file = list[i];
-                        media_assets.add(list[i].substring(0, list[i].indexOf('.')));
+                        media_assets.add(item.substring(0, item.indexOf('.')));
                         //put filetype in {filetype}
-                        filetype.add(list[i].substring(list[i].indexOf('.')+1,list[i].length()));
+                        filetype.add(item.substring(item.indexOf('.') + 1, item.length()));
                     }
+                    final_media_assets = media_assets.toArray(new String[media_assets.size()]);
                 }
-                final_media_assets = media_assets.toArray(new String[media_assets.size()]);
             }
         } catch (IOException ex) {
             ex.printStackTrace();
         }
 
         // display media asset files name on screen
-        ArrayAdapter<String> media_adapter = new ArrayAdapter<String>(this, R.layout.media_assets_list, final_media_assets);
-        media_assets_list = (ListView)findViewById(R.id.media_list);
+        ArrayAdapter<String> media_adapter = new ArrayAdapter<>(this, R.layout.media_assets_list, final_media_assets);
+        media_assets_list = findViewById(R.id.media_list);
         media_assets_list.setAdapter(media_adapter);
     }
 }

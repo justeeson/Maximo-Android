@@ -15,7 +15,6 @@ import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-import static app.edutechnologic.projectmaximo.R.id.dashboard_nav_btn;
 
 public class DashboardSettingsActivity extends AppCompatActivity {
 
@@ -119,16 +118,9 @@ public class DashboardSettingsActivity extends AppCompatActivity {
 
         });
 
-
         //bottom navbar menu button functionality
         final Button homeButton = findViewById(R.id.home_nav_btn);
         homeButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                BottomMenuBar.menuClick(v);
-            }
-        });
-        final Button mediaButton = findViewById(dashboard_nav_btn);
-        mediaButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 BottomMenuBar.menuClick(v);
             }

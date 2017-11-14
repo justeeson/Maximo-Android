@@ -5,10 +5,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 
-public class SensorGaugeReaderDbHelper extends SQLiteOpenHelper {
+class SensorGaugeReaderDbHelper extends SQLiteOpenHelper {
     // If you change the database schema, you must increment the database version.
-    public static final int DATABASE_VERSION = 1;
-    public static final String DATABASE_NAME = "SensorGaugeReader.db";
+    private static final int DATABASE_VERSION = 2;
+    private static final String DATABASE_NAME = "SensorGaugeReader.db";
 
     public SensorGaugeReaderDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -17,7 +17,7 @@ public class SensorGaugeReaderDbHelper extends SQLiteOpenHelper {
     /**
      * This function creates the necessary database
      *
-     * @param db         the SQLiteDatabase to be created
+     * @param db the SQLiteDatabase to be created
      */
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_ENTRIES);
@@ -49,16 +49,16 @@ public class SensorGaugeReaderDbHelper extends SQLiteOpenHelper {
     }
 
     // This String specifies the SQL command to generate the necessary table
-    public static final String SQL_CREATE_ENTRIES =
+    private static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + SensorGaugeReaderContract.FeedEntry.TABLE_NAME + " (" +
                     SensorGaugeReaderContract.FeedEntry._ID + " INTEGER PRIMARY KEY," +
                     SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORID + " INTEGER UNIQUE," +
                     SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORNAME + " TEXT UNIQUE," +
-                    SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORSTATUS + " TEXT," +
-                    SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORTOTALVALUE + " TEXT," +
-                    SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORACTUALVALUE + " TEXT)";
+                    SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORSTATUS + " INTEGER," +
+                    SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORTOTALVALUE + " INTEGER," +
+                    SensorGaugeReaderContract.FeedEntry.COLUMN_NAME_SENSORACTUALVALUE + " INTEGER)";
 
     // This String specifies the SQL command to delete the table
-    public static final String SQL_DELETE_ENTRIES =
+    private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + SensorGaugeReaderContract.FeedEntry.TABLE_NAME;
 }
