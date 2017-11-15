@@ -128,6 +128,27 @@
                     android:textColor="@color/realwear_gray" />
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/dashboard_settings_nav"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/dashboard_settings_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/transparent"
+                    android:drawableTop="@drawable/ic_dashboard_settings"
+                    android:contentDescription="@string/Settings"
+                    android:text="@string/Settings"
+                    android:textColor="@color/realwear_gray" />
+            </LinearLayout>
+
+
         </LinearLayout>
     </HorizontalScrollView>
 

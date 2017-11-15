@@ -25,17 +25,21 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".ChatBot.ChatBotActivity"
-            android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:exported="true" />
         <activity
             android:name=".MediaDashboardActivity"
             android:exported="true" />
+        <activity android:name=".DashboardSettingsActivity">
+            <intent-filter>
+                <action android:name="edu.dccc.getextras"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
         android:name=".WorkOrdersActivity"
         android:theme="@style/AppTheme.NoActionBar" />
@@ -43,5 +47,4 @@
             android:name=".WorkOrderTasksActivity"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
-
 </manifest>

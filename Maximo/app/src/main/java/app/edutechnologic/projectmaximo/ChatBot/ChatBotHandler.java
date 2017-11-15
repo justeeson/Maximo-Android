@@ -27,14 +27,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import app.edutechnologic.projectmaximo.ChatBot.Response.IntentHandler;
-import app.edutechnologic.projectmaximo.MaximoUtility;
 import app.edutechnologic.projectmaximo.SpeakerLabelsDiarization;
 
 
 public class ChatBotHandler {
 
     private static ConversationService service;
-    private static String workspaceId;
     private static Map<String, Object> contextMap;
     private static StreamPlayer streamPlayer;
     private static WatsonMessage responseFromWatson;
@@ -47,23 +45,35 @@ public class ChatBotHandler {
     private static EditText inputBox;
     private static Boolean listening;
 
+    private static String conversation_username;
+    private static String conversation_password;
+    private static String TTS_username;
+    private static String TTS_password;
+    private static String STT_username;
+    private static String STT_password;
+    private static String workspace_id;
+
 
     /**
      * This function initializes the necessary variables
      */
     public static void initialize() {
-        if(checkInternetConnection()) {
-            MaximoUtility utilityClass = new MaximoUtility();
-            String username = utilityClass.getConversationUsername();
-            String password = utilityClass.getConversationPassword();
-            String TTS_username = utilityClass.getTTSUsername();
-            String TTS_password = utilityClass.getTTSPassword();
-            String STT_username = utilityClass.getSTTUsername();
-            String STT_password = utilityClass.getSTTPassword();
-            String workspaceId = utilityClass.getWorkspaceID();
+        conversation_username = "190135b9-77f2-4547-a230-61e457edd715";
+        conversation_password = "8fOXKNKfKx24";
+        TTS_username = "1e66e0ee-2cb3-4c69-adde-069debe5f4be";
+        TTS_password = "JJp2Jl3k64jb";
+        STT_username = "3d0e419f-1196-4e17-a000-bfb9f86ca83b";
+        STT_password = "YWNVcAVrGxzT";
+        workspace_id = "63a97876-099c-4c11-ae5f-fefd2dbc7952";
 
-            ConversationService service = new ConversationService(ConversationService.VERSION_DATE_2017_02_03);
-            service.setUsernameAndPassword(username, password);
+        if(checkInternetConnection()) {
+            service = new ConversationService(ConversationService.VERSION_DATE_2017_02_03);
+            service.setUsernameAndPassword(conversation_username, conversation_password);
+            if(service == null)
+            {
+                System.out.println("service is null");
+            }
+
             contextMap = new HashMap<>();
             responseFromWatson = new WatsonMessage();
 
@@ -72,6 +82,7 @@ public class ChatBotHandler {
             speechToTextService = new SpeechToText();
             speechToTextService.setUsernameAndPassword(STT_username, STT_password);
             speechToTextService.setDefaultHeaders(headers);
+
             Thread modelThread = new Thread() {
                 public void run() {
                     SpeechModel model = speechToTextService.getModel("en-US_BroadbandModel").execute();
@@ -101,25 +112,20 @@ public class ChatBotHandler {
                 public void run() {
                     try {
                         String replyFromWatson;
-                        // Build and send a message to the Watson API
+                        // Send message to Watson and obtain a response
                         MessageRequest newMessage = new MessageRequest.Builder()
                                 .inputText(messagedToBePassed)
                                 .context(contextMap)
                                 .build();
 
                         MessageResponse response = service
-                                .message(workspaceId, newMessage)
+                                .message(workspace_id, newMessage)
                                 .execute();
 
-                        System.out.println(response);
-
-                        // Obtain response from Watson API
                         ArrayList responseList = (ArrayList) response.getOutput().get("text");
                         if (null != responseList && responseList.size() > 0) {
                             replyFromWatson = ((String) responseList.get(0));
-                            String localResponse = IntentHandler.handleIntent(response);
-                            // FIXME: This is gross. Call a method to add something to chat.
-                            responseFromWatson.setWatsonMessage(replyFromWatson + "\n" + localResponse);
+                            responseFromWatson.setWatsonMessage(replyFromWatson + "\n");
                         }
 
                     } catch (Exception e) {
@@ -161,6 +167,7 @@ public class ChatBotHandler {
         }
     }
 
+    // TODO: Hint: logic returns to the onclick listener only after this function finishes execution
     // Main logic for speech to text
     public static void speechToText(Boolean status, EditText messageBox) {
         if(checkInternetConnection()) {
@@ -172,22 +179,7 @@ public class ChatBotHandler {
                     @Override
                     public void run() {
                         try {
-                            // Start a timer that lets the mic remain active for 5 seconds before shutting down
-                            /*
-                            final CountDownTimer micTimer = new CountDownTimer(5000, 1000) {
-                                public void onTick(long millisUntilFinished) {
-
-                                }
-
-                                public void onFinish() {
-                                    endMicListener();
-                                    Toast.makeText(ChatBotActivity.getAppContext(), "Done", Toast.LENGTH_LONG).show();
-                                }
-                            };
-                            micTimer.start();
-                            */
                             speechToTextService.recognizeUsingWebSocket(capture, getRecognizeOptions(), new MicrophoneRecognizeDelegate());
-                           // micTimer.cancel();
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

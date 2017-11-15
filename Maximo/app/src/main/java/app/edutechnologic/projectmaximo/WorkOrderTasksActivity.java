@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -71,6 +72,123 @@ public class WorkOrderTasksActivity extends AppCompatActivity {
         values = new ContentValues();
         values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_WO_NUMBER, "1214");
         values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_NUMBER, "30");
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_SUMMARY, "Check housing for leaks.");
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_STATUS, "WSCH");
+        // Insert the new row, returning the primary key value of the new row
+        newRowId = dbWriteable.insert(WorkOrderTaskContract.WorkOrderTaskEntry.TABLE_NAME, null, values);
+
+        //Third Entry values
+        values = new ContentValues();
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_WO_NUMBER, "1214");
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_NUMBER, "40");
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_SUMMARY, "Check housing for leaks.");
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_STATUS, "WSCH");
+        // Insert the new row, returning the primary key value of the new row
+        newRowId = dbWriteable.insert(WorkOrderTaskContract.WorkOrderTaskEntry.TABLE_NAME, null, values);
+
+        //Third Entry values
+        values = new ContentValues();
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_WO_NUMBER, "1214");
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_NUMBER, "50");
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_SUMMARY, "Check housing for leaks.");
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_STATUS, "WSCH");
+        // Insert the new row, returning the primary key value of the new row
+        newRowId = dbWriteable.insert(WorkOrderTaskContract.WorkOrderTaskEntry.TABLE_NAME, null, values);
+
+        //Third Entry values
+        values = new ContentValues();
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_WO_NUMBER, "1214");
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_NUMBER, "60");
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_SUMMARY, "Check housing for leaks.");
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_STATUS, "WSCH");
+        // Insert the new row, returning the primary key value of the new row
+        newRowId = dbWriteable.insert(WorkOrderTaskContract.WorkOrderTaskEntry.TABLE_NAME, null, values);
+
+        //Third Entry values
+        values = new ContentValues();
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_WO_NUMBER, "1214");
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_NUMBER, "70");
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_SUMMARY, "Check housing for leaks.");
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_STATUS, "WSCH");
+        // Insert the new row, returning the primary key value of the new row
+        newRowId = dbWriteable.insert(WorkOrderTaskContract.WorkOrderTaskEntry.TABLE_NAME, null, values);
+
+        //Third Entry values
+        values = new ContentValues();
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_WO_NUMBER, "1214");
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_NUMBER, "80");
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_SUMMARY, "Check housing for leaks.");
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_STATUS, "WSCH");
+        // Insert the new row, returning the primary key value of the new row
+        newRowId = dbWriteable.insert(WorkOrderTaskContract.WorkOrderTaskEntry.TABLE_NAME, null, values);
+
+        //Third Entry values
+        values = new ContentValues();
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_WO_NUMBER, "1214");
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_NUMBER, "90");
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_SUMMARY, "Check housing for leaks.");
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_STATUS, "WSCH");
+        // Insert the new row, returning the primary key value of the new row
+        newRowId = dbWriteable.insert(WorkOrderTaskContract.WorkOrderTaskEntry.TABLE_NAME, null, values);
+
+        //Third Entry values
+        values = new ContentValues();
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_WO_NUMBER, "1214");
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_NUMBER, "100");
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_SUMMARY, "Check housing for leaks.");
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_STATUS, "WSCH");
+        // Insert the new row, returning the primary key value of the new row
+        newRowId = dbWriteable.insert(WorkOrderTaskContract.WorkOrderTaskEntry.TABLE_NAME, null, values);
+
+        //Third Entry values
+        values = new ContentValues();
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_WO_NUMBER, "1214");
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_NUMBER, "110");
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_SUMMARY, "Check housing for leaks.");
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_STATUS, "WSCH");
+        // Insert the new row, returning the primary key value of the new row
+        newRowId = dbWriteable.insert(WorkOrderTaskContract.WorkOrderTaskEntry.TABLE_NAME, null, values);
+
+        //Third Entry values
+        values = new ContentValues();
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_WO_NUMBER, "1214");
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_NUMBER, "120");
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_SUMMARY, "Check housing for leaks.");
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_STATUS, "WSCH");
+        // Insert the new row, returning the primary key value of the new row
+        newRowId = dbWriteable.insert(WorkOrderTaskContract.WorkOrderTaskEntry.TABLE_NAME, null, values);
+
+        //Third Entry values
+        values = new ContentValues();
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_WO_NUMBER, "1214");
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_NUMBER, "130");
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_SUMMARY, "Check housing for leaks.");
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_STATUS, "WSCH");
+        // Insert the new row, returning the primary key value of the new row
+        newRowId = dbWriteable.insert(WorkOrderTaskContract.WorkOrderTaskEntry.TABLE_NAME, null, values);
+
+        //Third Entry values
+        values = new ContentValues();
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_WO_NUMBER, "1214");
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_NUMBER, "140");
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_SUMMARY, "Check housing for leaks.");
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_STATUS, "WSCH");
+        // Insert the new row, returning the primary key value of the new row
+        newRowId = dbWriteable.insert(WorkOrderTaskContract.WorkOrderTaskEntry.TABLE_NAME, null, values);
+
+        //Third Entry values
+        values = new ContentValues();
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_WO_NUMBER, "1214");
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_NUMBER, "150");
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_SUMMARY, "Check housing for leaks.");
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_STATUS, "WSCH");
+        // Insert the new row, returning the primary key value of the new row
+        newRowId = dbWriteable.insert(WorkOrderTaskContract.WorkOrderTaskEntry.TABLE_NAME, null, values);
+
+        //Third Entry values
+        values = new ContentValues();
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_WO_NUMBER, "1214");
+        values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_NUMBER, "160");
         values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_SUMMARY, "Check housing for leaks.");
         values.put(WorkOrderTaskContract.WorkOrderTaskEntry.COLUMN_NAME_STATUS, "WSCH");
         // Insert the new row, returning the primary key value of the new row
@@ -150,6 +268,21 @@ public class WorkOrderTasksActivity extends AppCompatActivity {
                 //return to the work orders dashboard
                 Intent intent = new Intent(v.getContext(), WorkOrdersActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        //scroll view buttons
+        final ScrollView workOrderTasksScroller = findViewById(R.id.workOrderTasksScrollView);
+        final TextView upArrow = findViewById(R.id.tasksScrollUp);
+        upArrow.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                workOrderTasksScroller.arrowScroll(33);
+            }
+        });
+        final TextView downArrow = findViewById(R.id.tasksScrollDown);
+        downArrow.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                workOrderTasksScroller.arrowScroll(130);
             }
         });
 

@@ -26,6 +26,9 @@ public class BottomMenuBar {
             case R.id.chat_nav_btn: // Chat
                 v.getContext().startActivity(new Intent(v.getContext(), ChatBotActivity.class));
                 break;
+            case R.id.dashboard_settings_btn:  // Dashboard Settings
+                v.getContext().startActivity(new Intent(v.getContext(), DashboardSettingsActivity.class));
+                break;
             case R.id.work_orders_nav_btn: //Work Orders
                 v.getContext().startActivity(new Intent(v.getContext(), WorkOrdersActivity.class));
             default:
